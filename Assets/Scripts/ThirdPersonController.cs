@@ -68,6 +68,9 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        [Tooltip("Cooldown until you can make your next attack")]
+        public float AttackCooldown = 1.0f;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -79,6 +82,7 @@ namespace StarterAssets
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
+        private float _attackCooldownTimer;
 
         // timeout deltatime
         private float _fallTimeoutDelta;
@@ -88,6 +92,7 @@ namespace StarterAssets
         private int _animIDGrounded;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+        private int _animIDAttack;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
@@ -163,6 +168,7 @@ namespace StarterAssets
             _animIDGrounded = Animator.StringToHash("Grounded");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+            _animIDAttack = Animator.StringToHash("Attack");
         }
 
         private void GroundedCheck()
@@ -269,12 +275,23 @@ namespace StarterAssets
             }
         }
 
+        
+        //Checks attack input and does whatever we want attack to do
         private void AttackTest()
         {
-            if (_input.attack)
+            _attackCooldownTimer += Time.deltaTime;
+            if (_input.attack && _attackCooldownTimer > AttackCooldown)
             {
                 Debug.Log("Haja");
                 _input.attack = false;
+                _animator.SetBool(_animIDAttack, true);
+            }
+            else
+            {
+                if (_attackCooldownTimer > AttackCooldown)
+                {
+                    _animator.SetBool(_animIDAttack, false);
+                }
             }
         }
 

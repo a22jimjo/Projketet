@@ -229,10 +229,20 @@ PrefabInstance:
       propertyPath: projectileCooldown
       value: 1.15
       objectReference: {fileID: 0}
+    - target: {fileID: 7083769050285902801, guid: c78f7b477bbe6ec4598c1ce00203d0b4,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8921968431424219999, guid: c78f7b477bbe6ec4598c1ce00203d0b4,
         type: 3}
       propertyPath: m_Name
       value: SimpleEnemyObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921968431424219999, guid: c78f7b477bbe6ec4598c1ce00203d0b4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78f7b477bbe6ec4598c1ce00203d0b4, type: 3}
