@@ -83,6 +83,7 @@ namespace StarterAssets
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
         private float _attackCooldownTimer;
+        private bool _attacking = false;
 
         // timeout deltatime
         private float _fallTimeoutDelta;
@@ -135,6 +136,7 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+            _attackCooldownTimer = AttackCooldown;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -285,12 +287,31 @@ namespace StarterAssets
                 Debug.Log("Haja");
                 _input.attack = false;
                 _animator.SetBool(_animIDAttack, true);
+                _attackCooldownTimer = 0;
+                _attacking = true;
             }
             else
             {
                 if (_attackCooldownTimer > AttackCooldown)
                 {
                     _animator.SetBool(_animIDAttack, false);
+                    _attacking = false;
+                }
+            }
+        }
+
+        //Collision with enemy
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Enemy")
+            {
+                if (_attacking)
+                {
+                    Debug.Log("Hit");
+                }
+                else
+                {
+                    Debug.Log("Aj!");
                 }
             }
         }

@@ -232,7 +232,7 @@ PrefabInstance:
     - target: {fileID: 7083769050285902801, guid: c78f7b477bbe6ec4598c1ce00203d0b4,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8921968431424219999, guid: c78f7b477bbe6ec4598c1ce00203d0b4,
         type: 3}
@@ -1223,6 +1223,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerArmature
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: AttackCooldown
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
