@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Timeline;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -148,6 +149,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            AttackTest();
         }
 
         private void LateUpdate()
@@ -264,6 +266,15 @@ namespace StarterAssets
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+            }
+        }
+
+        private void AttackTest()
+        {
+            if (_input.attack)
+            {
+                Debug.Log("Haja");
+                _input.attack = false;
             }
         }
 
