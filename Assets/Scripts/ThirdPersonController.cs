@@ -312,6 +312,10 @@ namespace StarterAssets
                 if (_attacking)
                 {
                     Debug.Log("Hit");
+                    if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent))
+                    {
+                        enemyComponent.TakeDamage(1);
+                    }
                 }
                 else
                 {

@@ -8,6 +8,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../AITesting/AITestingScripts/Projectile.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../AITesting/AITestingScripts/SimpleCharacterController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../AITesting/AITestingScripts/SimpleEnemy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BasicRigidBodyPush.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -37,7 +39,7 @@
       <option name="presentableId" value="Default" />
       <updated>1669671789607</updated>
       <workItem from="1669671789608" duration="2055000" />
-      <workItem from="1669816461322" duration="2794000" />
+      <workItem from="1669816461322" duration="3979000" />
     </task>
     <servers />
   </component>
