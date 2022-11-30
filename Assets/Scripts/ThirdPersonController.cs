@@ -70,6 +70,9 @@ namespace StarterAssets
 
         [Tooltip("Cooldown until you can make your next attack")]
         public float AttackCooldown = 1.0f;
+        
+        [Tooltip("Cooldown until you can make your next attack")]
+        public float Health = 5.0f;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -99,6 +102,7 @@ namespace StarterAssets
         private PlayerInput _playerInput;
 #endif
         private Animator _animator;
+        private BasicRigidBodyPush _basicRigidBodyPush;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
@@ -132,7 +136,7 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -312,7 +316,13 @@ namespace StarterAssets
                 else
                 {
                     Debug.Log("Aj!");
+                    Health -= 1;
                 }
+            }
+
+            if (Health == 0)
+            {
+                Destroy(gameObject);
             }
         }
 
