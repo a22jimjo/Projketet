@@ -5,6 +5,7 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     GameObject player;
+    public int damageToBeDone;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class Sword : MonoBehaviour
         if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent))
         {
             Debug.Log("Hit");
-            enemyComponent.TakeDamage(1);
+            enemyComponent.TakeDamage(damageToBeDone);
         }
     }
     

@@ -304,6 +304,8 @@ namespace StarterAssets
         }
 
         //Collision with enemy
+
+        //Borde nog ersättas med PlayerStats och att enemys hittar den.
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Enemy")

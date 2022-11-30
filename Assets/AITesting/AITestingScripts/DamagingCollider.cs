@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Projectile : MonoBehaviour
+public class DamagingCollider : MonoBehaviour
 {
     Rigidbody rb;
     public float destroyDelay;
     public int damage;
-    public int health;
     public bool canHitEnemy;
     public bool canHitPlayer;
+    public bool destoryOnContact;
+    public bool freezeOnContact;
 
     private void Start()
     {
@@ -21,16 +22,18 @@ public class Projectile : MonoBehaviour
     {
         if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent ) && canHitEnemy)
         {
-            Freeze();
             enemyComponent.TakeDamage(damage);
-            Destroy(gameObject, destroyDelay);
+            if (freezeOnContact) Freeze();
+            if (destoryOnContact) Destroy(gameObject, destroyDelay);
+            Debug.Log(gameObject.name + "Has taken " + damage + " damage");
         }
 
         if (other.gameObject.TryGetComponent<PlayerStats>(out PlayerStats playerComponent) && canHitPlayer)
         {
-            Freeze();
             playerComponent.TakeDamage(damage);
-            Destroy(gameObject, destroyDelay);
+            if (freezeOnContact) Freeze();
+            if (destoryOnContact) Destroy(gameObject, destroyDelay);
+            Debug.Log(gameObject.name + "Has taken " + damage + " damage");
         }
 
     }
