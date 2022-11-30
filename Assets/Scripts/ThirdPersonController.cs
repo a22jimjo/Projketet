@@ -86,7 +86,7 @@ namespace StarterAssets
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
         private float _attackCooldownTimer;
-        private bool _attacking = false;
+        public bool _attacking = false;
 
         // timeout deltatime
         private float _fallTimeoutDelta;
@@ -122,7 +122,6 @@ namespace StarterAssets
 #endif
             }
         }
-
 
         private void Awake()
         {
@@ -311,11 +310,6 @@ namespace StarterAssets
             {
                 if (_attacking)
                 {
-                    Debug.Log("Hit");
-                    if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent))
-                    {
-                        enemyComponent.TakeDamage(1);
-                    }
                 }
                 else
                 {
