@@ -36,4 +36,16 @@ public class PlayerStats : MonoBehaviour
             //Play get hit animation, apply knockback
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            Debug.Log("Aj!");
+            if (other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent))
+            {
+                TakeDamage(enemyComponent.damage);
+            }
+        }
+    }
 }

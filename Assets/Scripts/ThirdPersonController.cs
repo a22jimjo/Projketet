@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.Timeline;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -70,9 +71,6 @@ namespace StarterAssets
 
         [Tooltip("Cooldown until you can make your next attack")]
         public float AttackCooldown = 1.0f;
-        
-        [Tooltip("Cooldown until you can make your next attack")]
-        public float Health = 5.0f;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -86,7 +84,7 @@ namespace StarterAssets
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
         private float _attackCooldownTimer;
-        public bool _attacking = false;
+        private bool _attacking = false;
 
         // timeout deltatime
         private float _fallTimeoutDelta;
@@ -300,29 +298,6 @@ namespace StarterAssets
                     _animator.SetBool(_animIDAttack, false);
                     _attacking = false;
                 }
-            }
-        }
-
-        //Collision with enemy
-
-        //Borde nog ersättas med PlayerStats och att enemys hittar den.
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.tag == "Enemy")
-            {
-                if (_attacking)
-                {
-                }
-                else
-                {
-                    Debug.Log("Aj!");
-                    Health -= 1;
-                }
-            }
-
-            if (Health == 0)
-            {
-                Destroy(gameObject);
             }
         }
 

@@ -11,6 +11,7 @@ public class EnemyStats : MonoBehaviour
     [Tooltip("Characters health points")]
     public int health;
     public int maxHealth = 3;
+    public int damage = 1;
 
     // Start is called before the first frame update
     void Start()
