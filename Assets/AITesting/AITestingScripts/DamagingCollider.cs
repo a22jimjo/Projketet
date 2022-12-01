@@ -25,7 +25,7 @@ public class DamagingCollider : MonoBehaviour
             enemyComponent.TakeDamage(damage);
             if (freezeOnContact) Freeze();
             if (destoryOnContact) Destroy(gameObject, destroyDelay);
-            Debug.Log(gameObject.name + "Has taken " + damage + " damage");
+            Debug.Log(gameObject.name + " Has taken " + damage + " damage");
         }
 
         if (other.gameObject.TryGetComponent<PlayerStats>(out PlayerStats playerComponent) && canHitPlayer)
@@ -33,7 +33,7 @@ public class DamagingCollider : MonoBehaviour
             playerComponent.TakeDamage(damage);
             if (freezeOnContact) Freeze();
             if (destoryOnContact) Destroy(gameObject, destroyDelay);
-            Debug.Log(gameObject.name + "Has taken " + damage + " damage");
+            Debug.Log(gameObject.name + " Has taken " + damage + " damage");
         }
 
     }

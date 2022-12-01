@@ -83,8 +83,6 @@ namespace StarterAssets
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
-        private float _attackCooldownTimer;
-        private bool _attacking = false;
 
         // timeout deltatime
         private float _fallTimeoutDelta;
@@ -137,7 +135,6 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
-            _attackCooldownTimer = AttackCooldown;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -282,22 +279,15 @@ namespace StarterAssets
         //Checks attack input and does whatever we want attack to do
         private void AttackTest()
         {
-            _attackCooldownTimer += Time.deltaTime;
-            if (_input.attack && _attackCooldownTimer > AttackCooldown)
+            if (_input.attack && (_animator.GetBool(_animIDAttack) == false))
             {
                 Debug.Log("Haja");
-                _input.attack = false;
                 _animator.SetBool(_animIDAttack, true);
-                _attackCooldownTimer = 0;
-                _attacking = true;
+                _input.attack = false;
             }
             else
             {
-                if (_attackCooldownTimer > AttackCooldown)
-                {
-                    _animator.SetBool(_animIDAttack, false);
-                    _attacking = false;
-                }
+                _animator.SetBool(_animIDAttack, false);
             }
         }
 
