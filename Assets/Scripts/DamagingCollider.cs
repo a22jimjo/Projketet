@@ -27,6 +27,7 @@ public class DamagingCollider : MonoBehaviour
             if (freezeOnContact) Freeze();
             if (destoryOnContact) Destroy(gameObject, destroyDelay);
             Debug.Log(gameObject.name + " Has taken " + damage + " damage");
+            if (other.gameObject.TryGetComponent<Knockback>(out Knockback knocked)) knocked.PushRigidBdy(rb);
         }
 
         if (other.gameObject.TryGetComponent<PlayerStats>(out PlayerStats playerComponent) && canHitPlayer)
