@@ -11,6 +11,7 @@ public class SimpleEnemy : MonoBehaviour
     List<Transform> wayPoints = new List<Transform> ();
     NavMeshAgent agent;
     GameObject player;
+    public Rigidbody rigidBody;
 
 
     [Header("Patrol Settings")]
