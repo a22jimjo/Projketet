@@ -7,6 +7,7 @@ TagManager:
   - CinemachineTarget
   - Waypoints
   - Enemy
+  - GameManager
   layers:
   - Default
   - TransparentFX

@@ -1,30 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
-    public Scene LevelToLoad;
-   
+    public GameObject roomToDestroy;
+    public GameObject roomToLoad;
 
-    private void OnCollisionEnter(Collision other)
+    public GameObject player;
+
+    public bool isEndPortal;
+
+
+    private void Start()
     {
-        if(other.gameObject.tag == "Player")
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("?");
+        if (other.gameObject.CompareTag("Player"))
         {
-            //SceneManager.LoadScene(LevelToLoad.ToString());
-            SceneManager.LoadScene(LevelToLoad.name);
+            if (isEndPortal)
+            {
+                EndGame();
+            }
+            else
+            {
+                LoadRoom();
+            }
         }
     }
 
+    public void LoadRoom()
+    {
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<RoomManager>().LoadRoom(transform.position);
+    }
 
-    /*public enum Scene
-   {
-       GameScene,
-   }
-
-   public static void Load (Scene scene)
-   {
-       SceneManager.LoadScene (scene.ToString ());
-   }*/
+    public void EndGame()
+    {
+        //load winning screen
+        Application.Quit();
+        Debug.Log("Game has ended");
+    }
 }
