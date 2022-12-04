@@ -8,7 +8,7 @@ public class EnemyGhostScript : MonoBehaviour
     List<Transform> wayPoints = new List<Transform>();
     UnityEngine.AI.NavMeshAgent agent;
     GameObject player;
-    Animator animator;
+    public Animator animator;
 
 
     [Tooltip("The minimum distance between the character and it's target to attack")]
@@ -34,7 +34,7 @@ public class EnemyGhostScript : MonoBehaviour
         //setup
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
 
         baseMoveSpeed = agent.speed;
     }
@@ -70,7 +70,7 @@ public class EnemyGhostScript : MonoBehaviour
         }
 
         //Timer
-        /*if (attackTimer < attackCooldown)
+        if (attackTimer < attackCooldown)
         {
             attackTimer += Time.deltaTime;
         }
@@ -78,7 +78,7 @@ public class EnemyGhostScript : MonoBehaviour
         {
             attackCooldown = attackTimer;
             canAttack = true;
-        }*/
+        }
     }
 
     IEnumerator Attack(float waitTime)
@@ -90,6 +90,7 @@ public class EnemyGhostScript : MonoBehaviour
         //run animation
         //Wait until reseting attack
         yield return new WaitForSeconds(waitTime);
+        animator.ResetTrigger("Attack");
         canAttack = true;
 
     }
