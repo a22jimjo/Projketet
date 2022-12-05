@@ -13,6 +13,8 @@ public class EnemyStats : MonoBehaviour
     public int maxHealth = 3;
     public int damage = 1;
 
+    private EnemyGhostScript enemyGhostScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +34,8 @@ public class EnemyStats : MonoBehaviour
         if (health <= 0)
         {
             //Play death animation
-
-            Destroy(gameObject);
+            enemyGhostScript.animator.SetBool("DeadGhost", true);
+            //Destroy(gameObject);
             OnEnemyKilled?.Invoke(this);
         }
         else

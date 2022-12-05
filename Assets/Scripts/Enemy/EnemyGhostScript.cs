@@ -17,19 +17,17 @@ public class EnemyGhostScript : MonoBehaviour
     [SerializeField] float detectRange;
     [Tooltip("Movement speed of the ghost")]
     [SerializeField] float baseMoveSpeed;
-    [Tooltip("The amount of time the ghost waits after an attack")]
-    [SerializeField] float waitAfterAttack;
 
     //Movement
-    [SerializeField] float rotationSpeed;
-
     [SerializeField] bool canAttack = true;
     [SerializeField] bool isAttacking;
     [SerializeField] private float attackTimer;
     [SerializeField] private float attackCooldown;
     [SerializeField] private float dashSpeed;
-    [SerializeField] private float dashTime;
-    [SerializeField] private float windupTime;
+    [SerializeField] private float delayBeforeAttack;
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float delayAfterAttack;
+
 
     public GameObject testIndicator;
 
@@ -50,7 +48,7 @@ public class EnemyGhostScript : MonoBehaviour
         if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange && isAttacking == false)
         {
             ChaseState();
-            
+
         }
 
         //RotateTowards();
@@ -67,10 +65,10 @@ public class EnemyGhostScript : MonoBehaviour
         if (Vector3.Distance(agent.transform.position, player.transform.position) < attackRange)
         {
             //agent.destination = agent.transform.position;
-            
+
             if (canAttack)
             {
-                StartCoroutine(Attack(windupTime));
+                StartCoroutine(Attack(delayBeforeAttack, dashDuration, delayAfterAttack));
             }
         }
 
@@ -86,7 +84,7 @@ public class EnemyGhostScript : MonoBehaviour
         }
     }
 
-    IEnumerator Attack(float windupTime)
+    IEnumerator Attack(float waitTime, float waitTime2, float waitTime3)
     {
         Debug.Log("enemy attacks player");
         isAttacking = true;
@@ -96,43 +94,45 @@ public class EnemyGhostScript : MonoBehaviour
         //reset timers
         canAttack = false;
         attackTimer = 0;
-        //run animation
-         /*if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
-        {
 
-        }*/
         //gets player position
         agent.destination = player.transform.position;
+        agent.gameObject.transform.rotation = Quaternion.identity;
+        
         Instantiate(testIndicator, player.transform.position, Quaternion.identity);
-        //when windup-animation finishes move enemy towards player location with dash speed
-        yield return new WaitForSeconds(windupTime);
-        agent.speed = dashSpeed;
-        //TESTA yield return new WaitUntil(() => frame >= 10);
-        //Reset speed to normal
-        yield return new WaitForSeconds(dashTime);
+
+        //run animation
+        animator.SetBool("AttackGhost", true);
+        yield return new WaitForSeconds(delayBeforeAttack);
+
+        Debug.Log("Got animatorstateinfo");
+        agent.speed = dashSpeed; 
+
+        yield return new WaitForSeconds(dashDuration);
+
         agent.speed = baseMoveSpeed;
         isAttacking = false;
-
-
+        animator.SetBool("AttackGhost", false);
     }
 
-    void RotateTowards()
-    {
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-    }
 
 
         private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectRange);
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, detectRange);
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, attackRange);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, Vector3.forward);
-    }
-}
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, Vector3.forward);
+        }
+
+        /*void RotateTowards()
+       {
+           Vector3 direction = (player.transform.position - transform.position).normalized;
+           Quaternion lookRotation = Quaternion.LookRotation(direction);
+           transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+       }*/
+} 

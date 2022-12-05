@@ -6,16 +6,16 @@ public class Portal : MonoBehaviour
 {
     public GameObject roomToDestroy;
     public GameObject roomToLoad;
-
     public GameObject player;
-
     public bool isEndPortal;
+
 
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("?");
