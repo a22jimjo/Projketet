@@ -168,7 +168,7 @@ namespace StarterAssets
 
         private void AssignAnimationIDs()
         {
-            _animIdWalkAni = Animator.StringToHash("WalkAni");
+            _animIdWalkAni = Animator.StringToHash("WalkPlayer");
             _animIdAttackForwardAni = Animator.StringToHash("AttackForwardPlayer");
             _animIdLeftSideAttackAni = Animator.StringToHash("LeftAttackPlayer");
             _animIdRightSideAttackAni = Animator.StringToHash("RightAttackPlayer");
@@ -269,7 +269,10 @@ namespace StarterAssets
             // update animator if using character
             if (_hasAnimator)
             {
-                if (_speed > 0) _animator.SetBool(_animIdWalkAni, true);
+                if (_speed > 0)
+                {
+                    _animator.SetBool(_animIdWalkAni, true);
+                }
                 else _animator.SetBool(_animIdWalkAni, false);
             }
         }
@@ -292,6 +295,11 @@ namespace StarterAssets
                 _animator.SetBool(_animIdLeftSideAttackAni, false);
             }
             if(_attacktime >= 2.8) if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false;
+        }
+
+        public void TakeDamage()
+        {
+            _animator.SetBool(_animIdtakeDamageEx1Ani, true);
         }
 
         private void JumpAndGravity()
