@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf.meta
 guid: 1b8d251f9af63b746bf2f7ffe00ebb9b
+========
+guid: ee7b3af939accaf96ac3ac92d34a377b
+>>>>>>>> 1270f56afecea8fe2552a8f863ea82d914812f16:Assets/Waldemarst/JapaneseGardenPackage/Scenes/Showcase.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
