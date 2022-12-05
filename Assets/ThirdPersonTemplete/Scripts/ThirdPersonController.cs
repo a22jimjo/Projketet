@@ -71,7 +71,7 @@ namespace StarterAssets
         public bool LockCameraPosition = false;
 
         [Tooltip("Cooldown until you can make your next attack")]
-        public float AttackCooldown = 0.42f;
+        public float AttackCooldown = 0.6f;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -287,7 +287,7 @@ namespace StarterAssets
         //Checks attack input and does whatever we want attack to do
         private void AttackTest()
         {
-            if (_input.attack && _animator)
+            if (_input.attack && (_attacktime >= AttackCooldown))
             {
                 Debug.Log("Haja");
                 _animator.SetBool(_animIdLeftSideAttackAni, true);
@@ -297,6 +297,7 @@ namespace StarterAssets
             }
             else
             {
+                _attacktime += Time.deltaTime;
                 _animator.SetBool(_animIdLeftSideAttackAni, false);
             }
 
