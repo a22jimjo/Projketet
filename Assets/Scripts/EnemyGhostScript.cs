@@ -39,7 +39,7 @@ public class EnemyGhostScript : MonoBehaviour
         //setup
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
         agent.speed = baseMoveSpeed;
     }
@@ -97,7 +97,10 @@ public class EnemyGhostScript : MonoBehaviour
         canAttack = false;
         attackTimer = 0;
         //run animation
+         /*if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+        {
 
+        }*/
         //gets player position
         agent.destination = player.transform.position;
         Instantiate(testIndicator, player.transform.position, Quaternion.identity);
