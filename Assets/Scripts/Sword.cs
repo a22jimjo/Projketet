@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    GameObject player;
+    private DamagingCollider _damaging;
+
+    public bool attacking;
     public int damageToBeDone;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        _damaging = GetComponent<DamagingCollider>();
     }
 
     // Update is called once per frame
@@ -20,10 +22,10 @@ public class Sword : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent))
+        if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent) && attacking == true)
         {
             Debug.Log("Hit");
-            enemyComponent.TakeDamage(damageToBeDone);
+            _damaging.CallDamage(other);
         }
     }
     

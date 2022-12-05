@@ -18,7 +18,7 @@ public class DamagingCollider : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void CallDamage(Collider other)
     {
         if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent ) && canHitEnemy)
         {

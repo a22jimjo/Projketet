@@ -8,6 +8,7 @@ TagManager:
   - Waypoints
   - Enemy
   - GameManager
+  - Sword
   layers:
   - Default
   - TransparentFX

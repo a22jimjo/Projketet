@@ -83,6 +83,7 @@ namespace StarterAssets
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
+        private float _attacktime = 1f;
 
         // timeout deltatime
         private float _fallTimeoutDelta;
@@ -102,6 +103,7 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private GameObject _sword;
 
         private const float _threshold = 0.01f;
 
@@ -132,6 +134,7 @@ namespace StarterAssets
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
+            _sword = GameObject.FindGameObjectWithTag("Sword");
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -165,8 +168,6 @@ namespace StarterAssets
         private void AssignAnimationIDs()
         {
             _animIDSpeed = Animator.StringToHash("Speed");
-            _animIDGrounded = Animator.StringToHash("Grounded");
-            _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
             _animIDAttack = Animator.StringToHash("Attack");
         }
@@ -178,12 +179,6 @@ namespace StarterAssets
                 transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
-
-            // update animator if using character
-            if (_hasAnimator)
-            {
-                _animator.SetBool(_animIDGrounded, Grounded);
-            }
         }
 
         private void CameraRotation()
@@ -279,16 +274,20 @@ namespace StarterAssets
         //Checks attack input and does whatever we want attack to do
         private void AttackTest()
         {
-            if (_input.attack && (_animator.GetBool(_animIDAttack) == false))
+            if (_input.attack && _attacktime >= 1)
             {
-                Debug.Log("Haja");
+                Debug.Log("HAja");
                 _animator.SetBool(_animIDAttack, true);
                 _input.attack = false;
+                _attacktime = 0;
+                if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = true;
             }
             else
             {
+                _attacktime += Time.deltaTime;
                 _animator.SetBool(_animIDAttack, false);
             }
+            if(_attacktime >= 0.8) if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false;
         }
 
         private void JumpAndGravity()
@@ -297,12 +296,6 @@ namespace StarterAssets
             {
                 // reset the fall timeout timer
                 _fallTimeoutDelta = FallTimeout;
-
-                // update animator if using character
-                if (_hasAnimator)
-                {
-                    _animator.SetBool(_animIDFreeFall, false);
-                }
 
                 // stop our velocity dropping infinitely when grounded
                 if (_verticalVelocity < 0.0f)
@@ -316,14 +309,6 @@ namespace StarterAssets
                 if (_fallTimeoutDelta >= 0.0f)
                 {
                     _fallTimeoutDelta -= Time.deltaTime;
-                }
-                else
-                {
-                    // update animator if using character
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDFreeFall, true);
-                    }
                 }
             }
 
