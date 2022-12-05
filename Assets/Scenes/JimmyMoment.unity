@@ -125,7 +125,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: ec25cf1643ce62840bf44fe6a93d9168, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 2e12b8dc8652b774ebd422825db4d8f7, type: 2}
 --- !u!1 &283077547
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +505,81 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &354490921 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d02ae978d3a0a546a9fb8f4428b0696,
+    type: 3}
+  m_PrefabInstance: {fileID: 830452818}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &354490922 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5d02ae978d3a0a546a9fb8f4428b0696,
+    type: 3}
+  m_PrefabInstance: {fileID: 830452818}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &354490924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354490921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b309d584f0a97b4ca620c12878c72b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 3
+  damage: 1
+--- !u!195 &354490925
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354490921}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &354490926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354490921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c75be071cb69144be3ee28b33e9678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 354490922}
+  attackRange: 4
+  detectRange: 6
+  baseMoveSpeed: 0
+  waitAfterAttack: 2
+  rotationSpeed: 0
+  canAttack: 1
+  isAttacking: 0
+  attackTimer: 0
+  attackCooldown: 0
+  dashSpeed: 0
+  dashTime: 0
+  windupTime: 0.25
+  testIndicator: {fileID: 0}
 --- !u!1 &366528481
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,6 +2088,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: a8e677b4af272e949b4bbbb92968cd45, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 5d02ae978d3a0a546a9fb8f4428b0696,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d02ae978d3a0a546a9fb8f4428b0696, type: 3}
 --- !u!1 &874605735

@@ -20,7 +20,6 @@ public class EnemyGhostScript : MonoBehaviour
     [Tooltip("The amount of time the ghost waits after an attack")]
     [SerializeField] float waitAfterAttack;
 
-
     //Movement
     [SerializeField] float rotationSpeed;
 
@@ -29,7 +28,7 @@ public class EnemyGhostScript : MonoBehaviour
     [SerializeField] private float attackTimer;
     [SerializeField] private float attackCooldown;
     [SerializeField] private float dashSpeed;
-    //[SerializeField] private float dashTime;
+    [SerializeField] private float dashTime;
     [SerializeField] private float windupTime;
 
     public GameObject testIndicator;
@@ -105,14 +104,11 @@ public class EnemyGhostScript : MonoBehaviour
         //when windup-animation finishes move enemy towards player location with dash speed
         yield return new WaitForSeconds(windupTime);
         agent.speed = dashSpeed;
-
+        //TESTA yield return new WaitUntil(() => frame >= 10);
         //Reset speed to normal
-        //yield return new WaitForSeconds(dashTime);
-        if(agent.destination == player.transform.position)
-        {
-            agent.speed = baseMoveSpeed;
-            isAttacking = false;
-        }
+        yield return new WaitForSeconds(dashTime);
+        agent.speed = baseMoveSpeed;
+        isAttacking = false;
 
 
     }
