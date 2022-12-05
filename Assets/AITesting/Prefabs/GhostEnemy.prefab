@@ -80,17 +80,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   attackRange: 3
-  detectRange: 6
+  detectRange: 6.4
   baseMoveSpeed: 3.5
-  waitAfterAttack: 2
-  rotationSpeed: 2
   canAttack: 0
   isAttacking: 0
   attackTimer: 0
   attackCooldown: 1
   dashSpeed: 25
-  dashTime: 0.5
-  windupTime: 0.35
+  delayBeforeAttack: 0.5
+  dashDuration: 0
+  delayAfterAttack: 0
   testIndicator: {fileID: 0}
 --- !u!195 &599102706254982575
 NavMeshAgent:

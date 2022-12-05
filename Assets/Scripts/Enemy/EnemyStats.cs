@@ -34,8 +34,8 @@ public class EnemyStats : MonoBehaviour
         if (health <= 0)
         {
             //Play death animation
-            enemyGhostScript.animator.SetBool("DeadGhost", true);
-            //Destroy(gameObject);
+            //enemyGhostScript.animator.SetBool("DeadGhost", true);
+            Destroy(gameObject);
             OnEnemyKilled?.Invoke(this);
         }
         else
