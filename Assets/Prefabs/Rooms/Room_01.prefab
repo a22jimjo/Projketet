@@ -273,20 +273,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: GhostEnemy (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 795427463433323031, guid: 9703b46c2f185ff43a2c7623914fb204,
+    - target: {fileID: 599102706254982575, guid: 9703b46c2f185ff43a2c7623914fb204,
         type: 3}
-      propertyPath: detectRange
-      value: 6.4
+      propertyPath: m_AngularSpeed
+      value: 9999
       objectReference: {fileID: 0}
     - target: {fileID: 795427463433323031, guid: 9703b46c2f185ff43a2c7623914fb204,
         type: 3}
-      propertyPath: testIndicator
-      value: 
+      propertyPath: dashDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 795427463433323031, guid: 9703b46c2f185ff43a2c7623914fb204,
+        type: 3}
+      propertyPath: attackCooldown
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 795427463433323031, guid: 9703b46c2f185ff43a2c7623914fb204,
+        type: 3}
+      propertyPath: delayAfterAttack
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 795427463433323031, guid: 9703b46c2f185ff43a2c7623914fb204,
         type: 3}
       propertyPath: delayBeforeAttack
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 901657178408347105, guid: 9703b46c2f185ff43a2c7623914fb204,
         type: 3}
@@ -351,6 +361,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5259681059278215825}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5707926392359183818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 560844120999182171, guid: 9703b46c2f185ff43a2c7623914fb204,
+    type: 3}
+  m_PrefabInstance: {fileID: 5259681059278215825}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &25606089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5707926392359183818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1412d52508f29d941bb315782003a469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyDelay: 0
+  damage: 1
+  canHitEnemy: 0
+  canHitPlayer: 1
+  destoryOnContact: 0
+  freezeOnContact: 0
 --- !u!1001 &8476855433554350505
 PrefabInstance:
   m_ObjectHideFlags: 0

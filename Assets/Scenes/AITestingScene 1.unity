@@ -126,30 +126,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 9633d7829d6147345a078c5b3e4972a5, type: 2}
---- !u!1 &25606082 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5707926392359183818, guid: fbc20652bc4597f48aa1ce7c15fc7b81,
+--- !u!135 &25606095 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 4897604251425462401, guid: fbc20652bc4597f48aa1ce7c15fc7b81,
     type: 3}
   m_PrefabInstance: {fileID: 5259681058388309681}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &25606089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25606082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1412d52508f29d941bb315782003a469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyDelay: 0
-  damage: 1
-  canHitEnemy: 0
-  canHitPlayer: 1
-  destoryOnContact: 0
-  freezeOnContact: 0
 --- !u!1 &72769988 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544,
@@ -162,6 +144,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1762682258}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &72770006
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72769988}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1.2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!1 &252209273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,6 +1727,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArmature
       objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918491, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4499525628850387067, guid: 64dce48905ffd9b4293e595fa6941544,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2101,36 +2102,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 2928998262162744212, guid: 2917f385c589bdc499871f25f2ff689a,
-        type: 3}
-      propertyPath: m_TagString
-      value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 2928998262162744213, guid: 2917f385c589bdc499871f25f2ff689a,
-        type: 3}
-      propertyPath: firstRoom
-      value: 
-      objectReference: {fileID: 1506024307}
     - target: {fileID: 2928998262162744213, guid: 2917f385c589bdc499871f25f2ff689a,
         type: 3}
       propertyPath: currentRoom
       value: 
       objectReference: {fileID: 1506024307}
-    - target: {fileID: 2928998262162744213, guid: 2917f385c589bdc499871f25f2ff689a,
-        type: 3}
-      propertyPath: randomRooms
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2928998262162744213, guid: 2917f385c589bdc499871f25f2ff689a,
-        type: 3}
-      propertyPath: enemyGameobjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2928998262162744213, guid: 2917f385c589bdc499871f25f2ff689a,
-        type: 3}
-      propertyPath: enemyGameobjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 25606082}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2917f385c589bdc499871f25f2ff689a, type: 3}
 --- !u!1001 &5259681058388309681
@@ -2143,38 +2119,13 @@ PrefabInstance:
     - target: {fileID: 4660755791151462206, guid: fbc20652bc4597f48aa1ce7c15fc7b81,
         type: 3}
       propertyPath: m_AngularSpeed
-      value: 9999
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 4897604251425462406, guid: fbc20652bc4597f48aa1ce7c15fc7b81,
         type: 3}
-      propertyPath: dashDuration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4897604251425462406, guid: fbc20652bc4597f48aa1ce7c15fc7b81,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4897604251425462406, guid: fbc20652bc4597f48aa1ce7c15fc7b81,
-        type: 3}
-      propertyPath: testIndicator
+      propertyPath: damagingCollider
       value: 
-      objectReference: {fileID: 1626818789}
-    - target: {fileID: 4897604251425462406, guid: fbc20652bc4597f48aa1ce7c15fc7b81,
-        type: 3}
-      propertyPath: attackCooldown
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4897604251425462406, guid: fbc20652bc4597f48aa1ce7c15fc7b81,
-        type: 3}
-      propertyPath: delayAfterAttack
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4897604251425462406, guid: fbc20652bc4597f48aa1ce7c15fc7b81,
-        type: 3}
-      propertyPath: delayBeforeAttack
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 25606095}
     - target: {fileID: 5259681058388309683, guid: fbc20652bc4597f48aa1ce7c15fc7b81,
         type: 3}
       propertyPath: player
