@@ -13,37 +13,33 @@ public class RoomManager : MonoBehaviour
 
     public void LoadRoom(Vector3 spawnPos)
     {
-        if (enemyGameobjects.Count == 0)
+        if (currentRoom != null)
         {
-            if (currentRoom != null)
-            {
-                RemoveAllEnemies();
-                Destroy(currentRoom);
-            }
-            GameObject room;
-            if (randomRooms)
-            {
-                room = Instantiate(possibleRooms[Random.Range(0, possibleRooms.Count)], spawnPos, Quaternion.identity);
-                currentRoom = room;
-            }
-            else
-            {
-                room = Instantiate(possibleRooms[nextRoom % possibleRooms.Count], spawnPos, Quaternion.identity);
-                nextRoom++;
-                currentRoom = room;
-            }
+            RemoveAllEnemies();
+            Destroy(currentRoom);
+        }
+        GameObject room;
+        if (randomRooms)
+        {
+            room = Instantiate(possibleRooms[Random.Range(0, possibleRooms.Count)], spawnPos, Quaternion.identity);
+            currentRoom = room;
+        }
+        else
+        {
+            room = Instantiate(possibleRooms[nextRoom % possibleRooms.Count], spawnPos, Quaternion.identity);
+            nextRoom++;
+            currentRoom = room;
+        }
 
-            Transform[] objectsInRoom = room.GetComponentsInChildren<Transform>();
+        Transform[] objectsInRoom = room.GetComponentsInChildren<Transform>();
 
-            for (int i = 0; i < objectsInRoom.Length; i++)
+        for (int i = 0; i < objectsInRoom.Length; i++)
+        {
+            if (objectsInRoom[i].CompareTag("Enemy"))
             {
-                if (objectsInRoom[i].CompareTag("Enemy"))
-                {
-                    enemyGameobjects.Add(objectsInRoom[i].gameObject);
-                }
+                enemyGameobjects.Add(objectsInRoom[i].gameObject);
             }
         }
-        
     }
 
     public void RemoveAllEnemies()
