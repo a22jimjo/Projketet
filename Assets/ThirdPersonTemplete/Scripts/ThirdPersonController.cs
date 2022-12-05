@@ -1,5 +1,6 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Timeline;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -70,7 +71,7 @@ namespace StarterAssets
         public bool LockCameraPosition = false;
 
         [Tooltip("Cooldown until you can make your next attack")]
-        public float AttackCooldown = 1.0f;
+        public float AttackCooldown = 0.5f;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -208,7 +209,7 @@ namespace StarterAssets
 
         private void Move()
         {
-            if (_attacktime >= 0.55)
+            if (_attacktime >= AttackCooldown)
             {
                 // set target speed based on move speed, sprint speed and if sprint is pressed
                 float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
@@ -286,7 +287,7 @@ namespace StarterAssets
         //Checks attack input and does whatever we want attack to do
         private void AttackTest()
         {
-            if (_input.attack && _attacktime >= 0.55)
+            if (_input.attack && _attacktime >= AttackCooldown)
             {
                 Debug.Log("Haja");
                 _animator.SetBool(_animIdLeftSideAttackAni, true);
@@ -296,20 +297,13 @@ namespace StarterAssets
             }
             else
             {
+                _animator.SetBool(_animIdLeftSideAttackAni, false);
                 _attacktime += Time.deltaTime;
-                if (_input.attack)
-                { 
-                    _animator.SetBool(_animIdRightSideAttackAni, true); 
-                    _input.attack = false;
-                    _attacktime = 0;
-                    if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = true;
-                }
+                if(_attacktime >= AttackCooldown/2) if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = true;
             }
 
-            if (_attacktime >= 0.55)
+            if (_attacktime >= AttackCooldown)
             {
-                _animator.SetBool(_animIdLeftSideAttackAni, false);
-                _animator.SetBool(_animIdRightSideAttackAni, false);
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false;
             }
         }

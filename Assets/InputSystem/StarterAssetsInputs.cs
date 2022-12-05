@@ -10,6 +10,7 @@ namespace StarterAssets
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
+		public Vector2 see;
 		public bool sprint;
 		public bool attack;
 
@@ -43,6 +44,12 @@ namespace StarterAssets
 		{
 			AttackInput(value.isPressed);
 		}
+		
+		public void OnSee(InputValue value)
+		{
+			SeeInput(value.Get<Vector2>());
+		}
+		
 #endif
 
 
@@ -54,6 +61,11 @@ namespace StarterAssets
 		public void LookInput(Vector2 newLookDirection)
 		{
 			look = newLookDirection;
+		}
+
+		public void SeeInput(Vector2 newSeeState)
+		{
+			see = newSeeState;
 		}
 
 		public void SprintInput(bool newSprintState)
