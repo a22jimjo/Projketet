@@ -18,7 +18,7 @@ public class Knockback : MonoBehaviour
     public void PushRigidBdy(Rigidbody other)
     {
         _direction = rigidBody.transform.position - other.transform.position;
-        rigidBody.AddForce(_direction * 150);
+        rigidBody.AddForce(_direction * 250);
     }
     
 }
