@@ -89,11 +89,12 @@ namespace StarterAssets
         private float _fallTimeoutDelta;
 
         // animation IDs
-        private int _animIDSpeed;
-        private int _animIDGrounded;
-        private int _animIDFreeFall;
-        private int _animIDMotionSpeed;
-        private int _animIDAttack;
+        private int _animIdWalkAni;
+        private int _animIdAttackForwardAni;
+        private int _animIdRightSideAttackAni;
+        private int _animIdLeftSideAttackAni;
+        private int _animIdtakeDamageEx1Ani;
+        private int _deadForNowAni;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
@@ -167,9 +168,12 @@ namespace StarterAssets
 
         private void AssignAnimationIDs()
         {
-            _animIDSpeed = Animator.StringToHash("Speed");
-            _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-            _animIDAttack = Animator.StringToHash("Attack");
+            _animIdWalkAni = Animator.StringToHash("WalkAni");
+            _animIdAttackForwardAni = Animator.StringToHash("AttackForwardPlayer");
+            _animIdLeftSideAttackAni = Animator.StringToHash("LeftAttackPlayer");
+            _animIdRightSideAttackAni = Animator.StringToHash("RightAttackPlayer");
+            _animIdtakeDamageEx1Ani = Animator.StringToHash("TakeDamagePlayer");
+            _deadForNowAni = Animator.StringToHash("DeadPlayer");
         }
 
         private void GroundedCheck()
@@ -265,8 +269,8 @@ namespace StarterAssets
             // update animator if using character
             if (_hasAnimator)
             {
-                _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+                if (_speed > 0) _animator.SetBool(_animIdWalkAni, true);
+                else _animator.SetBool(_animIdWalkAni, false);
             }
         }
 
@@ -274,10 +278,10 @@ namespace StarterAssets
         //Checks attack input and does whatever we want attack to do
         private void AttackTest()
         {
-            if (_input.attack && _attacktime >= 1)
+            if (_input.attack && _attacktime >= 3)
             {
-                Debug.Log("HAja");
-                _animator.SetBool(_animIDAttack, true);
+                Debug.Log("Haja");
+                _animator.SetBool(_animIdLeftSideAttackAni, true);
                 _input.attack = false;
                 _attacktime = 0;
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = true;
@@ -285,9 +289,9 @@ namespace StarterAssets
             else
             {
                 _attacktime += Time.deltaTime;
-                _animator.SetBool(_animIDAttack, false);
+                _animator.SetBool(_animIdLeftSideAttackAni, false);
             }
-            if(_attacktime >= 0.8) if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false;
+            if(_attacktime >= 2.8) if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false;
         }
 
         private void JumpAndGravity()
