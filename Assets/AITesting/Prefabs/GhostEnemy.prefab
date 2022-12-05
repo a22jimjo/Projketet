@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 795427463433323031}
   - component: {fileID: 599102706254982575}
   - component: {fileID: 1489462562}
+  - component: {fileID: 25606089}
   m_Layer: 0
   m_Name: GhostEnemy
   m_TagString: Enemy
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 3
+  maxHealth: 5
   damage: 1
 --- !u!114 &795427463433323031
 MonoBehaviour:
@@ -85,12 +86,11 @@ MonoBehaviour:
   canAttack: 0
   isAttacking: 0
   attackTimer: 0
-  attackCooldown: 1
+  attackCooldown: 0.25
   dashSpeed: 25
-  delayBeforeAttack: 0.5
-  dashDuration: 0
-  delayAfterAttack: 0
-  testIndicator: {fileID: 0}
+  delayBeforeAttack: 1
+  dashDuration: 1
+  delayAfterAttack: 0.25
 --- !u!195 &599102706254982575
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 9999
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -133,6 +133,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &25606089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560844120999182171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1412d52508f29d941bb315782003a469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyDelay: 0
+  damage: 1
+  canHitEnemy: 0
+  canHitPlayer: 1
+  destoryOnContact: 0
+  freezeOnContact: 0
 --- !u!1 &609478377473903917
 GameObject:
   m_ObjectHideFlags: 0

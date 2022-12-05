@@ -27,7 +27,7 @@ public class EnemyGhostScript : MonoBehaviour
     [SerializeField] private float delayBeforeAttack;
     [SerializeField] private float dashDuration;
     [SerializeField] private float delayAfterAttack;
-    [SerializeField] private Collider damagingCollider;
+    //[SerializeField] private Collider damagingCollider;
 
 
     //public GameObject testIndicator;
@@ -57,7 +57,7 @@ public class EnemyGhostScript : MonoBehaviour
 
     void ChaseState()
     {
-        damagingCollider.enabled = false;
+        //damagingCollider.enabled = false;
 
         //updates position while outside of the attackrange
         if (Vector3.Distance(agent.destination, player.transform.position) > attackRange)
@@ -106,7 +106,7 @@ public class EnemyGhostScript : MonoBehaviour
         //run animation
         animator.SetBool("AttackGhost", true);
         yield return new WaitForSeconds(delayBeforeAttack);
-        damagingCollider.enabled = true;
+        //damagingCollider.enabled = true;
         Debug.Log("isDashing");
         agent.speed = dashSpeed; 
 

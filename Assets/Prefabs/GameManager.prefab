@@ -49,5 +49,5 @@ MonoBehaviour:
   - {fileID: 5259681059054939586, guid: fbc20652bc4597f48aa1ce7c15fc7b81, type: 3}
   - {fileID: 6893590540616997715, guid: 3f466529db53c224ea7271475b58d527, type: 3}
   - {fileID: 6893590540616997715, guid: 5c36fe4c8fabc234a82fa7a2a99a648b, type: 3}
-  randomRooms: 0
+  randomRooms: 1
   currentRoom: {fileID: 0}
