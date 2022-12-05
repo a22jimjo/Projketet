@@ -25,8 +25,14 @@ public class EnemyGhostScript : MonoBehaviour
     [SerializeField] float rotationSpeed;
 
     [SerializeField] bool canAttack = true;
+    [SerializeField] bool isAttacking;
     [SerializeField] private float attackTimer;
     [SerializeField] private float attackCooldown;
+    [SerializeField] private float dashSpeed;
+    //[SerializeField] private float dashTime;
+    [SerializeField] private float windupTime;
+
+    public GameObject testIndicator;
 
     // Start is called before the first frame update
     void Start()
@@ -36,13 +42,13 @@ public class EnemyGhostScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         //animator = GetComponent<Animator>();
 
-        baseMoveSpeed = agent.speed;
+        agent.speed = baseMoveSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange)
+        if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange && isAttacking == false)
         {
             ChaseState();
             
@@ -61,11 +67,11 @@ public class EnemyGhostScript : MonoBehaviour
 
         if (Vector3.Distance(agent.transform.position, player.transform.position) < attackRange)
         {
-            agent.destination = agent.transform.position;
+            //agent.destination = agent.transform.position;
             
             if (canAttack)
             {
-                StartCoroutine(Attack(waitAfterAttack));
+                StartCoroutine(Attack(windupTime));
             }
         }
 
@@ -81,17 +87,33 @@ public class EnemyGhostScript : MonoBehaviour
         }
     }
 
-    IEnumerator Attack(float waitTime)
+    IEnumerator Attack(float windupTime)
     {
-        animator.SetTrigger("Attack");
         Debug.Log("enemy attacks player");
+        isAttacking = true;
+        //stop movement briefly
+        agent.speed = 0;
+
+        //reset timers
         canAttack = false;
         attackTimer = 0;
         //run animation
-        //Wait until reseting attack
-        yield return new WaitForSeconds(waitTime);
-        animator.ResetTrigger("Attack");
-        canAttack = true;
+
+        //gets player position
+        agent.destination = player.transform.position;
+        Instantiate(testIndicator, player.transform.position, Quaternion.identity);
+        //when windup-animation finishes move enemy towards player location with dash speed
+        yield return new WaitForSeconds(windupTime);
+        agent.speed = dashSpeed;
+
+        //Reset speed to normal
+        //yield return new WaitForSeconds(dashTime);
+        if(agent.destination == player.transform.position)
+        {
+            agent.speed = baseMoveSpeed;
+            isAttacking = false;
+        }
+
 
     }
 
