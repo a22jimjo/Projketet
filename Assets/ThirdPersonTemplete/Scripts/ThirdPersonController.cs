@@ -71,7 +71,7 @@ namespace StarterAssets
         public bool LockCameraPosition = false;
 
         [Tooltip("Cooldown until you can make your next attack")]
-        public float AttackCooldown = 0.5f;
+        public float AttackCooldown = 0.42f;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -84,7 +84,7 @@ namespace StarterAssets
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
-        private float _attacktime = 1f;
+        private float _attacktime = 0.8f;
 
         // timeout deltatime
         private float _fallTimeoutDelta;
@@ -287,7 +287,7 @@ namespace StarterAssets
         //Checks attack input and does whatever we want attack to do
         private void AttackTest()
         {
-            if (_input.attack && _attacktime >= AttackCooldown)
+            if (_input.attack && _animator)
             {
                 Debug.Log("Haja");
                 _animator.SetBool(_animIdLeftSideAttackAni, true);
@@ -298,8 +298,6 @@ namespace StarterAssets
             else
             {
                 _animator.SetBool(_animIdLeftSideAttackAni, false);
-                _attacktime += Time.deltaTime;
-                if(_attacktime >= AttackCooldown/2) if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = true;
             }
 
             if (_attacktime >= AttackCooldown)
