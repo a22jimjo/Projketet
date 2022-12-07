@@ -209,9 +209,7 @@ namespace StarterAssets
 
         private void Move()
         {
-            if (_attacktime >= AttackCooldown)
-            {
-                // set target speed based on move speed, sprint speed and if sprint is pressed
+            // set target speed based on move speed, sprint speed and if sprint is pressed
                 float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
                 // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
@@ -256,13 +254,10 @@ namespace StarterAssets
                 {
                     _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                                       _mainCamera.transform.eulerAngles.y;
-                    float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation,
-                        ref _rotationVelocity,
-                        RotationSmoothTime);
-
-                    // rotate to face input direction relative to camera position
-                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
                 }
+                
+                // rotate to face input direction relative to camera position
+                transform.rotation = Quaternion.Euler(0f, _input.see.y, 0f);
 
 
                 Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
@@ -280,7 +275,6 @@ namespace StarterAssets
                     }
                     else _animator.SetBool(_animIdWalkAni, false);
                 }
-            }
         }
 
 

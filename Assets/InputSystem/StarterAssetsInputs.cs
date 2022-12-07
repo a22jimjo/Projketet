@@ -10,7 +10,7 @@ namespace StarterAssets
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
-		public Vector2 see;
+		public Vector3 see;
 		public bool sprint;
 		public bool attack;
 
@@ -58,12 +58,12 @@ namespace StarterAssets
 			move = newMoveDirection;
 		} 
 
-		public void LookInput(Vector2 newLookDirection)
+		public void LookInput(Vector3 newLookDirection)
 		{
 			look = newLookDirection;
 		}
 
-		public void SeeInput(Vector2 newSeeState)
+		public void SeeInput(Vector3 newSeeState)
 		{
 			see = newSeeState;
 		}
