@@ -297,6 +297,7 @@ namespace StarterAssets
                 _animator.SetBool(_animIdSlashSlashAttackAni, true);
                 _input.attack = false;
                 _attacktime = 0;
+                _speed *= 0.5f;
             }
             else
             {
@@ -312,6 +313,7 @@ namespace StarterAssets
             if (_attacktime >= AttackCooldown)
             {
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false;
+                _speed *= 2;
             }
         }
 
