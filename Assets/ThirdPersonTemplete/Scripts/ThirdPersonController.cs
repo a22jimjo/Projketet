@@ -71,7 +71,7 @@ namespace StarterAssets
         public bool LockCameraPosition = false;
 
         [Tooltip("Cooldown until you can make your next attack")]
-        public float AttackCooldown = 0.6f;
+        public float AttackCooldown = 0.34f;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -93,7 +93,7 @@ namespace StarterAssets
         private int _animIdWalkAni;
         private int _animIdAttackForwardAni;
         private int _animIdRightSideAttackAni;
-        private int _animIdLeftSideAttackAni;
+        private int _animIdSlashSlashAttackAni;
         private int _animIdtakeDamageEx1Ani;
         private int _deadForNowAni;
 
@@ -170,8 +170,8 @@ namespace StarterAssets
         private void AssignAnimationIDs()
         {
             _animIdWalkAni = Animator.StringToHash("PlayerWalk");
-            _animIdAttackForwardAni = Animator.StringToHash("Thrust");
-            _animIdLeftSideAttackAni = Animator.StringToHash("FirstAttack");
+            _animIdAttackForwardAni = Animator.StringToHash("Heavy");
+            _animIdSlashSlashAttackAni = Animator.StringToHash("Fast");
             _animIdRightSideAttackAni = Animator.StringToHash("SecondAttack");
             _animIdtakeDamageEx1Ani = Animator.StringToHash("TakeDamage");
             _deadForNowAni = Animator.StringToHash("Death");
@@ -286,15 +286,19 @@ namespace StarterAssets
             if (_input.attack && (_attacktime >= AttackCooldown))
             {
                 Debug.Log("Haja");
-                _animator.SetBool(_animIdLeftSideAttackAni, true);
+                _animator.SetBool(_animIdSlashSlashAttackAni, true);
                 _input.attack = false;
                 _attacktime = 0;
-                if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = true;
             }
             else
             {
                 _attacktime += Time.deltaTime;
-                _animator.SetBool(_animIdLeftSideAttackAni, false);
+                _animator.SetBool(_animIdSlashSlashAttackAni, false);
+            }
+
+            if (_attacktime > 0.05f)
+            {
+                if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = true;
             }
 
             if (_attacktime >= AttackCooldown)
