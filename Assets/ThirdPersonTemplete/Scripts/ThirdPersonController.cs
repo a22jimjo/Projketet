@@ -254,16 +254,16 @@ namespace StarterAssets
                 {
                     _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                                       _mainCamera.transform.eulerAngles.y;
+                    
+                    float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+                        RotationSmoothTime);
+
+                    // rotate to face input direction relative to camera position
+                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
                 }
                 
-                // rotate to face input direction relative to camera position
-                Vector3 relativePos = new Vector3(_input.see.x + -537, 0f, _input.see.y - 220) - transform.position;
-         
-                Quaternion rotation = Quaternion.LookRotation(relativePos);
-                transform.rotation = rotation;
-
                 Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-
+                
                 // move the player
                 _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                                  new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
@@ -285,6 +285,12 @@ namespace StarterAssets
         {
             if (_input.attack && (_attacktime >= AttackCooldown))
             {
+                // rotate to face input direction relative to camera position
+                Vector3 relativePos = new Vector3(_input.see.x + -537, 0f, _input.see.y - 220) - transform.position;
+         
+                Quaternion rotation = Quaternion.LookRotation(relativePos);
+                transform.rotation = rotation;
+                
                 Debug.Log("Haja");
                 _animator.SetBool(_animIdSlashSlashAttackAni, true);
                 _input.attack = false;
