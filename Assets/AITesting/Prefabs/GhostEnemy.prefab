@@ -90,7 +90,7 @@ MonoBehaviour:
   dashSpeed: 25
   delayBeforeAttack: 1
   dashDuration: 1
-  delayAfterAttack: 0.25
+  delayAfterAttack: 0.5
 --- !u!195 &599102706254982575
 NavMeshAgent:
   m_ObjectHideFlags: 0

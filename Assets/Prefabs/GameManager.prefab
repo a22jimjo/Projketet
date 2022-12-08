@@ -48,6 +48,6 @@ MonoBehaviour:
   possibleRooms:
   - {fileID: 5259681059054939586, guid: fbc20652bc4597f48aa1ce7c15fc7b81, type: 3}
   - {fileID: 6893590540616997715, guid: 3f466529db53c224ea7271475b58d527, type: 3}
-  - {fileID: 6893590540616997715, guid: 5c36fe4c8fabc234a82fa7a2a99a648b, type: 3}
-  randomRooms: 1
+  - {fileID: 3142954699904159784, guid: 116598d2a76ba724bb90805c5c023c68, type: 3}
+  randomRooms: 0
   currentRoom: {fileID: 0}

@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 4416926081852918493}
   - component: {fileID: 4542446221177849681}
   - component: {fileID: 2010573585}
+  - component: {fileID: 72770006}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -126,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 4
   SprintSpeed: 5
-  RotationSmoothTime: 0.3
+  RotationSmoothTime: 0.072
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
   FootstepAudioClips:
@@ -154,7 +155,7 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  AttackCooldown: 0.5
+  AttackCooldown: 0.38
 --- !u!114 &5885216827943657505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move: {x: 0, y: 0}
   look: {x: 0, y: 0}
-  see: {x: 0, y: 0}
+  see: {x: 0, y: -60, z: 0}
   sprint: 0
   attack: 0
   analogMovement: 0
@@ -304,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 3
+  maxHealth: 5
 --- !u!54 &2010573585
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -321,6 +322,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &72770006
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1.2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!1 &8187455079231382173
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,8 +644,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.01593172, y: 0.18111359, z: 0.014963329}
-  m_Center: {x: -0.000000029802322, y: -0.000000033527613, z: -2.3283049e-10}
+  m_Size: {x: 0.026391776, y: 0.36514276, z: 0.22826894}
+  m_Center: {x: 0.005229852, y: 0.09201375, z: 0.011132842}
 --- !u!114 &473211817
 MonoBehaviour:
   m_ObjectHideFlags: 0
