@@ -191,7 +191,7 @@
                     "id": "13e52b72-3063-464b-8e23-3054811ee295",
                     "path": "<Mouse>/position",
                     "interactions": "",
-                    "processors": "InvertVector2(invertY=false)",
+                    "processors": "InvertVector2(invertX=false,invertY=false)",
                     "groups": "KeyboardMouse",
                     "action": "see",
                     "isComposite": false,

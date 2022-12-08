@@ -257,8 +257,10 @@ namespace StarterAssets
                 }
                 
                 // rotate to face input direction relative to camera position
-                transform.rotation = Quaternion.Euler(0f, _input.see.y, 0f);
-
+                Vector3 relativePos = new Vector3(_input.see.x + -537, 0f, _input.see.y - 243) - transform.position;
+         
+                Quaternion rotation = Quaternion.LookRotation(relativePos);
+                transform.rotation = rotation;
 
                 Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
