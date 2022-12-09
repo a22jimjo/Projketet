@@ -11,6 +11,7 @@ public class PlayerStats : MonoBehaviour
     public int maxHealth = 3;
 
     private ThirdPersonController _ThirdPersonController;
+    [SerializeField] private Healthbar _healthbar;
 
     // Start is called before the first frame update
     void Start()
@@ -18,26 +19,17 @@ public class PlayerStats : MonoBehaviour
         //Setup
         health = maxHealth;
         _ThirdPersonController = GetComponent<ThirdPersonController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        _healthbar.UpdateHealthBar(maxHealth, health);
     }
     public void TakeDamage(int damageAmount)
     {
         health -= damageAmount;
-
+        _healthbar.UpdateHealthBar(maxHealth, health);
+        
         if (health <= 0)
         {
             //Play death animation
-
             Destroy(gameObject);
-        }
-        else
-        {
-            //Play get hit animation, apply knockback
         }
     }
     
