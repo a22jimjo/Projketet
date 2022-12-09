@@ -10,9 +10,10 @@ namespace StarterAssets
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
-		public Vector3 see;
+		public Vector2 see;
 		public bool sprint;
 		public bool attack;
+		public bool heavyAttack;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -43,6 +44,11 @@ namespace StarterAssets
 		public void OnAttack(InputValue value)
 		{
 			AttackInput(value.isPressed);
+		}
+		
+		public void OnHeavyAttack(InputValue value)
+		{
+			HeavyAttackInput(value.isPressed);
 		}
 		
 		public void OnSee(InputValue value)
@@ -77,6 +83,12 @@ namespace StarterAssets
 		{
 			attack = newAttackState;
 		}
+		
+		public void HeavyAttackInput(bool newAttackState)
+		{
+			heavyAttack = newAttackState;
+		}
+
 
 		private void OnApplicationFocus(bool hasFocus)
 		{

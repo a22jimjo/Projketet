@@ -73,6 +73,12 @@ namespace StarterAssets
         [Tooltip("Cooldown until you can make your next attack")]
         public float AttackCooldown = 0.34f;
 
+        public float DamageCooldown = 0.05f;
+
+        public float HeavyAttackCooldown = 0.34f;
+
+        public float HeavyAttackDamageCooldown = 0.3f;
+
         public float SlowDownMultiplier = 0.5f;
 
         // cinemachine
@@ -86,8 +92,10 @@ namespace StarterAssets
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
-        private float _attacktime = 0.8f;
+        private float _attackTime;
+        private float _damageTime;
         private bool _slowDown = false;
+        private bool _fixedPosition;
 
         // timeout deltatime
         private float _fallTimeoutDelta;
@@ -212,14 +220,15 @@ namespace StarterAssets
 
         private void Move()
         {
-            // set target speed based on move speed, sprint speed and if sprint is pressed
+            if (!_fixedPosition)
+            {
+                // set target speed based on move speed, sprint speed and if sprint is pressed
                 float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
                 if (_slowDown)
                 {
                     targetSpeed *= SlowDownMultiplier;
                 }
-
                 // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
                 // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
@@ -262,18 +271,19 @@ namespace StarterAssets
                 {
                     _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                                       _mainCamera.transform.eulerAngles.y;
-                    
-                    float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+
+                    float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation,
+                        ref _rotationVelocity,
                         RotationSmoothTime);
-                    if (_attacktime >= AttackCooldown)
+                    if (_attackTime >= AttackCooldown)
                     {
                         // rotate to face input direction relative to camera position
                         transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
                     }
                 }
-                
+
                 Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-                
+
                 // move the player
                 _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                                  new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
@@ -287,13 +297,14 @@ namespace StarterAssets
                     }
                     else _animator.SetBool(_animIdWalkAni, false);
                 }
+            }
         }
 
 
         //Checks attack input and does whatever we want attack to do
         private void AttackTest()
         {
-            if (_input.attack && (_attacktime >= AttackCooldown))
+            if (_input.attack && (_attackTime <= 0))
             {
                 // rotate to face input direction relative to camera position
                 Vector3 relativePos = new Vector3(_input.see.x + -465, 0f, _input.see.y - 220) - transform.position;
@@ -304,24 +315,43 @@ namespace StarterAssets
                 Debug.Log("Haja");
                 _animator.SetBool(_animIdSlashSlashAttackAni, true);
                 _input.attack = false;
-                _attacktime = 0;
+                _attackTime = AttackCooldown;
+                _damageTime = DamageCooldown;
                 _slowDown = true;
+            }
+            else if (_input.heavyAttack && (_attackTime <= 0))
+            {
+                // rotate to face input direction relative to camera position
+                Vector3 relativePos = new Vector3(_input.see.x + -465, 0f, _input.see.y - 220) - transform.position;
+         
+                Quaternion rotation = Quaternion.LookRotation(relativePos);
+                transform.rotation = rotation;
+                
+                Debug.Log("Haja");
+                _animator.SetBool(_animIdAttackForwardAni, true);
+                _input.heavyAttack = false;
+                _attackTime = HeavyAttackCooldown;
+                _damageTime = HeavyAttackDamageCooldown;
+                _fixedPosition = true;
+                if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.heavyAttack = true;
             }
             else
             {
-                _attacktime += Time.deltaTime;
+                _damageTime -= Time.deltaTime;
+                _attackTime -= Time.deltaTime;
                 _animator.SetBool(_animIdSlashSlashAttackAni, false);
+                _animator.SetBool(_animIdAttackForwardAni, false);
             }
 
-            if (_attacktime > 0.05f)
+            if (_attackTime <= 0)
+            {
+                if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false; sword.heavyAttack = false;
+                _slowDown = false;
+                _fixedPosition = false;
+            }
+            else if (_damageTime < 0)
             {
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = true;
-            }
-
-            if (_attacktime >= AttackCooldown)
-            {
-                if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false;
-                _slowDown = false;
             }
         }
 

@@ -7,6 +7,7 @@ public class Sword : MonoBehaviour
     private DamagingCollider _damaging;
 
     public bool attacking;
+    public bool heavyAttack;
     public int damageToBeDone;
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class Sword : MonoBehaviour
         if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent) && attacking == true)
         {
             Debug.Log("Hit");
-            _damaging.CallDamage(other);
+            _damaging.CallDamage(other, heavyAttack);
         }
     }
     
