@@ -73,6 +73,8 @@ namespace StarterAssets
         [Tooltip("Cooldown until you can make your next attack")]
         public float AttackCooldown = 0.34f;
 
+        public float SlowDownMultiplier = 0.5f;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -85,6 +87,7 @@ namespace StarterAssets
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
         private float _attacktime = 0.8f;
+        private bool _slowDown = false;
 
         // timeout deltatime
         private float _fallTimeoutDelta;
@@ -212,6 +215,11 @@ namespace StarterAssets
             // set target speed based on move speed, sprint speed and if sprint is pressed
                 float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
+                if (_slowDown)
+                {
+                    targetSpeed *= SlowDownMultiplier;
+                }
+
                 // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
                 // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
@@ -288,7 +296,7 @@ namespace StarterAssets
             if (_input.attack && (_attacktime >= AttackCooldown))
             {
                 // rotate to face input direction relative to camera position
-                Vector3 relativePos = new Vector3(_input.see.x + -537, 0f, _input.see.y - 220) - transform.position;
+                Vector3 relativePos = new Vector3(_input.see.x + -465, 0f, _input.see.y - 220) - transform.position;
          
                 Quaternion rotation = Quaternion.LookRotation(relativePos);
                 transform.rotation = rotation;
@@ -297,7 +305,7 @@ namespace StarterAssets
                 _animator.SetBool(_animIdSlashSlashAttackAni, true);
                 _input.attack = false;
                 _attacktime = 0;
-                _speed *= 0.5f;
+                _slowDown = true;
             }
             else
             {
@@ -313,7 +321,7 @@ namespace StarterAssets
             if (_attacktime >= AttackCooldown)
             {
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false;
-                _speed *= 2;
+                _slowDown = false;
             }
         }
 
