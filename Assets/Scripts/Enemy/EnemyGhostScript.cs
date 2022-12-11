@@ -9,6 +9,7 @@ public class EnemyGhostScript : MonoBehaviour
     UnityEngine.AI.NavMeshAgent agent;
     GameObject player;
     public Animator animator;
+    Rigidbody rb;
 
 
     [Tooltip("The minimum distance between the character and it's target to attack")]
@@ -27,7 +28,14 @@ public class EnemyGhostScript : MonoBehaviour
     [SerializeField] private float delayBeforeAttack;
     [SerializeField] private float dashDuration;
     [SerializeField] private float delayAfterAttack;
-    //[SerializeField] private Collider damagingCollider;
+    [SerializeField] private float dashForce;
+    [SerializeField] private float rotationSpeed;
+
+    Ray ray;
+    [SerializeField]float maxDistance = 50;
+    public LayerMask layersToHit;
+    [SerializeField] bool isInLineOfSight;
+    [SerializeField] float SphereCastRadius;
 
 
     //public GameObject testIndicator;
@@ -39,8 +47,12 @@ public class EnemyGhostScript : MonoBehaviour
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
 
         agent.speed = baseMoveSpeed;
+
+        ray = new Ray(transform.position, transform.forward);
+
     }
 
     // Update is called once per frame
@@ -48,31 +60,25 @@ public class EnemyGhostScript : MonoBehaviour
     {
         if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange && isAttacking == false)
         {
+            RotateTowards();
             ChaseState();
-
+            CheckForColliders();
         }
-
-        //RotateTowards();
     }
 
     void ChaseState()
     {
-        //damagingCollider.enabled = false;
 
         //updates position while outside of the attackrange
         if (Vector3.Distance(agent.destination, player.transform.position) > attackRange)
         {
             agent.destination = player.transform.position;
         }
-
-        if (Vector3.Distance(agent.transform.position, player.transform.position) < attackRange)
+        //if enemy is = or closer to the player than the attack range, can attack and has line of sight, it attacks.
+        if (Vector3.Distance(agent.transform.position, player.transform.position) < attackRange && canAttack && isInLineOfSight)
         {
-            //agent.destination = agent.transform.position;
-
-            if (canAttack)
-            {
+                //should rotate before executing attack
                 StartCoroutine(Attack(delayBeforeAttack, dashDuration, delayAfterAttack));
-            }
         }
 
         //Timer
@@ -89,6 +95,7 @@ public class EnemyGhostScript : MonoBehaviour
 
     IEnumerator Attack(float waitTime, float waitTime2, float waitTime3)
     {
+        isInLineOfSight = false;
         Debug.Log("enemy attacks player");
         isAttacking = true;
         //stop movement briefly
@@ -99,18 +106,21 @@ public class EnemyGhostScript : MonoBehaviour
         attackTimer = 0;
 
         //gets player position
-        agent.destination = player.transform.position;
-        
+
+        //agent.destination = player.transform.position;
+        rb.AddForce(transform.forward * dashForce);
+
+
         //Instantiate(testIndicator, player.transform.position, Quaternion.identity);
 
         //run animation
         animator.SetBool("AttackGhost", true);
         yield return new WaitForSeconds(delayBeforeAttack);
         //damagingCollider.enabled = true;
-        Debug.Log("isDashing");
         agent.speed = dashSpeed; 
 
         yield return new WaitForSeconds(dashDuration);
+        yield return new WaitForSeconds(delayAfterAttack);
 
         agent.speed = baseMoveSpeed;
         isAttacking = false;
@@ -119,22 +129,36 @@ public class EnemyGhostScript : MonoBehaviour
 
 
 
-        private void OnDrawGizmos()
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, Vector3.forward);
+
+    }
+
+    void CheckForColliders()
+    {
+
+
+        if(Physics.SphereCast(ray, SphereCastRadius, out RaycastHit hit, maxDistance, layersToHit))
         {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, detectRange);
-
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position, attackRange);
-
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, Vector3.forward);
+            Debug.Log(hit.collider.gameObject.name + " was hit!");
+            isInLineOfSight = true;
         }
+    }
 
-        /*void RotateTowards()
-       {
-           Vector3 direction = (player.transform.position - transform.position).normalized;
-           Quaternion lookRotation = Quaternion.LookRotation(direction);
-           transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-       }*/
+    void RotateTowards()
+    {
+        Debug.Log("rotating towards player");
+
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+    }
 } 
