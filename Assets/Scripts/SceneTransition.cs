@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    public Material fadeMaterial;
+    /*public Material fadeMaterial;
     public float fadeTime = 1.0f;
 
     void OnTriggerEnter(Collider other)
@@ -42,6 +42,6 @@ public class SceneTransition : MonoBehaviour
         // fade in the new scene
         elapsedTime = 0.0f;
         while (elapsedTime < fadeTime) ;
-    } 
+    } */
 }
 
