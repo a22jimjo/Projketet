@@ -111,6 +111,8 @@ namespace StarterAssets
         private int _animIdtakeDamageEx1Ani;
         private int _deadForNowAni;
 
+        private Vector3 _edgeToPlayerCamera;
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
 #endif
@@ -124,6 +126,8 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+        
+        private Vector3 _relativePosition;
 
         private bool IsCurrentDeviceMouse
         {
@@ -149,13 +153,15 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-
+            
             _sword = GameObject.FindGameObjectWithTag("Sword");
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
+            _edgeToPlayerCamera = Camera.main.WorldToScreenPoint(transform.position);
+            _edgeToPlayerCamera = new Vector3(_edgeToPlayerCamera.x, 0, _edgeToPlayerCamera.y);
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
@@ -306,7 +312,7 @@ namespace StarterAssets
         private void AttackRotation()
         {
             // rotate to face input direction relative to camera position
-            Vector3 relativePos = new Vector3(_input.see.x + -465, 0f, _input.see.y - 220) - transform.position;
+            Vector3 relativePos = new Vector3(_input.see.x, 0f, _input.see.y)- _edgeToPlayerCamera - transform.position;
          
             Quaternion rotation = Quaternion.LookRotation(relativePos);
             transform.rotation = rotation;
