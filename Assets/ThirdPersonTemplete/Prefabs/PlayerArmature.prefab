@@ -526,9 +526,9 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  AttackCooldown: 0.38
+  AttackCooldown: 0.75
   DamageCooldown: 0.05
-  HeavyAttackCooldown: 0.8
+  HeavyAttackCooldown: 1.1
   HeavyAttackDamageCooldown: 0.4
   SlowDownMultiplier: 0.6
 --- !u!114 &135756642000475821

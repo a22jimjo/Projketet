@@ -169,8 +169,8 @@ namespace StarterAssets
 
             JumpAndGravity();
             GroundedCheck();
-            Move();
             AttackTest();
+            Move();
         }
 
         private void LateUpdate()
@@ -314,7 +314,6 @@ namespace StarterAssets
                 
                 Debug.Log("Haja");
                 _animator.SetBool(_animIdSlashSlashAttackAni, true);
-                _input.attack = false;
                 _attackTime = AttackCooldown;
                 _damageTime = DamageCooldown;
                 _slowDown = true;
@@ -329,7 +328,6 @@ namespace StarterAssets
                 
                 Debug.Log("Haja");
                 _animator.SetBool(_animIdAttackForwardAni, true);
-                _input.heavyAttack = false;
                 _attackTime = HeavyAttackCooldown;
                 _damageTime = HeavyAttackDamageCooldown;
                 _fixedPosition = true;
@@ -342,6 +340,9 @@ namespace StarterAssets
                 _animator.SetBool(_animIdSlashSlashAttackAni, false);
                 _animator.SetBool(_animIdAttackForwardAni, false);
             }
+            
+            _input.attack = false;
+            _input.heavyAttack = false;
 
             if (_attackTime <= 0)
             {
