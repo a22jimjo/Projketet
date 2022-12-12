@@ -33,6 +33,9 @@ namespace StarterAssets
 
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
+        public AudioClip[] FastAttackAudioClips;
+        public AudioClip[] HeavyAttackAudioClips;
+        public AudioClip TakeDamageAudioClip;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
@@ -300,38 +303,37 @@ namespace StarterAssets
             }
         }
 
+        private void AttackRotation()
+        {
+            // rotate to face input direction relative to camera position
+            Vector3 relativePos = new Vector3(_input.see.x + -465, 0f, _input.see.y - 220) - transform.position;
+         
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            transform.rotation = rotation;
+        }
+
 
         //Checks attack input and does whatever we want attack to do
         private void AttackTest()
         {
             if (_input.attack && (_attackTime <= 0))
             {
-                // rotate to face input direction relative to camera position
-                Vector3 relativePos = new Vector3(_input.see.x + -465, 0f, _input.see.y - 220) - transform.position;
-         
-                Quaternion rotation = Quaternion.LookRotation(relativePos);
-                transform.rotation = rotation;
-                
-                Debug.Log("Haja");
+                AttackRotation();
                 _animator.SetBool(_animIdSlashSlashAttackAni, true);
                 _attackTime = AttackCooldown;
                 _damageTime = DamageCooldown;
                 _slowDown = true;
+                AudioSource.PlayClipAtPoint(FastAttackAudioClips[Random.Range(0, FastAttackAudioClips.Length)], transform.TransformPoint(_controller.center));
             }
             else if (_input.heavyAttack && (_attackTime <= 0))
             {
-                // rotate to face input direction relative to camera position
-                Vector3 relativePos = new Vector3(_input.see.x + -465, 0f, _input.see.y - 220) - transform.position;
-         
-                Quaternion rotation = Quaternion.LookRotation(relativePos);
-                transform.rotation = rotation;
-                
-                Debug.Log("Haja");
+                AttackRotation();
                 _animator.SetBool(_animIdAttackForwardAni, true);
                 _attackTime = HeavyAttackCooldown;
                 _damageTime = HeavyAttackDamageCooldown;
                 _fixedPosition = true;
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.heavyAttack = true;
+                AudioSource.PlayClipAtPoint(HeavyAttackAudioClips[Random.Range(0, HeavyAttackAudioClips.Length)], transform.TransformPoint(_controller.center));
             }
             else
             {
@@ -359,6 +361,7 @@ namespace StarterAssets
         public void TakeDamage()
         {
             _animator.SetTrigger(_animIdtakeDamageEx1Ani);
+            AudioSource.PlayClipAtPoint(TakeDamageAudioClip, transform.TransformPoint(_controller.center));
         }
 
         private void JumpAndGravity()
