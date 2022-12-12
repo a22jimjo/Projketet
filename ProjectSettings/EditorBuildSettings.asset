@@ -5,12 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/ThirdPersonTemplete/Scenes/Playground.unity
-    guid: e9017d5f96b9f09489b4b37e1d6eb914
-  - enabled: 1
-    path: Assets/Scenes/AITestingScene 1.unity
-    guid: 4d62b5edcd9b0ac43a12a1db0f20f730
   - enabled: 1
     path: Assets/Scenes/Rooms/Room_02/Room_02.unity
     guid: 24266ee0f80783749820aa526e51b88a
