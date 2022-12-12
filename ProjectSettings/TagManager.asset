@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - GameManager
   - Sword
+  - PlayerStartPosition
   layers:
   - Default
   - TransparentFX
