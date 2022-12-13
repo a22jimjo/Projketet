@@ -84,6 +84,12 @@ namespace StarterAssets
 
         public float SlowDownMultiplier = 0.5f;
 
+        public float DashSpeed = 10;
+
+        public float DashDuration = 1;
+
+        public float DashCooldown = 1;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -99,6 +105,8 @@ namespace StarterAssets
         private float _damageTime;
         private bool _slowDown = false;
         private bool _fixedPosition;
+        private float _dashTime = 0;
+        private float _dashDuration = 0;
 
         // timeout deltatime
         private float _fallTimeoutDelta;
@@ -110,6 +118,7 @@ namespace StarterAssets
         private int _animIdSlashSlashAttackAni;
         private int _animIdtakeDamageEx1Ani;
         private int _deadForNowAni;
+        private int _animIdDash;
 
         private Vector3 _edgeToPlayerCamera;
 
@@ -195,6 +204,7 @@ namespace StarterAssets
             _animIdRightSideAttackAni = Animator.StringToHash("SecondAttack");
             _animIdtakeDamageEx1Ani = Animator.StringToHash("TakeDamage");
             _deadForNowAni = Animator.StringToHash("Death");
+            _animIdDash = Animator.StringToHash("Dash");
         }
 
         private void GroundedCheck()
@@ -238,6 +248,23 @@ namespace StarterAssets
                 {
                     targetSpeed *= SlowDownMultiplier;
                 }
+
+                float dash = 1;
+
+                if ((_input.dash && _dashTime < 0))
+                {
+                    _dashDuration = DashDuration;
+                    _animator.SetTrigger(_animIdDash);
+                }
+                if (_dashDuration > 0)
+                {
+                    dash = DashSpeed;
+                    _dashTime = DashCooldown;
+                }
+                _input.dash = false;
+                _dashTime -= Time.deltaTime;
+                _dashDuration -= Time.deltaTime;
+                
                 // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
                 // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
@@ -294,9 +321,9 @@ namespace StarterAssets
                 Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
                 // move the player
-                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime * dash) +
                                  new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-
+                _dashDuration -= Time.deltaTime;
                 // update animator if using character
                 if (_hasAnimator)
                 {
