@@ -14,6 +14,7 @@ namespace StarterAssets
 		public bool sprint;
 		public bool attack;
 		public bool heavyAttack;
+		public bool dash;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -26,6 +27,11 @@ namespace StarterAssets
 		public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
+		}
+
+		public void OnDash(InputValue value)
+		{
+			DashInput(value.isPressed);
 		}
 
 		public void OnLook(InputValue value)
@@ -62,7 +68,12 @@ namespace StarterAssets
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
-		} 
+		}
+
+		public void DashInput(bool newDashState)
+		{
+			dash = newDashState;
+		}
 
 		public void LookInput(Vector3 newLookDirection)
 		{

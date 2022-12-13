@@ -27,6 +27,7 @@ public class Sword : MonoBehaviour
         {
             Debug.Log("Hit");
             _damaging.CallDamage(other, heavyAttack);
+            attacking = false;
         }
     }
     

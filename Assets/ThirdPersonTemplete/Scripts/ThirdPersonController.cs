@@ -358,9 +358,10 @@ namespace StarterAssets
                 _slowDown = false;
                 _fixedPosition = false;
             }
-            else if (_damageTime < 0)
+            else if (_damageTime < 0 && _damageTime !< -10)
             {
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = true;
+                _damageTime = -10;
             }
         }
 
