@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangeHandler : MonoBehaviour
 {
+
+    public string currentSceneName;
+
     void Start()
     {
         // Register the OnSceneLoaded event to run the specified method
@@ -10,10 +13,11 @@ public class SceneChangeHandler : MonoBehaviour
     }
 
     // This method will be called every time a new scene is loaded
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Do something here, such as logging the name of the loaded scene
-        Debug.Log($"Scene loaded: {scene.name}");
+        //gets the current scene and saves it as a string
+       string currentSceneName = SceneManager.GetActiveScene().name;
 
         GameObject player;
         Vector3 playerStartPos = new Vector3(0,0.5f,0);
@@ -21,5 +25,6 @@ public class SceneChangeHandler : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         player.transform.position = playerStartPos;
+        Debug.Log($"Scene loaded: {currentSceneName}");
     }
 }

@@ -72,7 +72,9 @@ public class TestEnemyGhostController : MonoBehaviour
             {
                 AttackState();
             }
-            else if (!isAttacking)
+            
+            
+            if (!isAttacking)
             {
                 ChaseState();
             }
@@ -80,6 +82,7 @@ public class TestEnemyGhostController : MonoBehaviour
             if (!isAttacking)
             {
                 RotateTowards();
+
             }
         }
 
@@ -106,6 +109,7 @@ public class TestEnemyGhostController : MonoBehaviour
         isAttacking = true;
         Debug.Log("attackstate");
         //attack
+        agent.destination = agent.transform.position;
 
         isAttacking = false;
     }

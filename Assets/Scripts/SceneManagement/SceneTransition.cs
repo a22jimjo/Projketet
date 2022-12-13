@@ -5,6 +5,7 @@ public class SceneTransition : MonoBehaviour
 {
     public string sceneName;
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")

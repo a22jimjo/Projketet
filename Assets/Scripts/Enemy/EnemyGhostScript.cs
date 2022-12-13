@@ -1,17 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyGhostScript : MonoBehaviour
 {
-
-    List<Transform> wayPoints = new List<Transform>();
-    UnityEngine.AI.NavMeshAgent agent;
+    NavMeshAgent agent;
     GameObject player;
-    public Animator animator;
+    Animator animator;
     Rigidbody rb;
 
-
+    //Movement
     [Tooltip("The minimum distance between the character and it's target to attack")]
     [SerializeField] float attackRange;
     [Tooltip("The area where the enemy can detect the player")]
@@ -19,26 +18,20 @@ public class EnemyGhostScript : MonoBehaviour
     [Tooltip("Movement speed of the ghost")]
     [SerializeField] float baseMoveSpeed;
 
-    //Movement
+    //Attacking
     [SerializeField] bool canAttack = true;
     [SerializeField] bool isAttacking;
     [SerializeField] private float attackTimer;
     [SerializeField] private float attackCooldown;
+
+    //Dash
     [SerializeField] private float dashSpeed;
     [SerializeField] private float delayBeforeAttack;
     [SerializeField] private float dashDuration;
     [SerializeField] private float delayAfterAttack;
-    [SerializeField] private float dashForce;
     [SerializeField] private float rotationSpeed;
 
-    Ray ray;
-    [SerializeField]float maxDistance = 50;
-    public LayerMask layersToHit;
-    [SerializeField] bool isInLineOfSight;
-    [SerializeField] float SphereCastRadius;
-
-
-    //public GameObject testIndicator;
+    private GameObject dashLocation;
 
     // Start is called before the first frame update
     void Start()
@@ -46,13 +39,11 @@ public class EnemyGhostScript : MonoBehaviour
         //setup
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
+        dashLocation = GameObject.FindGameObjectWithTag("GhostDashLocation");
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
 
         agent.speed = baseMoveSpeed;
-
-        ray = new Ray(transform.position, transform.forward);
-
     }
 
     // Update is called once per frame
@@ -62,7 +53,6 @@ public class EnemyGhostScript : MonoBehaviour
         {
             RotateTowards();
             ChaseState();
-            CheckForColliders();
         }
     }
 
@@ -75,10 +65,10 @@ public class EnemyGhostScript : MonoBehaviour
             agent.destination = player.transform.position;
         }
         //if enemy is = or closer to the player than the attack range, can attack and has line of sight, it attacks.
-        if (Vector3.Distance(agent.transform.position, player.transform.position) < attackRange && canAttack && isInLineOfSight)
+        if (Vector3.Distance(agent.transform.position, player.transform.position) < attackRange && canAttack)
         {
-                //should rotate before executing attack
-                StartCoroutine(Attack(delayBeforeAttack, dashDuration, delayAfterAttack));
+            //should rotate before executing attack
+            StartCoroutine(Attack(delayBeforeAttack, dashDuration, delayAfterAttack));
         }
 
         //Timer
@@ -95,7 +85,7 @@ public class EnemyGhostScript : MonoBehaviour
 
     IEnumerator Attack(float waitTime, float waitTime2, float waitTime3)
     {
-        isInLineOfSight = false;
+        //isInLineOfSight = false;
         Debug.Log("enemy attacks player");
         isAttacking = true;
         //stop movement briefly
@@ -105,23 +95,32 @@ public class EnemyGhostScript : MonoBehaviour
         canAttack = false;
         attackTimer = 0;
 
-        //gets player position
+        //Checks if destination is valid
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(dashLocation.transform.position, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            if (hit.hit)
+            {
+                // The destination is valid and the agent can navigate to it
+                agent.destination = dashLocation.transform.position;
 
-        //agent.destination = player.transform.position;
-        rb.AddForce(transform.forward * dashForce);
-
-
-        //Instantiate(testIndicator, player.transform.position, Quaternion.identity);
+            }
+            else
+            {
+                // The destination is not valid and the agent cannot navigate to it
+                Debug.Log("The destination is not valid and the agent cannot navigate to it, attacks player position instead");
+                agent.destination = player.transform.position;
+            }
+        }
 
         //run animation
         animator.SetBool("AttackGhost", true);
         yield return new WaitForSeconds(delayBeforeAttack);
-        //damagingCollider.enabled = true;
-        agent.speed = dashSpeed; 
+        agent.speed = dashSpeed;
 
         yield return new WaitForSeconds(dashDuration);
         yield return new WaitForSeconds(delayAfterAttack);
-
+        RotateTowards();
         agent.speed = baseMoveSpeed;
         isAttacking = false;
         animator.SetBool("AttackGhost", false);
@@ -142,17 +141,6 @@ public class EnemyGhostScript : MonoBehaviour
 
     }
 
-    void CheckForColliders()
-    {
-
-
-        if(Physics.SphereCast(ray, SphereCastRadius, out RaycastHit hit, maxDistance, layersToHit))
-        {
-            Debug.Log(hit.collider.gameObject.name + " was hit!");
-            isInLineOfSight = true;
-        }
-    }
-
     void RotateTowards()
     {
         Debug.Log("rotating towards player");
@@ -161,4 +149,12 @@ public class EnemyGhostScript : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
-} 
+
+    void StopAttack()
+    {
+        agent.speed = baseMoveSpeed;
+        isAttacking = false;
+        Debug.Log("Stopping coroutine");
+        StopCoroutine(Attack(delayBeforeAttack, dashDuration, delayAfterAttack));
+    }
+}

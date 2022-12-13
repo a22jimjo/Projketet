@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class Knockback : MonoBehaviour
 {
-    public Rigidbody rigidBody;
+    private Rigidbody rigidBody;
     private Vector3 _direction;
 
+
+    private void Start()
+    {
+        rigidBody = GetComponent<Rigidbody>();
+    }
 
     public void Update()
     {
