@@ -33,14 +33,14 @@ public class EnemyWormScript : MonoBehaviour
     [SerializeField] private float AttackDuration;
     [SerializeField] private float delayAfterAttack;
 
-    public Gameobject badring;
+    public GameObject badring;
+    public StatemachineStates currentState = StatemachineStates.Idle;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
-        dashLocation = GameObject.FindGameObjectWithTag("GhostDashLocation");
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
 
@@ -67,34 +67,45 @@ public class EnemyWormScript : MonoBehaviour
             attackCooldown = attackTimer;
             canAttack = true;
         }
+
+
     }
 
-    void Idle()
+    public enum StatemachineStates
     {
-
+        Idle,
+        Moving,
+        Attacking
     }
 
-    IEnumerator Move(float waitTime, float waitTime2, float waitTime3)
+
+    IEnumerator Move(float waitTime)
     {
         //Play coming down animation
-
+        yield return new WaitForSeconds(waitTime);
         //Remove badring
-        badring.setactive(false);
+        badring.SetActive(false);
         //Set new destination
         agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
-        //calculate time it takes between points??
         //Spawn VFX that follows the enemy, showing the underground location as it travels
 
-        //Reached destination? Play coming up animation, spawn in badring
-        //remove follow vfx, spawn in coming up VFX.
+        //have we reached our destination?
+        if (agent.transform.position == agent.destination)
+        {
+            //play coming up animation, spawn in badring
+            //remove follow vfx, spawn in coming up VFX.
+            badring.SetActive(true);
+        }
+
+        
 
     }
 
-    IEnumerator Attack(float waitTime, float waitTime2, float waitTime3)
+    IEnumerator Attack(float waitTime)
     {
         Debug.Log("enemy attacks player");
         isAttacking = true;
-
+        yield return new WaitForSeconds(waitTime);
 
         //reset timers
         canAttack = false;
