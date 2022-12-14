@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: b5fe485e1bbb28745b25e2d3026903aa
+guid: 810b3cf6c8f6c6649867e3eb779a2b9e
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: singleAttackAni
+    second: Take 001
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: singleAttackAni
+      name: Take 001
       takeName: Take 001
       internalID: 0
       firstFrame: 1
-      lastFrame: 42
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

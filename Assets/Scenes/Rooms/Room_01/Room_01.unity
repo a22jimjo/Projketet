@@ -189,6 +189,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSceneName: 
+--- !u!4 &248913026 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7375919980421700435, guid: dee9a8c5a2e66654db00071b73bb8029,
+    type: 3}
+  m_PrefabInstance: {fileID: 8339817639865753596}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &327598076
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,14 +602,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772124933}
-  m_LocalRotation: {x: 0.5383205, y: 0.8369872, z: 0.059924085, w: -0.07792693}
-  m_LocalPosition: {x: 0, y: 0.7670982, z: 0.92499995}
-  m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
+  m_LocalRotation: {x: 0.5487383, y: 0.8301944, z: 0.06089329, w: -0.077171996}
+  m_LocalPosition: {x: 0.0006, y: 0.0152, z: 0.0587}
+  m_LocalScale: {x: 0.028256178, y: 0.028256178, z: 0.028256174}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1743428935}
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_Father: {fileID: 248913026}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 190.615, y: 3.845993, z: -114.862}
 --- !u!1 &874605735
 GameObject:
@@ -6948,11 +6954,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5688302704534499508, guid: dee9a8c5a2e66654db00071b73bb8029,
+        type: 3}
+      propertyPath: DashSpeed
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688302704534499508, guid: dee9a8c5a2e66654db00071b73bb8029,
+        type: 3}
+      propertyPath: DashDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688302704534499508, guid: dee9a8c5a2e66654db00071b73bb8029,
+        type: 3}
+      propertyPath: DamageCooldown
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688302704534499508, guid: dee9a8c5a2e66654db00071b73bb8029,
+        type: 3}
+      propertyPath: HeavyAttackCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688302704534499508, guid: dee9a8c5a2e66654db00071b73bb8029,
+        type: 3}
+      propertyPath: HeavyAttackDamageCooldown
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5688302704534499519, guid: dee9a8c5a2e66654db00071b73bb8029,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8339817641792821700, guid: dee9a8c5a2e66654db00071b73bb8029,
+        type: 3}
+      propertyPath: VfxSlashPrefab
+      value: 
+      objectReference: {fileID: 1743428937}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dee9a8c5a2e66654db00071b73bb8029, type: 3}
 --- !u!4 &8452898591534453962
