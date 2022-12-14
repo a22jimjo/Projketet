@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772124933}
-  m_LocalRotation: {x: 0.5487383, y: 0.8301944, z: 0.06089329, w: -0.077171996}
-  m_LocalPosition: {x: 0.0006, y: 0.0152, z: 0.0587}
-  m_LocalScale: {x: 0.028256178, y: 0.028256178, z: 0.028256174}
+  m_LocalRotation: {x: 0.6051419, y: 0.4416563, z: 0.1011745, w: 0.65460426}
+  m_LocalPosition: {x: -0.051868152, y: 0.03988296, z: 0.006347308}
+  m_LocalScale: {x: 0.08250001, y: 0.08250003, z: 0.08249998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1743428935}
-  m_Father: {fileID: 7375919980421700435}
-  m_RootOrder: 3
+  m_Father: {fileID: 8373953709382829867}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 190.615, y: 3.845993, z: -114.862}
 --- !u!1 &1743428934
 GameObject:
@@ -664,13 +664,13 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  AttackCooldown: 0.38
-  DamageCooldown: 0.1
-  SlowDownMultiplier: 0.6
-  HeavyAttackCooldown: 1
+  AttackCooldown: 0.5
+  DamageCooldown: 0.3
+  SlowDownMultiplier: 0.3
+  HeavyAttackCooldown: 1.05
   HeavyAttackDamageCooldown: 0.6
-  DashSpeed: 1.1
-  DashDuration: 0.1
+  DashSpeed: 1.5
+  DashDuration: 0.06
   DashCooldown: 1
 --- !u!114 &8241224510204472515
 MonoBehaviour:
@@ -807,6 +807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 5
+  damage: 1
   _healthbar: {fileID: 8339817640612110675}
 --- !u!54 &8339817640029229439
 Rigidbody:
@@ -1319,12 +1320,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8339817640542306902}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7375919980421700435 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -7646984823093700347, guid: 4748bd65af237c84084bbd4436bf7379,
-    type: 3}
-  m_PrefabInstance: {fileID: 8339817640542306902}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8373953710278239677 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4748bd65af237c84084bbd4436bf7379,
@@ -1489,6 +1484,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576bd27b422500b46b063e39722fc767, type: 3}
+--- !u!4 &8373953709382829867 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 576bd27b422500b46b063e39722fc767,
+    type: 3}
+  m_PrefabInstance: {fileID: 8339817641479332032}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9186659500636265873 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 576bd27b422500b46b063e39722fc767,
@@ -1553,7 +1554,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyDelay: 0
-  damage: 2
   canHitEnemy: 1
   canHitPlayer: 0
   destoryOnContact: 0

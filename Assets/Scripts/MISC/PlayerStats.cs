@@ -7,8 +7,9 @@ public class PlayerStats : MonoBehaviour
 {
     [Header("Stats")]
     [Tooltip("Characters health points")]
-    public int health;
-    public int maxHealth = 3;
+    public float health;
+    public float maxHealth = 3;
+    public float damage;
 
     private ThirdPersonController _ThirdPersonController;
     [SerializeField] private Healthbar _healthbar;
@@ -21,7 +22,7 @@ public class PlayerStats : MonoBehaviour
         _ThirdPersonController = GetComponent<ThirdPersonController>();
         _healthbar.UpdateHealthBar(maxHealth, health);
     }
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
         _healthbar.UpdateHealthBar(maxHealth, health);

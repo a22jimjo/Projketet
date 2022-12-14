@@ -8,7 +8,6 @@ public class DamagingCollider : MonoBehaviour
     Rigidbody rb;
 
     [SerializeField] public float destroyDelay;
-    [SerializeField] public int damage;
     [SerializeField] public bool canHitEnemy;
     [SerializeField] public bool canHitPlayer;
     [SerializeField] public bool destoryOnContact;
@@ -24,20 +23,18 @@ public class DamagingCollider : MonoBehaviour
         //if(ScaleOverDuration) gameObject.tra
     }
 
-    public void CallDamage(Collider other, bool knockback)
+    public void CallDamage(Collider other, bool knockback, float dmg)
     {
-
-        if (canHitEnemy)
+        if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent ) && canHitEnemy)
         {
-            if (other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent))
-            {
+            
+            enemyComponent.TakeDamage(dmg);
+            if (freezeOnContact) Freeze();
+            if (destoryOnContact) Destroy(gameObject, destroyDelay);
+            Debug.Log(gameObject.name + " Has dealt " + dmg + " damage");
+            if (other.gameObject.TryGetComponent<Knockback>(out Knockback knocked) && knockback) knocked.PushRigidBdy(rb);
+        }
 
-                enemyComponent.TakeDamage(damage);
-                if (freezeOnContact) Freeze();
-                if (destoryOnContact) Destroy(gameObject, destroyDelay);
-                Debug.Log(gameObject.name + " Has taken " + damage + " damage");
-                if (other.gameObject.TryGetComponent<Knockback>(out Knockback knocked) && knockback) knocked.PushRigidBdy(rb);
-            }
         }
         
         if (canHitPlayer)
