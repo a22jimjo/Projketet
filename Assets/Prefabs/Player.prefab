@@ -665,12 +665,12 @@ MonoBehaviour:
   CameraAngleOverride: 0
   LockCameraPosition: 0
   AttackCooldown: 0.5
-  DamageCooldown: 0.1
+  DamageCooldown: 0.3
   SlowDownMultiplier: 0.3
   HeavyAttackCooldown: 1.05
   HeavyAttackDamageCooldown: 0.6
-  DashSpeed: 1.1
-  DashDuration: 0.1
+  DashSpeed: 1.5
+  DashDuration: 0.06
   DashCooldown: 1
 --- !u!114 &8241224510204472515
 MonoBehaviour:

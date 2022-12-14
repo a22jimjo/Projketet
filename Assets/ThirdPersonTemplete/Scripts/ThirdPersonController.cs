@@ -158,7 +158,7 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _sword = GameObject.FindGameObjectWithTag("Sword");
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
@@ -245,9 +245,9 @@ namespace StarterAssets
                     targetSpeed *= SlowDownMultiplier;
                 }
 
-                float dash = 1;
+                float dash = 0;
 
-                if ((_input.dash && _dashTime < 0) && !_fixedPosition)
+                if ((_input.dash && _dashTime < 0))
                 {
                     _dashDuration = DashDuration;
                     _animator.SetTrigger(_animIdDash);
@@ -255,6 +255,7 @@ namespace StarterAssets
                 }
                 if (_dashDuration > 0)
                 {
+                    Debug.Log("Heja");
                     dash = DashSpeed;
                     _dashTime = DashCooldown;
                 }
@@ -318,7 +319,7 @@ namespace StarterAssets
                 Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
                 // move the player
-                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime * dash) +
+                _controller.Move(targetDirection.normalized * ((_speed + dash) * Time.deltaTime) +
                                  new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
                 _dashDuration -= Time.deltaTime;
                 // update animator if using character
@@ -394,6 +395,10 @@ namespace StarterAssets
                     sword.Vfx();
                 }
                 _damageTime = -10;
+            }
+            else
+            {
+                AttackRotation();
             }
         }
 
