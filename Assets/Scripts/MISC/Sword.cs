@@ -11,11 +11,15 @@ public class Sword : MonoBehaviour
     public bool heavyAttack;
     public int damageToBeDone;
     public VisualEffect VfxSlashPrefab;
+    private float damage;
     
     // Start is called before the first frame update
     void Start()
     {
         _damaging = GetComponent<DamagingCollider>();
+        GameObject player = GameObject.FindWithTag("Player");
+        PlayerStats stats = player.GetComponent<PlayerStats>();
+        damage = stats.damage;
     }
 
     // Update is called once per frame
@@ -29,7 +33,7 @@ public class Sword : MonoBehaviour
         if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent) && attacking == true)
         {
             Debug.Log("Hit");
-            _damaging.CallDamage(other, heavyAttack);
+            _damaging.CallDamage(other, heavyAttack, damage);
             attacking = false;
         }
     }

@@ -247,10 +247,11 @@ namespace StarterAssets
 
                 float dash = 1;
 
-                if ((_input.dash && _dashTime < 0))
+                if ((_input.dash && _dashTime < 0) && !_fixedPosition)
                 {
                     _dashDuration = DashDuration;
                     _animator.SetTrigger(_animIdDash);
+                    _slowDown = false;
                 }
                 if (_dashDuration > 0)
                 {

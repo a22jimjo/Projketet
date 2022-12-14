@@ -9,9 +9,9 @@ public class EnemyStats : MonoBehaviour
 
     [Header("Stats")]
     [Tooltip("Characters health points")]
-    public int health;
-    public int maxHealth = 3;
-    public int damage = 1;
+    public float health;
+    public float maxHealth = 3;
+    public float damage = 1;
 
     private EnemyGhostScript enemyGhostScript;
 
@@ -27,7 +27,7 @@ public class EnemyStats : MonoBehaviour
     {
         
     }
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
 
