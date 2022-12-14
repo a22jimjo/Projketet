@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 2057398437}
   - component: {fileID: 2057398436}
   - component: {fileID: 864337583}
+  - component: {fileID: 6302265245846574967}
   m_Layer: 8
   m_Name: Healthbar Canvas
   m_TagString: Untagged
@@ -256,6 +257,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
 --- !u!114 &864337583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057398434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ce4dc457295034b84abd4a829f4d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthBarSprite: {fileID: 1214694093}
+  ReduceSpeed: 2
+--- !u!114 &6302265245846574967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -512,6 +527,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 67c8b33e424ccdc4486edf538ab91c5a, type: 3}
   - {fileID: 8300000, guid: 274649b0e221539409070ebf6c18918b, type: 3}
   - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
+  FastAttackAudioClips: []
+  HeavyAttackAudioClips: []
+  TakeDamageAudioClip: {fileID: 0}
   FootstepAudioVolume: 0.3
   Gravity: -15
   FallTimeout: 0.15
@@ -526,11 +544,14 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  AttackCooldown: 0.75
+  AttackCooldown: 0.5
   DamageCooldown: 0.05
-  HeavyAttackCooldown: 1.1
+  HeavyAttackCooldown: 1.05
   HeavyAttackDamageCooldown: 0.4
-  SlowDownMultiplier: 0.6
+  SlowDownMultiplier: 0.3
+  DashSpeed: 1.1
+  DashDuration: 0.2
+  DashCooldown: 1
 --- !u!114 &135756642000475821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,6 +570,7 @@ MonoBehaviour:
   sprint: 0
   attack: 0
   heavyAttack: 0
+  dash: 0
   analogMovement: 0
   cursorLocked: 0
   cursorInputForLook: 0
@@ -665,7 +687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 5
-  _healthbar: {fileID: 864337583}
+  _healthbar: {fileID: 6302265245846574967}
 --- !u!54 &2010573585
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1100,6 +1122,9 @@ MonoBehaviour:
   canHitPlayer: 0
   destoryOnContact: 0
   freezeOnContact: 0
+  ScaleOverDuration: 0
+  timeToScale: 0
+  sizeToScaleTo: {x: 0, y: 0, z: 0}
 --- !u!114 &473211818
 MonoBehaviour:
   m_ObjectHideFlags: 0

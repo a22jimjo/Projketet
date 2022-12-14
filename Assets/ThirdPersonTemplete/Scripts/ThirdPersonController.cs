@@ -349,6 +349,7 @@ namespace StarterAssets
         //Checks attack input and does whatever we want attack to do
         private void AttackTest()
         {
+            //Step 1: Check attack input and cooldowns
             if (_input.attack && (_attackTime <= 0))
             {
                 AttackRotation();
@@ -376,9 +377,11 @@ namespace StarterAssets
                 _animator.SetBool(_animIdAttackForwardAni, false);
             }
             
+            //Step 2: Remove input
             _input.attack = false;
             _input.heavyAttack = false;
-
+            
+            //Step 3: Check if the attack is
             if (_attackTime <= 0)
             {
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false; sword.heavyAttack = false;
