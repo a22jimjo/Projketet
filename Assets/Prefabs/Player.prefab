@@ -647,10 +647,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 67c8b33e424ccdc4486edf538ab91c5a, type: 3}
   - {fileID: 8300000, guid: 274649b0e221539409070ebf6c18918b, type: 3}
   - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
-  FastAttackAudioClips: []
-  HeavyAttackAudioClips: []
+  FastAttackAudioClips:
+  - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
+  - {fileID: 8300000, guid: 829edb8398f3349288db17031db31af4, type: 3}
+  HeavyAttackAudioClips:
+  - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
+  - {fileID: 8300000, guid: 829edb8398f3349288db17031db31af4, type: 3}
   TakeDamageAudioClip: {fileID: 0}
-  FootstepAudioVolume: 0.3
+  FootstepAudioVolume: 1
   Gravity: -15
   FallTimeout: 0.15
   Grounded: 1
