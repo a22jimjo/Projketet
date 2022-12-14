@@ -15,6 +15,7 @@ public class DamagingCollider : MonoBehaviour
     [SerializeField] public bool ScaleOverDuration;
     [SerializeField] public float timeToScale;
     [SerializeField] private Vector3 sizeToScaleTo;
+    
 
     private void Start()
     {
@@ -34,15 +35,18 @@ public class DamagingCollider : MonoBehaviour
             Debug.Log(gameObject.name + " Has dealt " + dmg + " damage");
             if (other.gameObject.TryGetComponent<Knockback>(out Knockback knocked) && knockback) knocked.PushRigidBdy(rb);
         }
-
-        if (other.gameObject.TryGetComponent<PlayerStats>(out PlayerStats playerComponent) && canHitPlayer)
+        
+        if (canHitPlayer)
         {
-            playerComponent.TakeDamage(dmg);
-            if (freezeOnContact) Freeze();
-            if (destoryOnContact) Destroy(gameObject, destroyDelay);
-            Debug.Log(gameObject.name + " Has taken " + dmg + " damage");
+            if (other.gameObject.TryGetComponent<PlayerStats>(out PlayerStats playerComponent))
+            {
+                playerComponent.TakeDamage(dmg);
+                if (freezeOnContact) Freeze();
+                if (destoryOnContact) Destroy(gameObject, destroyDelay);
+                Debug.Log(gameObject.name + " Has taken " + dmg + " damage");
+            }
         }
-    }
+    } 
 
     public void Freeze()
     {
