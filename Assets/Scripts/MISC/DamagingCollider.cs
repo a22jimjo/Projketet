@@ -26,23 +26,31 @@ public class DamagingCollider : MonoBehaviour
 
     public void CallDamage(Collider other, bool knockback)
     {
-        if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent ) && canHitEnemy)
-        {
-            
-            enemyComponent.TakeDamage(damage);
-            if (freezeOnContact) Freeze();
-            if (destoryOnContact) Destroy(gameObject, destroyDelay);
-            Debug.Log(gameObject.name + " Has taken " + damage + " damage");
-            if (other.gameObject.TryGetComponent<Knockback>(out Knockback knocked) && knockback) knocked.PushRigidBdy(rb);
-        }
 
-        if (other.gameObject.TryGetComponent<PlayerStats>(out PlayerStats playerComponent) && canHitPlayer)
+        if (canHitEnemy)
         {
-            playerComponent.TakeDamage(damage);
-            if (freezeOnContact) Freeze();
-            if (destoryOnContact) Destroy(gameObject, destroyDelay);
-            Debug.Log(gameObject.name + " Has taken " + damage + " damage");
+            if (other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent))
+            {
+
+                enemyComponent.TakeDamage(damage);
+                if (freezeOnContact) Freeze();
+                if (destoryOnContact) Destroy(gameObject, destroyDelay);
+                Debug.Log(gameObject.name + " Has taken " + damage + " damage");
+                if (other.gameObject.TryGetComponent<Knockback>(out Knockback knocked) && knockback) knocked.PushRigidBdy(rb);
+            }
         }
+        
+        if (canHitPlayer)
+        {
+            if (other.gameObject.TryGetComponent<PlayerStats>(out PlayerStats playerComponent))
+            {
+                playerComponent.TakeDamage(damage);
+                if (freezeOnContact) Freeze();
+                if (destoryOnContact) Destroy(gameObject, destroyDelay);
+                Debug.Log(gameObject.name + " Has taken " + damage + " damage");
+            }
+        }
+        
     }
 
     public void Freeze()

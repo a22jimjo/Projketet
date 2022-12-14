@@ -32,6 +32,7 @@ public class EnemyGhostScript : MonoBehaviour
     [SerializeField] private float rotationSpeed;
 
     private GameObject dashLocation;
+    public GameObject attackIndicator;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,7 @@ public class EnemyGhostScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         agent.speed = baseMoveSpeed;
+
     }
 
     // Update is called once per frame
@@ -67,6 +69,9 @@ public class EnemyGhostScript : MonoBehaviour
         //if enemy is = or closer to the player than the attack range, can attack and has line of sight, it attacks.
         if (Vector3.Distance(agent.transform.position, player.transform.position) < attackRange && canAttack)
         {
+            //randomizing the Delayafterattack var
+            delayAfterAttack = Random.Range(delayAfterAttack * 0.8f, delayAfterAttack * 1.4f);
+
             //should rotate before executing attack
             StartCoroutine(Attack(delayBeforeAttack, dashDuration, delayAfterAttack));
         }
@@ -103,6 +108,7 @@ public class EnemyGhostScript : MonoBehaviour
             {
                 // The destination is valid and the agent can navigate to it
                 agent.destination = dashLocation.transform.position;
+                Instantiate(attackIndicator, agent.destination, Quaternion.identity);
 
             }
             else
@@ -110,6 +116,7 @@ public class EnemyGhostScript : MonoBehaviour
                 // The destination is not valid and the agent cannot navigate to it
                 Debug.Log("The destination is not valid and the agent cannot navigate to it, attacks player position instead");
                 agent.destination = player.transform.position;
+                Instantiate(attackIndicator, agent.destination, Quaternion.identity);
             }
         }
 
