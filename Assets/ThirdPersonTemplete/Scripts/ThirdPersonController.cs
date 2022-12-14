@@ -73,21 +73,17 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        [Header("FastAttackValues")]
         [Tooltip("Cooldown until you can make your next attack")]
         public float AttackCooldown = 0.34f;
-
         public float DamageCooldown = 0.05f;
-
-        public float HeavyAttackCooldown = 0.34f;
-
-        public float HeavyAttackDamageCooldown = 0.3f;
-
         public float SlowDownMultiplier = 0.5f;
-
-        public float DashSpeed = 10;
-
+        [Header("HeavyAttackValues")]
+        public float HeavyAttackCooldown = 0.34f;
+        public float HeavyAttackDamageCooldown = 0.3f;
+        [Header("DashValues")]
+        public float DashSpeed = 1.1f;
         public float DashDuration = 1;
-
         public float DashCooldown = 1;
 
         // cinemachine
@@ -381,16 +377,21 @@ namespace StarterAssets
             _input.attack = false;
             _input.heavyAttack = false;
             
-            //Step 3: Check if the attack is
+            //Step 3: Check if the attack is done
             if (_attackTime <= 0)
             {
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false; sword.heavyAttack = false;
                 _slowDown = false;
                 _fixedPosition = false;
             }
-            else if (_damageTime < 0 && _damageTime !< -10)
+            else if (_damageTime < 0 && _damageTime > -10)
             {
-                if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = true;
+                if (_sword.TryGetComponent<Sword>(out Sword sword))
+                {
+                    Debug.Log("AHAHHAHA");
+                    sword.attacking = true;
+                    sword.Vfx();
+                }
                 _damageTime = -10;
             }
         }
