@@ -6,16 +6,22 @@ using System;
 public class DamagingCollider : MonoBehaviour
 {
     Rigidbody rb;
-    public float destroyDelay;
-    public int damage;
-    public bool canHitEnemy;
-    public bool canHitPlayer;
-    public bool destoryOnContact;
-    public bool freezeOnContact;
+
+    [SerializeField] public float destroyDelay;
+    [SerializeField] public int damage;
+    [SerializeField] public bool canHitEnemy;
+    [SerializeField] public bool canHitPlayer;
+    [SerializeField] public bool destoryOnContact;
+    [SerializeField] public bool freezeOnContact;
+    [SerializeField] public bool ScaleOverDuration;
+    [SerializeField] public float timeToScale;
+    [SerializeField] private Vector3 sizeToScaleTo;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        //if(ScaleOverDuration) gameObject.tra
     }
 
     public void CallDamage(Collider other, bool knockback)
