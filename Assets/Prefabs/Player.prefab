@@ -653,7 +653,7 @@ MonoBehaviour:
   HeavyAttackAudioClips:
   - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
   - {fileID: 8300000, guid: 829edb8398f3349288db17031db31af4, type: 3}
-  TakeDamageAudioClip: {fileID: 0}
+  TakeDamageAudioClip: {fileID: 8300000, guid: 71b20e06131fb4b08887f5f4132c4de5, type: 3}
   FootstepAudioVolume: 1
   Gravity: -15
   FallTimeout: 0.15
@@ -668,14 +668,14 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  AttackCooldown: 0.5
+  AttackCooldown: 0.45
   DamageCooldown: 0.3
   SlowDownMultiplier: 0.3
   HeavyAttackCooldown: 1.05
   HeavyAttackDamageCooldown: 0.6
   DashSpeed: 1.5
   DashDuration: 0.06
-  DashCooldown: 1
+  DashCooldown: 0.5
 --- !u!114 &8241224510204472515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,7 +812,8 @@ MonoBehaviour:
   health: 0
   maxHealth: 5
   damage: 1
-  _healthbar: {fileID: 8339817640612110675}
+  heavyDamage: 3
+  _healthbar: {fileID: 8339817641030501569}
 --- !u!54 &8339817640029229439
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -856,7 +857,6 @@ GameObject:
   - component: {fileID: 8339817640072385227}
   - component: {fileID: 8339817640072385226}
   - component: {fileID: 8339817641030501569}
-  - component: {fileID: 8339817640612110675}
   m_Layer: 8
   m_Name: Healthbar Canvas
   m_TagString: Untagged
@@ -947,20 +947,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
 --- !u!114 &8339817641030501569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8339817640072385228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ce4dc457295034b84abd4a829f4d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HealthBarSprite: {fileID: 8339817640386803875}
-  ReduceSpeed: 2
---- !u!114 &8339817640612110675
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1527,8 +1513,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.026391776, y: 0.36514276, z: 0.22826894}
-  m_Center: {x: 0.005229852, y: 0.09201375, z: 0.011132842}
+  m_Size: {x: 0.026391776, y: 0.31894034, z: 0.22433978}
+  m_Center: {x: 0.0052297222, y: 0.068911485, z: 0.006298408}
 --- !u!114 &8339817641792821700
 MonoBehaviour:
   m_ObjectHideFlags: 0
