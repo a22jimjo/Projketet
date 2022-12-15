@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     public float health;
     public float maxHealth = 3;
     public float damage;
+    public float heavyDamage;
 
     private ThirdPersonController _ThirdPersonController;
     [SerializeField] private Healthbar _healthbar;
