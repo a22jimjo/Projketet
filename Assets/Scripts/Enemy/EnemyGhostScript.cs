@@ -31,7 +31,7 @@ public class EnemyGhostScript : MonoBehaviour
     [SerializeField] private float delayAfterAttack;
     [SerializeField] private float rotationSpeed;
 
-    private GameObject dashLocation;
+    [SerializeField] private GameObject dashLocation;
     public GameObject attackIndicator;
 
     [Tooltip("Sound starting when the windup animation start")]
@@ -47,7 +47,6 @@ public class EnemyGhostScript : MonoBehaviour
         //setup
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
-        dashLocation = GameObject.FindGameObjectWithTag("GhostDashLocation");
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
 
@@ -100,7 +99,7 @@ public class EnemyGhostScript : MonoBehaviour
 
     IEnumerator Attack(float waitTime, float waitTime2, float waitTime3)
     {
-        //isInLineOfSight = false;
+        agent.avoidancePriority = 49;
         Debug.Log("enemy attacks player");
         isAttacking = true;
         //stop movement briefly
@@ -147,7 +146,7 @@ public class EnemyGhostScript : MonoBehaviour
         RotateTowards();
         agent.speed = baseMoveSpeed;
         isAttacking = false;
-        //animator.SetBool("AttackGhost", false);
+        agent.avoidancePriority = 50;
     }
 
 

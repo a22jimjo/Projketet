@@ -39,7 +39,7 @@ public class EnemyStats : MonoBehaviour
         else
         {
             Debug.Log("Should be playing hurt animation :)");
-            animator.ResetTrigger("Attack");
+            //animator.ResetTrigger("Attack");
             animator.SetTrigger("TakeDamage");
             AudioSource.PlayClipAtPoint(HurtClips[Random.Range(0, HurtClips.Length)], transform.TransformPoint(transform.position));
         }
