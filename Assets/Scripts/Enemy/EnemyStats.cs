@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
+    private Animator animator;
 
     [Header("Stats")]
     [Tooltip("Characters health points")]
@@ -11,41 +12,52 @@ public class EnemyStats : MonoBehaviour
     public float maxHealth = 3;
     public float damage = 1;
 
-    private EnemyGhostScript enemyGhostScript;
+    [SerializeField] private ParticleSystem deathEffect;
 
     [SerializeField] private AudioClip[] HurtClips;
     [SerializeField] private AudioClip[] DeathClips;
+    [SerializeField] private float DelayUntilDestroy;
+
+    private GameObject Enemy;
 
     // Start is called before the first frame update
     void Start()
     {
         //Setup
         health = maxHealth;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        animator = GetComponent<Animator>();
+        Enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
-        enemyGhostScript.animator.SetTrigger("TakeDamage");
-        AudioSource.PlayClipAtPoint(HurtClips[Random.Range(0, HurtClips.Length)], transform.TransformPoint(transform.position));
-
 
         if (health <= 0)
         {
-            //Play death animation
-            enemyGhostScript.animator.SetTrigger("Death");
-            AudioSource.PlayClipAtPoint(DeathClips[Random.Range(0, DeathClips.Length)], transform.TransformPoint(transform.position));
-            //enemyGhostScript.animator.SetBool("DeadGhost", true);
+            StartCoroutine(Death(DelayUntilDestroy));
         }
         else
         {
-            //Play get hit animation, apply knockback
+            Debug.Log("Should be playing hurt animation :)");
+            animator.ResetTrigger("Attack");
+            animator.SetTrigger("TakeDamage");
+            AudioSource.PlayClipAtPoint(HurtClips[Random.Range(0, HurtClips.Length)], transform.TransformPoint(transform.position));
         }
+    }
+
+    IEnumerator Death(float waitTime)
+    {
+        Debug.Log("Should be playing death animation :)");
+        animator.ResetTrigger("Attack");
+        animator.SetBool("isDead", true);
+        AudioSource.PlayClipAtPoint(DeathClips[Random.Range(0, DeathClips.Length)], transform.TransformPoint(transform.position));
+        //Play death VFX
+        Instantiate(deathEffect, Enemy.transform);
+        yield return new WaitForSeconds(waitTime);
+
+        Instantiate(deathEffect, Enemy.transform);
+
+        Destroy(gameObject);
     }
 
 

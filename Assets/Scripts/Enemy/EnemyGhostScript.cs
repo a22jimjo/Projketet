@@ -7,7 +7,7 @@ public class EnemyGhostScript : MonoBehaviour
 {
     NavMeshAgent agent;
     GameObject player;
-    public Animator animator;
+    Animator animator;
     Rigidbody rb;
 
     //Movement
@@ -60,9 +60,10 @@ public class EnemyGhostScript : MonoBehaviour
     {
         if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange && isAttacking == false)
         {
+            animator.SetBool("isMoving", true);
             RotateTowards();
             ChaseState();
-        }
+        }else animator.SetBool("isMoving", false);
 
         //animator.SetFloat("MoveSpeed", agent.speed);
     }
@@ -133,7 +134,7 @@ public class EnemyGhostScript : MonoBehaviour
         //Sound as windup animation start
         AudioSource.PlayClipAtPoint(AttackWindupClips[Random.Range(0, AttackWindupClips.Length)], transform.TransformPoint(transform.position));
         //animator.SetBool("AttackGhost", true);
-        animator.SetTrigger("AttackGhost");
+        animator.SetTrigger("Attack");
         yield return new WaitForSeconds(delayBeforeAttack);
         //Sound as windup animation end
         AudioSource.PlayClipAtPoint(AttackDashClips[Random.Range(0, AttackDashClips.Length)], transform.TransformPoint(transform.position));
