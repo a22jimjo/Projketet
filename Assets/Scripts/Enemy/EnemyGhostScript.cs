@@ -7,7 +7,7 @@ public class EnemyGhostScript : MonoBehaviour
 {
     NavMeshAgent agent;
     GameObject player;
-    Animator animator;
+    public Animator animator;
     Rigidbody rb;
 
     //Movement
@@ -34,6 +34,13 @@ public class EnemyGhostScript : MonoBehaviour
     private GameObject dashLocation;
     public GameObject attackIndicator;
 
+    [Tooltip("Sound starting when the windup animation start")]
+    [SerializeField] private AudioClip[] AttackWindupClips;
+    [Tooltip("Sound starting when the windup animation ends")]
+    [SerializeField] private AudioClip[] AttackDashClips;
+    [Tooltip("Sound starting when the dash ends")]
+    [SerializeField] private AudioClip[] AttackWaitAfterDashClips;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +63,8 @@ public class EnemyGhostScript : MonoBehaviour
             RotateTowards();
             ChaseState();
         }
+
+        //animator.SetFloat("MoveSpeed", agent.speed);
     }
 
     void ChaseState()
@@ -121,16 +130,23 @@ public class EnemyGhostScript : MonoBehaviour
         }
 
         //run animation
-        animator.SetBool("AttackGhost", true);
+        //Sound as windup animation start
+        AudioSource.PlayClipAtPoint(AttackWindupClips[Random.Range(0, AttackWindupClips.Length)], transform.TransformPoint(transform.position));
+        //animator.SetBool("AttackGhost", true);
+        animator.SetTrigger("AttackGhost");
         yield return new WaitForSeconds(delayBeforeAttack);
+        //Sound as windup animation end
+        AudioSource.PlayClipAtPoint(AttackDashClips[Random.Range(0, AttackDashClips.Length)], transform.TransformPoint(transform.position));
         agent.speed = dashSpeed;
 
         yield return new WaitForSeconds(dashDuration);
+        //Sound as dash has ended
+        AudioSource.PlayClipAtPoint(AttackWaitAfterDashClips[Random.Range(0, AttackWaitAfterDashClips.Length)], transform.TransformPoint(transform.position));
         yield return new WaitForSeconds(delayAfterAttack);
         RotateTowards();
         agent.speed = baseMoveSpeed;
         isAttacking = false;
-        animator.SetBool("AttackGhost", false);
+        //animator.SetBool("AttackGhost", false);
     }
 
 

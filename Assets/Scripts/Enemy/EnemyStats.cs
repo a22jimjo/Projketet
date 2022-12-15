@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class EnemyStats : MonoBehaviour
 {
-    public static event Action<EnemyStats> OnEnemyKilled;
 
     [Header("Stats")]
     [Tooltip("Characters health points")]
@@ -14,6 +12,9 @@ public class EnemyStats : MonoBehaviour
     public float damage = 1;
 
     private EnemyGhostScript enemyGhostScript;
+
+    [SerializeField] private AudioClip[] HurtClips;
+    [SerializeField] private AudioClip[] DeathClips;
 
     // Start is called before the first frame update
     void Start()
@@ -30,13 +31,16 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
+        enemyGhostScript.animator.SetTrigger("TakeDamage");
+        AudioSource.PlayClipAtPoint(HurtClips[Random.Range(0, HurtClips.Length)], transform.TransformPoint(transform.position));
+
 
         if (health <= 0)
         {
             //Play death animation
+            enemyGhostScript.animator.SetTrigger("Death");
+            AudioSource.PlayClipAtPoint(DeathClips[Random.Range(0, DeathClips.Length)], transform.TransformPoint(transform.position));
             //enemyGhostScript.animator.SetBool("DeadGhost", true);
-            Destroy(gameObject);
-            OnEnemyKilled?.Invoke(this);
         }
         else
         {
