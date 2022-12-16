@@ -8,7 +8,7 @@ public class EnemyWormScript : MonoBehaviour
     List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
     GameObject player;
-    GameObject wormBody;
+
     Animator animator;
     Rigidbody rb;
 
@@ -31,10 +31,13 @@ public class EnemyWormScript : MonoBehaviour
 
     //Attacking
     [SerializeField] private float BurrowDownWait;
-    [SerializeField] private float AttackDuration;
+    [SerializeField] private float BurrowWaitTime;
     [SerializeField] private float delayAfterAttack;
 
-    public GameObject badring;
+    [SerializeField] GameObject badring;
+    [SerializeField] GameObject wormBody;
+
+    [SerializeField] GameObject moveindicator;
 
     
 
@@ -77,14 +80,18 @@ public class EnemyWormScript : MonoBehaviour
         //check if attack is possible, canAttack = true, !Moving, player nearby?
         if (canAttack)
         {
-            StartCoroutine(Move(BurrowDownWait));
+            StartCoroutine(Move(BurrowDownWait, BurrowWaitTime));
 
+        }
+        if (!isAttacking)
+        {
+           RotateTowards();
         }
 
 
     }
 
-    IEnumerator Move(float BurrowDownWait)
+    IEnumerator Move(float BurrowDownWait, float BurrowWaitTime)
     {
         Debug.Log("Worm should be Moving");
         //Play coming down animation
@@ -94,18 +101,27 @@ public class EnemyWormScript : MonoBehaviour
         //transform.position = transform.position + new Vector3 (0f,-3f, 0f);
         //Remove badring
         badring.SetActive(false);
+        wormBody.SetActive(false);
         //Set new destination
         agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+        Instantiate(moveindicator, agent.destination, Quaternion.identity);
+        Debug.Log("should have set destination");
         //Spawn VFX that follows the enemy, showing the underground location as it travels
-
+        yield return new WaitForSeconds(BurrowWaitTime);
+        
         //have we reached our destination?
         if (agent.transform.position == agent.destination)
         {
+            Debug.Log("Worm has reached it's destination");
             //play coming up animation, spawn in badring
             //remove follow vfx, spawn in coming up VFX.
+            animator.ResetTrigger("BurrowDown");
+            animator.SetTrigger("BurrowUp");
+            wormBody.SetActive(true);
             badring.SetActive(true);
         }
         canAttack = false;
+        attackTimer = 0;
     }
 
     IEnumerator Attack(float waitTime)
@@ -132,5 +148,14 @@ public class EnemyWormScript : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, Vector3.forward);
 
+    }
+
+    void RotateTowards()
+    {
+        Debug.Log("rotating towards player");
+
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
 }
