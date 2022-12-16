@@ -255,7 +255,6 @@ namespace StarterAssets
                 }
                 if (_dashDuration > 0)
                 {
-                    Debug.Log("Heja");
                     dash = DashSpeed;
                     _dashTime = DashCooldown;
                 }
@@ -396,7 +395,7 @@ namespace StarterAssets
                     _damageTime = -10;
                 }
             }
-            else AttackRotation();
+            else if(_damageTime > DamageCooldown - 0.02) AttackRotation();
         }
 
         public void TakeDamage()
