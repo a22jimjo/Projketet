@@ -137,9 +137,12 @@ MonoBehaviour:
   rotationSpeed: 16
   dashLocation: {fileID: 8106456234688831613}
   attackIndicator: {fileID: 0}
-  AttackWindupClips: []
-  AttackDashClips: []
-  AttackWaitAfterDashClips: []
+  AttackWindupClips:
+  - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
+  AttackDashClips:
+  - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
+  AttackWaitAfterDashClips:
+  - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
 --- !u!195 &385026190148349295
 NavMeshAgent:
   m_ObjectHideFlags: 0
