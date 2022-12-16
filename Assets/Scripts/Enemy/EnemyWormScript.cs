@@ -8,6 +8,7 @@ public class EnemyWormScript : MonoBehaviour
     List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
     GameObject player;
+    GameObject wormBody;
     Animator animator;
     Rigidbody rb;
 
@@ -29,12 +30,13 @@ public class EnemyWormScript : MonoBehaviour
     [SerializeField] private float attackCooldown;
 
     //Attacking
-    [SerializeField] private float delayBeforeAttack;
+    [SerializeField] private float BurrowDownWait;
     [SerializeField] private float AttackDuration;
     [SerializeField] private float delayAfterAttack;
 
     public GameObject badring;
-    public StatemachineStates currentState = StatemachineStates.Idle;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +54,9 @@ public class EnemyWormScript : MonoBehaviour
         {
             wayPoints.Add(t);
         }
+
+
+
     }
 
     // Update is called once per frame
@@ -66,23 +71,27 @@ public class EnemyWormScript : MonoBehaviour
         {
             attackCooldown = attackTimer;
             canAttack = true;
+
+        }
+
+        //check if attack is possible, canAttack = true, !Moving, player nearby?
+        if (canAttack)
+        {
+            StartCoroutine(Move(BurrowDownWait));
+
         }
 
 
     }
 
-    public enum StatemachineStates
+    IEnumerator Move(float BurrowDownWait)
     {
-        Idle,
-        Moving,
-        Attacking
-    }
-
-
-    IEnumerator Move(float waitTime)
-    {
+        Debug.Log("Worm should be Moving");
         //Play coming down animation
-        yield return new WaitForSeconds(waitTime);
+        animator.SetTrigger("BurrowDown");
+        yield return new WaitForSeconds(BurrowDownWait);
+
+        //transform.position = transform.position + new Vector3 (0f,-3f, 0f);
         //Remove badring
         badring.SetActive(false);
         //Set new destination
@@ -96,9 +105,7 @@ public class EnemyWormScript : MonoBehaviour
             //remove follow vfx, spawn in coming up VFX.
             badring.SetActive(true);
         }
-
-        
-
+        canAttack = false;
     }
 
     IEnumerator Attack(float waitTime)
@@ -110,5 +117,20 @@ public class EnemyWormScript : MonoBehaviour
         //reset timers
         canAttack = false;
         attackTimer = 0;
+    }
+
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, Vector3.forward);
+
     }
 }

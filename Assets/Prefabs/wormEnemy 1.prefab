@@ -973,6 +973,16 @@ MonoBehaviour:
   attackRange: 0
   detectRange: 0
   baseMoveSpeed: 0
+  rotationSpeed: 0
+  canAttack: 1
+  isAttacking: 0
+  attackTimer: 0
+  attackCooldown: 0
+  delayBeforeAttack: 0
+  AttackDuration: 0
+  delayAfterAttack: 0
+  badring: {fileID: 0}
+  currentState: 0
 --- !u!114 &-1390449893225754472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,6 +998,10 @@ MonoBehaviour:
   health: 0
   maxHealth: 3
   damage: 1
+  deathEffect: {fileID: 0}
+  HurtClips: []
+  DeathClips: []
+  DelayUntilDestroy: 0
 --- !u!195 &5303229308377070098
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1034,7 +1048,7 @@ Animator:
   m_GameObject: {fileID: 3897323370698328569}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 10b210e23e642a34d9f38e108778308d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 283b827ea5e1beb48a51628359dc00c0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 836efc6bd1a2c0b43890196593a739ce, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
