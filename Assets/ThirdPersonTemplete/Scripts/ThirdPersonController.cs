@@ -127,6 +127,7 @@ namespace StarterAssets
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
         private GameObject _sword;
+        private AudioSource _audio;
 
         private const float _threshold = 0.01f;
 
@@ -159,6 +160,8 @@ namespace StarterAssets
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
+            _audio = GetComponent<AudioSource>();
+            _audio.spatialBlend = 0;
             _sword = GameObject.FindGameObjectWithTag("Sword");
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
@@ -354,7 +357,7 @@ namespace StarterAssets
                 _attackTime = AttackCooldown;
                 _damageTime = DamageCooldown;
                 _slowDown = true;
-                AudioSource.PlayClipAtPoint(FastAttackAudioClips[Random.Range(0, FastAttackAudioClips.Length)], transform.TransformPoint(_controller.center));
+                _audio.PlayOneShot(FastAttackAudioClips[Random.Range(0, FastAttackAudioClips.Length)]);
                 _input.attack = false;
             }
             else if (_input.heavyAttack && (_attackTime <= 0))
@@ -365,7 +368,7 @@ namespace StarterAssets
                 _damageTime = HeavyAttackDamageCooldown;
                 _fixedPosition = true;
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.heavyAttack = true;
-                AudioSource.PlayClipAtPoint(HeavyAttackAudioClips[Random.Range(0, HeavyAttackAudioClips.Length)], transform.TransformPoint(_controller.center), 1);
+                _audio.PlayOneShot(HeavyAttackAudioClips[Random.Range(0, HeavyAttackAudioClips.Length)]);
                 _input.heavyAttack = false;
             }
             else
@@ -401,7 +404,7 @@ namespace StarterAssets
         public void TakeDamage()
         {
             _animator.SetTrigger(_animIdtakeDamageEx1Ani);
-            AudioSource.PlayClipAtPoint(TakeDamageAudioClip, transform.TransformPoint(_controller.center));
+            _audio.PlayOneShot(TakeDamageAudioClip);
         }
 
         private void JumpAndGravity()
@@ -461,7 +464,7 @@ namespace StarterAssets
                 if (FootstepAudioClips.Length > 0)
                 {
                     var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                    _audio.PlayOneShot(FootstepAudioClips[index]);
                 }
             }
         }
