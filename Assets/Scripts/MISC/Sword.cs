@@ -9,11 +9,11 @@ public class Sword : MonoBehaviour
 
     public bool attacking;
     public bool heavyAttack;
-    public int damageToBeDone;
+    private int damageToBeDone;
     public VisualEffect VfxSlashPrefab;
     private float damage;
     private float heavyDamage;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +30,7 @@ public class Sword : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent) && attacking == true)
         {
