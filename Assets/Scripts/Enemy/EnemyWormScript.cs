@@ -8,7 +8,6 @@ public class EnemyWormScript : MonoBehaviour
     List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
     GameObject player;
-
     Animator animator;
     Rigidbody rb;
 
@@ -24,27 +23,34 @@ public class EnemyWormScript : MonoBehaviour
 
 
     //Checks if you can attack
-    [SerializeField] bool canAttack = true;
-    [SerializeField] bool isAttacking;
+    [SerializeField] private bool canAttack = true;
     [SerializeField] private float attackTimer;
     [SerializeField] private float attackCooldown;
+    [SerializeField] private float waitBetweenAttacks;
+    [SerializeField] private float anticipationTime;
 
-    //Attacking
+    //Moving
+    [SerializeField] private bool shouldMove;
     [SerializeField] private float BurrowDownWait;
     [SerializeField] private float BurrowWaitTime;
-    [SerializeField] private float delayAfterAttack;
+    [SerializeField] private float BurrowUpWait;
 
-    [SerializeField] GameObject badring;
+    //[SerializeField] GameObject badring;
     [SerializeField] GameObject wormBody;
+    [SerializeField] GameObject enemyWorm;
+    [SerializeField] GameObject projectile;
+    [SerializeField] GameObject firePoint;
 
-    [SerializeField] GameObject moveindicator;
+    //current state
+    [SerializeField] private bool ismoving;
+    [SerializeField] private bool isAttacking;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -57,14 +63,28 @@ public class EnemyWormScript : MonoBehaviour
         {
             wayPoints.Add(t);
         }
-
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        RotateTowards();
+        
+        //check if attack is possible, canAttack = true, !Moving, player nearby?
+        if (shouldMove)
+        {
+            StartCoroutine(Move(BurrowDownWait, BurrowWaitTime, BurrowUpWait));
+
+        }
+
+        //check if attack is possible, canAttack = true, !Moving, player nearby?
+        if (canAttack && !ismoving)
+        {
+            StartCoroutine(Attack(waitBetweenAttacks, anticipationTime));
+
+        }
+
+
         //Timer
         if (attackTimer < attackCooldown)
         {
@@ -76,63 +96,72 @@ public class EnemyWormScript : MonoBehaviour
             canAttack = true;
 
         }
-
-        //check if attack is possible, canAttack = true, !Moving, player nearby?
-        if (canAttack)
-        {
-            StartCoroutine(Move(BurrowDownWait, BurrowWaitTime));
-
-        }
-        if (!isAttacking)
-        {
-           RotateTowards();
-        }
-
-
     }
 
-    IEnumerator Move(float BurrowDownWait, float BurrowWaitTime)
+    IEnumerator Move(float BurrowDownWait, float BurrowWaitTime, float BurrowUpWait)
     {
+        shouldMove = false;
+        ismoving = true;
         Debug.Log("Worm should be Moving");
+
         //Play coming down animation
         animator.SetTrigger("BurrowDown");
         yield return new WaitForSeconds(BurrowDownWait);
-
-        //transform.position = transform.position + new Vector3 (0f,-3f, 0f);
-        //Remove badring
-        badring.SetActive(false);
+        enemyWorm.GetComponent<Collider>().enabled = false;
         wormBody.SetActive(false);
+
         //Set new destination
         agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
-        Instantiate(moveindicator, agent.destination, Quaternion.identity);
         Debug.Log("should have set destination");
+
         //Spawn VFX that follows the enemy, showing the underground location as it travels
-        yield return new WaitForSeconds(BurrowWaitTime);
-        
+
         //have we reached our destination?
-        if (agent.transform.position == agent.destination)
+        if (Vector3.Distance(agent.transform.position, agent.destination) < 2f)
         {
-            Debug.Log("Worm has reached it's destination");
-            //play coming up animation, spawn in badring
+            StartCoroutine(Move(BurrowDownWait, BurrowWaitTime, BurrowUpWait));
+        }
+        else
+        {
+            yield return new WaitForSeconds(BurrowWaitTime);
+            Debug.Log("Worm has reached it's destination but after waittime");
+
             //remove follow vfx, spawn in coming up VFX.
+
             animator.ResetTrigger("BurrowDown");
             animator.SetTrigger("BurrowUp");
+            yield return new WaitForSeconds(BurrowUpWait);
+            enemyWorm.GetComponent<Collider>().enabled = true;
             wormBody.SetActive(true);
-            badring.SetActive(true);
+            ismoving = false;
         }
-        canAttack = false;
-        attackTimer = 0;
+
+        
     }
 
-    IEnumerator Attack(float waitTime)
+    IEnumerator Attack(float waitBetweenAttacks, float anticipationTime)
     {
         Debug.Log("enemy attacks player");
+
         isAttacking = true;
-        yield return new WaitForSeconds(waitTime);
 
         //reset timers
         canAttack = false;
         attackTimer = 0;
+
+        animator.SetTrigger("AttackMultiple");
+        yield return new WaitForSeconds(anticipationTime);
+        Instantiate(projectile, firePoint.transform.position, firePoint.transform.rotation);
+        yield return new WaitForSeconds(waitBetweenAttacks);
+        Instantiate(projectile, firePoint.transform.position, firePoint.transform.rotation);
+        yield return new WaitForSeconds(waitBetweenAttacks);
+        Instantiate(projectile, firePoint.transform.position, firePoint.transform.rotation);
+        yield return new WaitForSeconds(waitBetweenAttacks);
+        Instantiate(projectile, firePoint.transform.position, firePoint.transform.rotation);
+        yield return new WaitForSeconds(waitBetweenAttacks);
+
+        isAttacking = false;
+
     }
 
 
