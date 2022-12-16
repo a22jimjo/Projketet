@@ -355,6 +355,7 @@ namespace StarterAssets
                 _damageTime = DamageCooldown;
                 _slowDown = true;
                 AudioSource.PlayClipAtPoint(FastAttackAudioClips[Random.Range(0, FastAttackAudioClips.Length)], transform.TransformPoint(_controller.center));
+                _input.attack = false;
             }
             else if (_input.heavyAttack && (_attackTime <= 0))
             {
@@ -364,7 +365,8 @@ namespace StarterAssets
                 _damageTime = HeavyAttackDamageCooldown;
                 _fixedPosition = true;
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.heavyAttack = true;
-                AudioSource.PlayClipAtPoint(HeavyAttackAudioClips[Random.Range(0, HeavyAttackAudioClips.Length)], transform.TransformPoint(_controller.center));
+                AudioSource.PlayClipAtPoint(HeavyAttackAudioClips[Random.Range(0, HeavyAttackAudioClips.Length)], transform.TransformPoint(_controller.center), 1);
+                _input.heavyAttack = false;
             }
             else
             {
@@ -375,9 +377,7 @@ namespace StarterAssets
             }
             
             //Step 2: Remove input
-            _input.attack = false;
-            _input.heavyAttack = false;
-            
+
             //Step 3: Check if the attack is done
             if (_attackTime <= 0)
             {

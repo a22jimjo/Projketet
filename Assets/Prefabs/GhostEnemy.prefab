@@ -135,7 +135,7 @@ MonoBehaviour:
   dashDuration: 1
   delayAfterAttack: 0.35
   rotationSpeed: 16
-  dashLocation: {fileID: 0}
+  dashLocation: {fileID: 8106456234688831613}
   attackIndicator: {fileID: 0}
   AttackWindupClips: []
   AttackDashClips: []
