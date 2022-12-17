@@ -17,6 +17,7 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] private AudioClip[] HurtClips;
     [SerializeField] private AudioClip[] DeathClips;
     [SerializeField] private float DelayUntilDestroy;
+    [SerializeField] private Healthbar _healthbar;
 
     private GameObject Enemy;
 
@@ -26,11 +27,13 @@ public class EnemyStats : MonoBehaviour
         //Setup
         health = maxHealth;
         animator = GetComponent<Animator>();
+        _healthbar.UpdateHealthBar(maxHealth, health);
         Enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
+        _healthbar.UpdateHealthBar(maxHealth, health);
 
         if (health <= 0)
         {

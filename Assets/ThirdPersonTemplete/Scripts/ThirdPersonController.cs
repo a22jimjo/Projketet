@@ -398,7 +398,7 @@ namespace StarterAssets
                     _damageTime = -10;
                 }
             }
-            else if(_damageTime > DamageCooldown - 0.02) AttackRotation();
+            //else AttackRotation();
         }
 
         public void TakeDamage()
