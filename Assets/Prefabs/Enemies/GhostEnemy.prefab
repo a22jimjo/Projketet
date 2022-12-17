@@ -410,11 +410,13 @@ MonoBehaviour:
   dashLocation: {fileID: 8106456234688831613}
   attackIndicator: {fileID: 0}
   AttackWindupClips:
-  - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
+  - {fileID: 8300000, guid: 57cae6f3d251b48b9802dd6528ee175f, type: 3}
+  - {fileID: 8300000, guid: 456cd57886ee54a85977bfa3a3f19782, type: 3}
+  - {fileID: 8300000, guid: 447dee146f06e44b89fd89af0721f59c, type: 3}
   AttackDashClips:
-  - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
+  - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
   AttackWaitAfterDashClips:
-  - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
+  - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
 --- !u!195 &385026190148349295
 NavMeshAgent:
   m_ObjectHideFlags: 0
