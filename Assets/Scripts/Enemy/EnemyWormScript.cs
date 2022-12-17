@@ -163,6 +163,7 @@ public class EnemyWormScript : MonoBehaviour
         canAttack = false;
         attackTimer = 0;
 
+        animator.ResetTrigger("TakeDamage");
         animator.SetTrigger("AttackMultiple");
 
         yield return new WaitForSeconds(anticipationTime);

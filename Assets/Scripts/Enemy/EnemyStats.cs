@@ -12,7 +12,6 @@ public class EnemyStats : MonoBehaviour
     public float maxHealth = 3;
     public float damage = 1;
 
-    [SerializeField] private ParticleSystem deathEffect;
 
     [SerializeField] private AudioClip[] HurtClips;
     [SerializeField] private AudioClip[] DeathClips;
@@ -57,11 +56,7 @@ public class EnemyStats : MonoBehaviour
         audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)]);
 
         //Play death VFX
-        Instantiate(deathEffect, Enemy.transform);
         yield return new WaitForSeconds(DelayUntilDestroy);
-
-        Instantiate(deathEffect, Enemy.transform);
-
         Destroy(gameObject);
     }
 

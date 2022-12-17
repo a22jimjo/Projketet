@@ -370,8 +370,6 @@ MonoBehaviour:
   health: 0
   maxHealth: 3
   damage: 1
-  deathEffect: {fileID: 8585820899184955234, guid: 76b15220898e53c4589bff81cbac4309,
-    type: 3}
   HurtClips:
   - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
   - {fileID: 8300000, guid: 44bc72ea6b49847f4be800f66e44baa7, type: 3}
@@ -402,8 +400,8 @@ MonoBehaviour:
   isAttacking: 0
   attackTimer: 0
   attackCooldown: 0.2
-  dashSpeed: 38
-  delayBeforeAttack: 0.8
+  dashSpeed: 80
+  delayBeforeAttack: 1
   dashDuration: 1
   delayAfterAttack: 0.35
   rotationSpeed: 16
