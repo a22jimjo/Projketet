@@ -12,7 +12,6 @@ public class EnemyStats : MonoBehaviour
     public float maxHealth = 3;
     public float damage = 1;
 
-    [SerializeField] private ParticleSystem deathEffect;
 
     [SerializeField] private AudioClip[] HurtClips;
     [SerializeField] private AudioClip[] DeathClips;
@@ -20,6 +19,7 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] private Healthbar _healthbar;
 
     private GameObject Enemy;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +29,7 @@ public class EnemyStats : MonoBehaviour
         animator = GetComponent<Animator>();
         _healthbar.UpdateHealthBar(maxHealth, health);
         Enemy = GameObject.FindGameObjectWithTag("Enemy");
+        audioSource = GetComponent<AudioSource>();
     }
     public void TakeDamage(float damageAmount)
     {
@@ -41,25 +42,21 @@ public class EnemyStats : MonoBehaviour
         }
         else
         {
-            Debug.Log("Should be playing hurt animation :)");
             //animator.ResetTrigger("Attack");
             animator.SetTrigger("TakeDamage");
-            AudioSource.PlayClipAtPoint(HurtClips[Random.Range(0, HurtClips.Length)], transform.TransformPoint(transform.position));
+            audioSource.PlayOneShot(HurtClips[Random.Range(0, HurtClips.Length)]);
         }
     }
 
     IEnumerator Death(float waitTime)
     {
-        Debug.Log("Should be playing death animation :)");
-        animator.ResetTrigger("Attack");
+        //animator.ResetTrigger("Attack");
         animator.SetBool("isDead", true);
-        AudioSource.PlayClipAtPoint(DeathClips[Random.Range(0, DeathClips.Length)], transform.TransformPoint(transform.position));
+        audioSource.PlayOneShot(HurtClips[Random.Range(0, HurtClips.Length)]);
+        audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)]);
+
         //Play death VFX
-        Instantiate(deathEffect, Enemy.transform);
         yield return new WaitForSeconds(DelayUntilDestroy);
-
-        Instantiate(deathEffect, Enemy.transform);
-
         Destroy(gameObject);
     }
 

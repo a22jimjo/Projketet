@@ -10,6 +10,7 @@ public class EnemyWormScript : MonoBehaviour
     GameObject player;
     Animator animator;
     Rigidbody rb;
+    AudioSource audioSource;
 
     //Movement
     [Tooltip("The minimum distance between the character and it's target to attack")]
@@ -58,6 +59,7 @@ public class EnemyWormScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
 
         agent.speed = baseMoveSpeed;
 
@@ -161,6 +163,7 @@ public class EnemyWormScript : MonoBehaviour
         canAttack = false;
         attackTimer = 0;
 
+        animator.ResetTrigger("TakeDamage");
         animator.SetTrigger("AttackMultiple");
 
         yield return new WaitForSeconds(anticipationTime);

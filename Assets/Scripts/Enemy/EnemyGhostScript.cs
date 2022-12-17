@@ -9,6 +9,7 @@ public class EnemyGhostScript : MonoBehaviour
     GameObject player;
     Animator animator;
     Rigidbody rb;
+    AudioSource audioSource;
 
     //Movement
     [Tooltip("The minimum distance between the character and it's target to attack")]
@@ -45,10 +46,11 @@ public class EnemyGhostScript : MonoBehaviour
     void Start()
     {
         //setup
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
 
         agent.speed = baseMoveSpeed;
 
@@ -131,17 +133,18 @@ public class EnemyGhostScript : MonoBehaviour
 
         //run animation
         //Sound as windup animation start
-        AudioSource.PlayClipAtPoint(AttackWindupClips[Random.Range(0, AttackWindupClips.Length)], transform.TransformPoint(transform.position));
+        audioSource.PlayOneShot(AttackWindupClips[Random.Range(0, AttackWindupClips.Length)]);
         //animator.SetBool("AttackGhost", true);
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(delayBeforeAttack);
         //Sound as windup animation end
-        AudioSource.PlayClipAtPoint(AttackDashClips[Random.Range(0, AttackDashClips.Length)], transform.TransformPoint(transform.position));
+        audioSource.PlayOneShot(AttackDashClips[Random.Range(0,AttackDashClips.Length)]);
         agent.speed = dashSpeed;
 
         yield return new WaitForSeconds(dashDuration);
         //Sound as dash has ended
-        AudioSource.PlayClipAtPoint(AttackWaitAfterDashClips[Random.Range(0, AttackWaitAfterDashClips.Length)], transform.TransformPoint(transform.position));
+        audioSource.PlayOneShot(AttackWaitAfterDashClips[Random.Range(0, AttackWaitAfterDashClips.Length)]);
+
         yield return new WaitForSeconds(delayAfterAttack);
         RotateTowards();
         agent.speed = baseMoveSpeed;

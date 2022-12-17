@@ -788,13 +788,25 @@ MonoBehaviour:
   RotationSmoothTime: 0.054
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 0}
-  FootstepAudioClips: []
+  FootstepAudioClips:
+  - {fileID: 8300000, guid: ed8771358b3a84a4299ccbe0ec620f6a, type: 3}
+  - {fileID: 8300000, guid: 37f7f8c6281a34badaf73efd19884541, type: 3}
+  - {fileID: 8300000, guid: 3eb11d4ad65b34759a1f7db6301431b3, type: 3}
+  - {fileID: 8300000, guid: a3f9e809e4c9a4581a924d604d3dc681, type: 3}
   FastAttackAudioClips:
   - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
   - {fileID: 8300000, guid: 829edb8398f3349288db17031db31af4, type: 3}
+  - {fileID: 8300000, guid: be1e62fc4b51748ea9f1f8ae0df03e41, type: 3}
+  - {fileID: 8300000, guid: eae95c228fa784f1682c9af5376cae6b, type: 3}
+  - {fileID: 8300000, guid: 862e83d9c454a4acca43832fa49f2605, type: 3}
+  - {fileID: 8300000, guid: 694949e682d774caf807b83041f19a2a, type: 3}
   HeavyAttackAudioClips:
   - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
   - {fileID: 8300000, guid: 829edb8398f3349288db17031db31af4, type: 3}
+  - {fileID: 8300000, guid: be1e62fc4b51748ea9f1f8ae0df03e41, type: 3}
+  - {fileID: 8300000, guid: eae95c228fa784f1682c9af5376cae6b, type: 3}
+  - {fileID: 8300000, guid: 862e83d9c454a4acca43832fa49f2605, type: 3}
+  - {fileID: 8300000, guid: 694949e682d774caf807b83041f19a2a, type: 3}
   TakeDamageAudioClip: {fileID: 8300000, guid: 71b20e06131fb4b08887f5f4132c4de5, type: 3}
   FootstepAudioVolume: 1
   Gravity: -15
