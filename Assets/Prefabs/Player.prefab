@@ -744,7 +744,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d06e125a28f10734da39c24826843ac9, type: 3}
   m_Controller: {fileID: 9100000, guid: 0b571bf190ca7464a823bfa83df3892a, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -785,7 +785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 4
   SprintSpeed: 5
-  RotationSmoothTime: 0.072
+  RotationSmoothTime: 0.054
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 0}
   FootstepAudioClips: []
@@ -811,9 +811,9 @@ MonoBehaviour:
   CameraAngleOverride: 0
   LockCameraPosition: 0
   AttackCooldown: 0.45
-  DamageCooldown: 0.32
+  DamageCooldown: 0.25
   SlowDownMultiplier: 0.3
-  HeavyAttackCooldown: 0.75
+  HeavyAttackCooldown: 1
   HeavyAttackDamageCooldown: 0.6
   DashSpeed: 1.5
   DashDuration: 0.07

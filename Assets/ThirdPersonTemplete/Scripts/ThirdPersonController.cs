@@ -260,8 +260,8 @@ namespace StarterAssets
                 {
                     dash = DashSpeed;
                     _dashTime = DashCooldown;
+                    _input.dash = false;
                 }
-                _input.dash = false;
                 _dashTime -= Time.deltaTime;
                 _dashDuration -= Time.deltaTime;
                 
