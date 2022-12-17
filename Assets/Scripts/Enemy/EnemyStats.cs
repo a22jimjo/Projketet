@@ -53,6 +53,7 @@ public class EnemyStats : MonoBehaviour
     {
         //animator.ResetTrigger("Attack");
         animator.SetBool("isDead", true);
+        audioSource.PlayOneShot(HurtClips[Random.Range(0, HurtClips.Length)]);
         audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)]);
 
         //Play death VFX
