@@ -935,7 +935,7 @@ GameObject:
   - component: {fileID: 434051282222982494}
   - component: {fileID: 7763623621787961657}
   m_Layer: 0
-  m_Name: wormEnemy 1
+  m_Name: wormEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
