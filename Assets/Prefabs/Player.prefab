@@ -788,7 +788,11 @@ MonoBehaviour:
   RotationSmoothTime: 0.054
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 0}
-  FootstepAudioClips: []
+  FootstepAudioClips:
+  - {fileID: 8300000, guid: ed8771358b3a84a4299ccbe0ec620f6a, type: 3}
+  - {fileID: 8300000, guid: 37f7f8c6281a34badaf73efd19884541, type: 3}
+  - {fileID: 8300000, guid: 3eb11d4ad65b34759a1f7db6301431b3, type: 3}
+  - {fileID: 8300000, guid: a3f9e809e4c9a4581a924d604d3dc681, type: 3}
   FastAttackAudioClips:
   - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
   - {fileID: 8300000, guid: 829edb8398f3349288db17031db31af4, type: 3}
