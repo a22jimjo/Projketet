@@ -53,7 +53,7 @@ public class EnemyStats : MonoBehaviour
         AudioSource.PlayClipAtPoint(DeathClips[Random.Range(0, DeathClips.Length)], transform.TransformPoint(transform.position));
         //Play death VFX
         Instantiate(deathEffect, Enemy.transform);
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(DelayUntilDestroy);
 
         Instantiate(deathEffect, Enemy.transform);
 

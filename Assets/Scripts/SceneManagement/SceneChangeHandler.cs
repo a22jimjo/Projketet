@@ -22,9 +22,12 @@ public class SceneChangeHandler : MonoBehaviour
         GameObject player;
         Vector3 playerStartPos = new Vector3(0,0.5f,0);
 
-        player = GameObject.FindGameObjectWithTag("Player");
 
+        player = GameObject.FindGameObjectWithTag("Player");
+        Debug.Log(player.gameObject.name);
+        Debug.Log(player.transform.position);
         player.transform.position = playerStartPos;
+        Debug.Log(player.transform.position);
         Debug.Log($"Scene loaded: {currentSceneName}");
     }
 }
