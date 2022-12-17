@@ -188,16 +188,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 385026190148349295, guid: fd58f86f764093145ad30ee8df7aff20,
-        type: 3}
-      propertyPath: m_ObstacleAvoidanceType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 436425763055895255, guid: fd58f86f764093145ad30ee8df7aff20,
-        type: 3}
-      propertyPath: dashLocation
-      value: 
-      objectReference: {fileID: 525920218}
     - target: {fileID: 436425763055895255, guid: fd58f86f764093145ad30ee8df7aff20,
         type: 3}
       propertyPath: attackIndicator
@@ -207,11 +197,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GhostEnemy (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 778866801483956123, guid: fd58f86f764093145ad30ee8df7aff20,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd58f86f764093145ad30ee8df7aff20, type: 3}
@@ -283,15 +268,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5688302704534499508, guid: dee9a8c5a2e66654db00071b73bb8029,
+        type: 3}
+      propertyPath: DashSpeed
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688302704534499508, guid: dee9a8c5a2e66654db00071b73bb8029,
+        type: 3}
+      propertyPath: DashDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5688302704534499519, guid: dee9a8c5a2e66654db00071b73bb8029,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8339817641396542392, guid: dee9a8c5a2e66654db00071b73bb8029,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dee9a8c5a2e66654db00071b73bb8029, type: 3}
@@ -460,12 +450,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5688302704534499519, guid: dee9a8c5a2e66654db00071b73bb8029,
     type: 3}
   m_PrefabInstance: {fileID: 28814437}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &525920218 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8106456234688831613, guid: fd58f86f764093145ad30ee8df7aff20,
-    type: 3}
-  m_PrefabInstance: {fileID: 9822281}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &542508511
 GameObject:
@@ -880,18 +864,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5259681058782738793}
     m_Modifications:
-    - target: {fileID: 1012370253, guid: fd58f86f764093145ad30ee8df7aff20, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012370253, guid: fd58f86f764093145ad30ee8df7aff20, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012370253, guid: fd58f86f764093145ad30ee8df7aff20, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 109431738819405089, guid: fd58f86f764093145ad30ee8df7aff20,
         type: 3}
       propertyPath: m_RootOrder
@@ -947,16 +919,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 385026190148349295, guid: fd58f86f764093145ad30ee8df7aff20,
-        type: 3}
-      propertyPath: m_ObstacleAvoidanceType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 436425763055895255, guid: fd58f86f764093145ad30ee8df7aff20,
-        type: 3}
-      propertyPath: dashLocation
-      value: 
-      objectReference: {fileID: 1186525598}
     - target: {fileID: 436425763055895255, guid: fd58f86f764093145ad30ee8df7aff20,
         type: 3}
       propertyPath: attackIndicator
@@ -966,11 +928,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GhostEnemy (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 778866801483956123, guid: fd58f86f764093145ad30ee8df7aff20,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd58f86f764093145ad30ee8df7aff20, type: 3}
@@ -1518,7 +1475,7 @@ PrefabInstance:
     - target: {fileID: 2070925441746177913, guid: a1a802ecaf6775746bb2a929fb554ad8,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7640232
+      value: 2.16441
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
@@ -1757,12 +1714,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 28814437}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1186525598 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8106456234688831613, guid: fd58f86f764093145ad30ee8df7aff20,
-    type: 3}
-  m_PrefabInstance: {fileID: 737664977}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1207475814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,11 +1808,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 436425763055895255, guid: fd58f86f764093145ad30ee8df7aff20,
-        type: 3}
-      propertyPath: attackIndicator
-      value: 
-      objectReference: {fileID: 941296018}
     - target: {fileID: 778866801483956123, guid: fd58f86f764093145ad30ee8df7aff20,
         type: 3}
       propertyPath: m_Name

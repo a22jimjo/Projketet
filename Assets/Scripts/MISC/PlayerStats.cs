@@ -26,12 +26,17 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
+        StartCoroutine(SlowDownABit());
         _healthbar.UpdateHealthBar(maxHealth, health);
         
         if (health <= 0)
         {
             //Play death animation
-            Destroy(gameObject);
+            Debug.Log("Player has died");
+
+            StartCoroutine(SlowDown());
+
+            //Destroy(gameObject);
         }
     }
     
@@ -46,5 +51,19 @@ public class PlayerStats : MonoBehaviour
                 TakeDamage(enemyComponent.damage);
             }
         }
+    }
+
+    IEnumerator SlowDown()
+    {
+        Time.timeScale = 0.4f;
+        yield return new WaitForSeconds(1);
+        Time.timeScale = 1;
+    }
+
+    IEnumerator SlowDownABit()
+    {
+        Time.timeScale = 0.7f;
+        yield return new WaitForSeconds(.2f);
+        Time.timeScale = 1;
     }
 }

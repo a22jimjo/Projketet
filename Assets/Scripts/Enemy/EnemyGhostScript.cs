@@ -33,7 +33,6 @@ public class EnemyGhostScript : MonoBehaviour
     [SerializeField] private float rotationSpeed;
 
     [SerializeField] private GameObject dashLocation;
-    public GameObject attackIndicator;
 
     [Tooltip("Sound starting when the windup animation start")]
     [SerializeField] private AudioClip[] AttackWindupClips;
@@ -119,7 +118,6 @@ public class EnemyGhostScript : MonoBehaviour
             {
                 // The destination is valid and the agent can navigate to it
                 agent.destination = dashLocation.transform.position;
-                Instantiate(attackIndicator, agent.destination, Quaternion.identity);
 
             }
             else
@@ -127,7 +125,6 @@ public class EnemyGhostScript : MonoBehaviour
                 // The destination is not valid and the agent cannot navigate to it
                 Debug.Log("The destination is not valid and the agent cannot navigate to it, attacks player position instead");
                 agent.destination = player.transform.position;
-                Instantiate(attackIndicator, agent.destination, Quaternion.identity);
             }
         }
 

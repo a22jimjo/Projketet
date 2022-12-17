@@ -15,25 +15,25 @@ public class DamagingCollider : MonoBehaviour
     [SerializeField] public bool ScaleOverDuration;
     [SerializeField] public float timeToScale;
     [SerializeField] private Vector3 sizeToScaleTo;
-    
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        //if(ScaleOverDuration) gameObject.tra
     }
 
     public void CallDamage(Collider other, bool knockback, float dmg)
     {
-        if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent ) && canHitEnemy)
+        if (canHitEnemy)
         {
-            
-            enemyComponent.TakeDamage(dmg);
-            if (freezeOnContact) Freeze();
-            if (destoryOnContact) Destroy(gameObject, destroyDelay);
-            Debug.Log(gameObject.name + " Has dealt " + dmg + " damage");
-            if (other.gameObject.TryGetComponent<Knockback>(out Knockback knocked) && knockback) knocked.PushRigidBdy(rb);
+            if (other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent))
+            {
+                enemyComponent.TakeDamage(dmg);
+                Debug.Log(gameObject.name + " Has dealt " + dmg + " damage");
+                if (freezeOnContact) Freeze();
+                if (destoryOnContact) Destroy(gameObject, destroyDelay);
+                if (other.gameObject.TryGetComponent<Knockback>(out Knockback knocked) && knockback) knocked.PushRigidBdy(rb);
+
+            }
         }
         
         if (canHitPlayer)
@@ -44,6 +44,7 @@ public class DamagingCollider : MonoBehaviour
                 if (freezeOnContact) Freeze();
                 if (destoryOnContact) Destroy(gameObject, destroyDelay);
                 Debug.Log(gameObject.name + " Has taken " + dmg + " damage");
+
             }
         }
     } 

@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 3
+  maxHealth: 4
   damage: 1
   HurtClips:
   - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
@@ -406,7 +406,6 @@ MonoBehaviour:
   delayAfterAttack: 0.35
   rotationSpeed: 16
   dashLocation: {fileID: 8106456234688831613}
-  attackIndicator: {fileID: 0}
   AttackWindupClips:
   - {fileID: 8300000, guid: 57cae6f3d251b48b9802dd6528ee175f, type: 3}
   - {fileID: 8300000, guid: 456cd57886ee54a85977bfa3a3f19782, type: 3}
@@ -434,7 +433,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.01
-  m_BaseOffset: 0
+  m_BaseOffset: -0.005
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
 --- !u!95 &938881754709190114
@@ -477,6 +476,8 @@ MonoBehaviour:
   ScaleOverDuration: 0
   timeToScale: 0
   sizeToScaleTo: {x: 0, y: 0, z: 0}
+  damageTimer: 0
+  damageCooldown: 0.5
 --- !u!82 &2100305646
 AudioSource:
   m_ObjectHideFlags: 0
@@ -498,7 +499,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.0044804
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 1
