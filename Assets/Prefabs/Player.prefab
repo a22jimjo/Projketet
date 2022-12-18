@@ -831,6 +831,7 @@ MonoBehaviour:
   DashDuration: 0.09
   DashCooldown: 0.5
   canMove: 1
+  _fixedPosition: 0
 --- !u!114 &8241224510204472515
 MonoBehaviour:
   m_ObjectHideFlags: 0

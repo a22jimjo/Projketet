@@ -49,7 +49,6 @@ public class SceneTransition : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         yield return SceneManager.LoadSceneAsync(sceneName);
-        yield return new WaitForSeconds(0.5f);
         player.SetActive(false);
         spawnPoint = GameObject.FindGameObjectWithTag("PlayerStartPosition");
         player.transform.position = spawnPoint.transform.position;
