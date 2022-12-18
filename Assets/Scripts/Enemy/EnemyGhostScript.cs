@@ -150,6 +150,7 @@ public class EnemyGhostScript : MonoBehaviour
         agent.speed = baseMoveSpeed;
         isAttacking = false;
         agent.avoidancePriority = 50;
+        animator.ResetTrigger("TakeDamage");
     }
 
 

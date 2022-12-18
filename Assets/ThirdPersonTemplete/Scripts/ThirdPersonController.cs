@@ -102,9 +102,11 @@ namespace StarterAssets
         private float _attackTime;
         private float _damageTime;
         private bool _slowDown = false;
-        private bool _fixedPosition;
         private float _dashTime = 0;
         private float _dashDuration = 0;
+
+        public bool _fixedPosition;
+
 
         // timeout deltatime
         private float _fallTimeoutDelta;
@@ -265,7 +267,7 @@ namespace StarterAssets
                 }
                 if (_dashDuration > 0)
                 {
-                    dash = DashSpeed;
+                    dash = DashSpeed * Time.deltaTime;
                     _dashTime = DashCooldown;
                     _input.dash = false;
                 }
@@ -346,7 +348,7 @@ namespace StarterAssets
         private void AttackRotation()
         {
             // rotate to face input direction relative to camera position
-            Vector3 relativePos = new Vector3(_input.see.x, 0f, _input.see.y)- _edgeToPlayerCamera - transform.position;
+            Vector3 relativePos = new Vector3(_input.see.x, 0f, _input.see.y -60f)- _edgeToPlayerCamera - transform.position;
          
             Quaternion rotation = Quaternion.LookRotation(relativePos);
             transform.rotation = rotation;

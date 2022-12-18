@@ -7,12 +7,15 @@ public class SceneTransition : MonoBehaviour
     public string sceneName;
     public GameObject player;
     public GameObject spawnPoint;
+    public GameObject followCamera;
+    public GameObject mainCamera;
 
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-
+        followCamera = GameObject.FindGameObjectWithTag("FollowCamera");
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
     }
 
@@ -29,11 +32,15 @@ public class SceneTransition : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         yield return SceneManager.LoadSceneAsync(sceneName);
-        player.SetActive(false);
         yield return new WaitForSeconds(0.5f);
+        player.SetActive(false);
+        followCamera.SetActive(false);
+        mainCamera.SetActive(false);
         spawnPoint = GameObject.FindGameObjectWithTag("PlayerStartPosition");
         player.transform.position = spawnPoint.transform.position;
         player.SetActive(true);
+        followCamera.SetActive(true);
+        mainCamera.SetActive(true);
         print("Message from portal in last scene");
         Destroy(gameObject);
     }
