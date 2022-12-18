@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 906a3e00e0682424284510e550318217
+guid: aafd4589e74f6534abc774d9f4050c64
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: attackForward
+    second: dash
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: attackForward
+      name: dash
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

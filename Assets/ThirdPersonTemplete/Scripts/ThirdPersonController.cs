@@ -347,7 +347,7 @@ namespace StarterAssets
         private void AttackRotation()
         {
             // rotate to face input direction relative to camera position
-            Vector3 relativePos = new Vector3(_input.see.x, 0f, _input.see.y -60f)- _edgeToPlayerCamera - transform.position;
+            Vector3 relativePos = new Vector3(_input.see.x, 0f, _input.see.y -30)- _edgeToPlayerCamera;
          
             Quaternion rotation = Quaternion.LookRotation(relativePos);
             transform.rotation = rotation;
