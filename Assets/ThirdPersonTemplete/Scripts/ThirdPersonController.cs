@@ -86,6 +86,8 @@ namespace StarterAssets
         public float DashDuration = 1;
         public float DashCooldown = 1;
 
+        public bool canMove = true;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -187,7 +189,12 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             AttackTest();
-            Move();
+
+            if (canMove)
+            {
+                Move();
+
+            }
         }
 
         private void LateUpdate()

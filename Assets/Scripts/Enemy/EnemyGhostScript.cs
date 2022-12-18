@@ -116,6 +116,7 @@ public class EnemyGhostScript : MonoBehaviour
         {
             if (hit.hit)
             {
+                Debug.Log("The destination is valid");
                 // The destination is valid and the agent can navigate to it
                 agent.destination = dashLocation.transform.position;
 
@@ -136,6 +137,7 @@ public class EnemyGhostScript : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeAttack);
         //Sound as windup animation end
         audioSource.PlayOneShot(AttackDashClips[Random.Range(0,AttackDashClips.Length)]);
+        agent.acceleration = 80;
         agent.speed = dashSpeed;
 
         yield return new WaitForSeconds(dashDuration);
@@ -144,6 +146,7 @@ public class EnemyGhostScript : MonoBehaviour
 
         yield return new WaitForSeconds(delayAfterAttack);
         RotateTowards();
+        agent.acceleration = 8;
         agent.speed = baseMoveSpeed;
         isAttacking = false;
         agent.avoidancePriority = 50;

@@ -27,6 +27,7 @@ public class SceneChangeHandler : MonoBehaviour
         Debug.Log(player.gameObject.name);
         Debug.Log(player.transform.position);
         player.transform.position = playerStartPos;
+        player.SetActive(true);
         Debug.Log(player.transform.position);
         Debug.Log($"Scene loaded: {currentSceneName}");
     }

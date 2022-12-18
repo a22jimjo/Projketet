@@ -18,7 +18,6 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] private float DelayUntilDestroy;
     [SerializeField] private Healthbar _healthbar;
 
-    private GameObject Enemy;
     private AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -28,7 +27,6 @@ public class EnemyStats : MonoBehaviour
         health = maxHealth;
         animator = GetComponent<Animator>();
         _healthbar.UpdateHealthBar(maxHealth, health);
-        Enemy = GameObject.FindGameObjectWithTag("Enemy");
         audioSource = GetComponent<AudioSource>();
     }
     public void TakeDamage(float damageAmount)
@@ -51,6 +49,7 @@ public class EnemyStats : MonoBehaviour
     IEnumerator Death(float waitTime)
     {
         //animator.ResetTrigger("Attack");
+        this.GetComponent<Collider>().enabled = false;
         animator.SetBool("isDead", true);
         audioSource.PlayOneShot(HurtClips[Random.Range(0, HurtClips.Length)]);
         audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)]);
