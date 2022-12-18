@@ -12,6 +12,7 @@ TagManager:
   - PlayerStartPosition
   - GhostDashLocation
   - FollowCamera
+  - EnemyHolder
   layers:
   - Default
   - TransparentFX

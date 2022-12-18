@@ -19,7 +19,7 @@ public class Portal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Portal Entered");
-        player.SetActive(false);
+
         if (other.gameObject.CompareTag("Player"))
         {
             if (isEndPortal)

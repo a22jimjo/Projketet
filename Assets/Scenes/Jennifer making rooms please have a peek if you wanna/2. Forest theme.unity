@@ -2296,6 +2296,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GhostEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 778866801483956123, guid: fd58f86f764093145ad30ee8df7aff20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd58f86f764093145ad30ee8df7aff20, type: 3}
 --- !u!1001 &287971969
@@ -10400,7 +10405,7 @@ GameObject:
   - component: {fileID: 998339977}
   m_Layer: 0
   m_Name: Enemies
-  m_TagString: Untagged
+  m_TagString: EnemyHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12612,6 +12617,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GhostEnemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 778866801483956123, guid: fd58f86f764093145ad30ee8df7aff20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd58f86f764093145ad30ee8df7aff20, type: 3}
 --- !u!1001 &1207846769
@@ -13634,6 +13644,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GhostEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 778866801483956123, guid: fd58f86f764093145ad30ee8df7aff20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd58f86f764093145ad30ee8df7aff20, type: 3}
@@ -15796,6 +15811,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: wormEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3897323370698328569, guid: 7e15dc51149503a45bcfc61c44add3be,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4421904094373679939, guid: 7e15dc51149503a45bcfc61c44add3be,
         type: 3}

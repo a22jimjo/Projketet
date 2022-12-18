@@ -107,7 +107,6 @@ namespace StarterAssets
 
         public bool _fixedPosition;
 
-
         // timeout deltatime
         private float _fallTimeoutDelta;
 
