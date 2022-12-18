@@ -43,9 +43,6 @@ public class Sword : MonoBehaviour
 
     public void Vfx()
     {
-        VfxSlashPrefab.transform.position = transform.position;
-        VfxSlashPrefab.transform.rotation = transform.rotation;
-        
         VfxSlashPrefab.Play();
     }
     
