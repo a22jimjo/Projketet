@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class SceneTransition : MonoBehaviour
 {
@@ -10,12 +11,15 @@ public class SceneTransition : MonoBehaviour
     public GameObject spawnPoint;
     private GameObject enemyHolder;
     public List<GameObject> enemyGameobjects = new List<GameObject>();
+    [SerializeField] private Canvas fadeCanvas;
+    private Animator animator;
 
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         enemyHolder = GameObject.FindGameObjectWithTag("EnemyHolder");
+        animator = fadeCanvas.GetComponent<Animator>();
     }
 
     private void Update()
@@ -48,11 +52,16 @@ public class SceneTransition : MonoBehaviour
     private IEnumerator Transition()
     {
         DontDestroyOnLoad(gameObject);
+
+        animator.SetTrigger("Fade");
         yield return SceneManager.LoadSceneAsync(sceneName);
         player.SetActive(false);
         spawnPoint = GameObject.FindGameObjectWithTag("PlayerStartPosition");
         player.transform.position = spawnPoint.transform.position;
         player.SetActive(true);
+        yield return new WaitForSeconds(1.25f);
+        //animator.ResetTrigger("Fade");
+        animator.ResetTrigger("Fade");
         print("Message from portal in last scene");
         Destroy(gameObject);
     }

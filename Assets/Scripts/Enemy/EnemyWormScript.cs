@@ -49,6 +49,7 @@ public class EnemyWormScript : MonoBehaviour
     //current state
     [SerializeField] private bool ismoving;
     [SerializeField] private bool isAttacking;
+    [SerializeField] private bool hasDetectedPlayer = false;
 
 
 
@@ -74,46 +75,56 @@ public class EnemyWormScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         RotateTowards();
+
+        if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange)
+        {
+            hasDetectedPlayer = true;
+        }
+
+        if (hasDetectedPlayer)
+        {
+            //if move timer = move cd && we are not attacking. start moving
+            if (canMove && !isAttacking && !ismoving)
+            {
+                StartCoroutine(Move(BurrowDownWait, BurrowWaitTime, BurrowUpWait));
+
+            }
+
+            //if attack timer = attack cd && we are not moving. start attacking
+            if (canAttack && !ismoving && !isAttacking)
+            {
+                StartCoroutine(Attack(waitBetweenAttacks, anticipationTime));
+
+            }
+
+            if (!isAttacking && !ismoving)
+            {
+                //Timer attack
+                if (attackTimer < attackCooldown)
+                {
+                    attackTimer += Time.deltaTime;
+                }
+                else
+                {
+                    attackTimer = attackCooldown;
+                    canAttack = true;
+
+                }
+                //Timer movement
+                if (moveTimer < moveCooldown)
+                {
+                    moveTimer += Time.deltaTime;
+                }
+                else
+                {
+                    moveTimer = moveCooldown;
+                    canMove = true;
+
+                }
+            }
         
-        //if move timer = move cd && we are not attacking. start moving
-        if (canMove && !isAttacking && !ismoving)
-        {
-            StartCoroutine(Move(BurrowDownWait, BurrowWaitTime, BurrowUpWait));
-
-        }
-
-        //if attack timer = attack cd && we are not moving. start attacking
-        if (canAttack && !ismoving && !isAttacking)
-        {
-            StartCoroutine(Attack(waitBetweenAttacks, anticipationTime));
-
-        }
-
-        if(!isAttacking && !ismoving)
-        {
-            //Timer attack
-            if (attackTimer < attackCooldown)
-            {
-                attackTimer += Time.deltaTime;
-            }
-            else
-            {
-                attackTimer = attackCooldown;
-                canAttack = true;
-
-            }
-            //Timer movement
-            if (moveTimer < moveCooldown)
-            {
-                moveTimer += Time.deltaTime;
-            }
-            else
-            {
-                moveTimer = moveCooldown;
-                canMove = true;
-
-            }
         }
         
     }

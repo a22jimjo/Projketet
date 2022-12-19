@@ -1306,10 +1306,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 4.63
-  detectRange: 6.25
+  detectRange: 8
   baseMoveSpeed: 3.5
-  rotationSpeed: 2
-  projectileSpeed: 5
+  rotationSpeed: 5
+  projectileSpeed: 6.5
   canAttack: 0
   attackTimer: 0
   attackCooldown: 2
@@ -1319,7 +1319,7 @@ MonoBehaviour:
   moveTimer: 0
   moveCooldown: 4
   BurrowDownWait: 0.5
-  BurrowWaitTime: 3
+  BurrowWaitTime: 2
   BurrowUpWait: 1
   wormBody: {fileID: 7196701835472701656}
   enemyWorm: {fileID: 3897323370698328569}
@@ -1328,6 +1328,7 @@ MonoBehaviour:
   firePoint: {fileID: 1865004716}
   ismoving: 0
   isAttacking: 0
+  hasDetectedPlayer: 0
 --- !u!114 &-1390449893225754472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1358,7 +1359,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a39fc4c819dd047828409d488019117a, type: 3}
   DeathClips:
   - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
-  DelayUntilDestroy: 1.8
+  DelayUntilDestroy: 1
   _healthbar: {fileID: 1781372853}
 --- !u!195 &5303229308377070098
 NavMeshAgent:
@@ -1437,10 +1438,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.0044804
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

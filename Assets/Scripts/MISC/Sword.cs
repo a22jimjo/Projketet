@@ -11,6 +11,7 @@ public class Sword : MonoBehaviour
     public bool heavyAttack;
     private int damageToBeDone;
     public VisualEffect VfxSlashPrefab;
+    public VisualEffect vfxheavySlashPrefab;
     private float damage;
     private float heavyDamage;
 
@@ -43,7 +44,8 @@ public class Sword : MonoBehaviour
 
     public void Vfx()
     {
-        VfxSlashPrefab.Play();
+        if(heavyAttack) VfxSlashPrefab.Play();
+        else VfxSlashPrefab.Play();
     }
     
 }
