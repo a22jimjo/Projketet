@@ -2076,6 +2076,7 @@ MonoBehaviour:
   firePoint: {fileID: 8962616628767256682}
   ismoving: 0
   isAttacking: 0
+  hasDetectedPlayer: 0
 --- !u!114 &3027199891840486204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2092,7 +2093,18 @@ MonoBehaviour:
   maxHealth: 11
   damage: 1
   HurtClips:
-  - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
+  - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
+  - {fileID: 8300000, guid: 669c9e18c0b9d4755aed1a04af8485ed, type: 3}
+  - {fileID: 8300000, guid: cc1b219d21ea74a3a846d2a77375411d, type: 3}
+  - {fileID: 8300000, guid: 44bc72ea6b49847f4be800f66e44baa7, type: 3}
+  - {fileID: 8300000, guid: 65390b1c78b8f4302adedf4abf8add55, type: 3}
+  - {fileID: 8300000, guid: 5de4cb339b17f4830ba63fb976a8d1eb, type: 3}
+  - {fileID: 8300000, guid: 02f1b7ab30aad435d86c9fff74f345fc, type: 3}
+  - {fileID: 8300000, guid: 854dfe17a4e644a32811472468a09e42, type: 3}
+  - {fileID: 8300000, guid: ec003f7c228864a90b221d667bf47c79, type: 3}
+  - {fileID: 8300000, guid: 0d250505252814aae8e48f2377438190, type: 3}
+  - {fileID: 8300000, guid: 4d36b9ebc1ce6418a8b291e7faf18492, type: 3}
+  - {fileID: 8300000, guid: a39fc4c819dd047828409d488019117a, type: 3}
   DeathClips:
   - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
   DelayUntilDestroy: 0.8

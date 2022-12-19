@@ -12,6 +12,7 @@ public class Sword : MonoBehaviour
     private int damageToBeDone;
     public VisualEffect VfxSlashPrefab;
     public VisualEffect vfxheavySlashPrefab;
+    public GameObject HitMark;
     private float damage;
     private float heavyDamage;
 
@@ -39,6 +40,7 @@ public class Sword : MonoBehaviour
             if(!heavyAttack)_damaging.CallDamage(other, false, damage);
             if(heavyAttack)_damaging.CallDamage(other, false, heavyDamage);
             attacking = false;
+            Instantiate(HitMark, other.transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
         }
     }
 
