@@ -453,9 +453,9 @@ MonoBehaviour:
   SlowDownMultiplier: 0.3
   HeavyAttackCooldown: 0.9
   HeavyAttackDamageCooldown: 0.6
-  DashSpeed: 250
+  DashSpeed: 500
   DashDuration: 0.09
-  DashCooldown: 0.5
+  DashCooldown: 0.65
   canMove: 1
   _fixedPosition: 0
 --- !u!114 &8241224510204472515
@@ -595,7 +595,8 @@ MonoBehaviour:
   maxHealth: 5
   damage: 1
   heavyDamage: 3
-  DeathClips: []
+  DeathClips:
+  - {fileID: 8300000, guid: 166a3668191f8414e9fc0c573be34b64, type: 3}
   _healthbar: {fileID: 8339817641030501569}
 --- !u!54 &8339817640029229439
 Rigidbody:
