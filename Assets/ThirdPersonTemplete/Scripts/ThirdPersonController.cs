@@ -85,6 +85,7 @@ namespace StarterAssets
         public float DashSpeed = 1.1f;
         public float DashDuration = 1;
         public float DashCooldown = 1;
+        [Header("Tid mellan fotsteg")] public float FootstepCooldown = 0.01f;
 
         public bool canMove = true;
 
@@ -104,6 +105,7 @@ namespace StarterAssets
         private bool _slowDown = false;
         private float _dashTime = 0;
         private float _dashDuration = 0;
+        private float _footStepTimer = 0;
 
         public bool _fixedPosition;
 
@@ -324,8 +326,16 @@ namespace StarterAssets
                         // rotate to face input direction relative to camera position
                         transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
                     }
+
+                    if (_footStepTimer < 0)
+                    {
+                        _audio.PlayOneShot(FootstepAudioClips[Random.Range(0, FootstepAudioClips.Length)]);
+                        _footStepTimer = FootstepCooldown;
+                    }
                 }
 
+                _footStepTimer -= Time.deltaTime;
+                
                 Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
                 // move the player
@@ -463,18 +473,6 @@ namespace StarterAssets
             Gizmos.DrawSphere(
                 new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
                 GroundedRadius);
-        }
-
-        private void OnFootstep(AnimationEvent animationEvent)
-        {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                if (FootstepAudioClips.Length > 0)
-                {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
-                    _audio.PlayOneShot(FootstepAudioClips[index]);
-                }
-            }
         }
 
         private void OnLand(AnimationEvent animationEvent)

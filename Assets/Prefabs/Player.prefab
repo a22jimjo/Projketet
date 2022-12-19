@@ -568,6 +568,7 @@ MonoBehaviour:
   DashSpeed: 500
   DashDuration: 0.09
   DashCooldown: 0.65
+  FootstepCooldown: 0.49
   canMove: 1
   _fixedPosition: 0
 --- !u!114 &8241224510204472515
@@ -749,7 +750,8 @@ AudioSource:
   m_GameObject: {fileID: 5688302704534499519}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1700510126704088447, guid: 2763e522090bd44cc81d2fdd67259f4c,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
