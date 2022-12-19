@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6363226355538493084}
   - component: {fileID: -6143186729893709629}
   - component: {fileID: 7654978074880671607}
-  - component: {fileID: 2734181910486988577}
+  - component: {fileID: 2806595300125831226}
   m_Layer: 0
   m_Name: WormTestprojectile
   m_TagString: Enemy
@@ -136,7 +136,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2734181910486988577
+--- !u!114 &2806595300125831226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 1
+  maxHealth: 3
   damage: 1
   HurtClips: []
   DeathClips: []

@@ -6,7 +6,6 @@ using System;
 public class DamagingCollider : MonoBehaviour
 {
     Rigidbody rb;
-
     [SerializeField] public float destroyDelay;
     [SerializeField] public bool canHitEnemy;
     [SerializeField] public bool canHitPlayer;
@@ -20,6 +19,7 @@ public class DamagingCollider : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
+
 
     public void CallDamage(Collider other, bool knockback, float dmg)
     {
