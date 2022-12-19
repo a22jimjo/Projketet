@@ -456,6 +456,7 @@ MonoBehaviour:
   DashSpeed: 500
   DashDuration: 0.09
   DashCooldown: 0.65
+  FootstepCooldown: 0.49
   canMove: 1
   _fixedPosition: 0
 --- !u!114 &8241224510204472515
