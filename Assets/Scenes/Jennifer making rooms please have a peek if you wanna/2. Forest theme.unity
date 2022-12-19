@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh750048
+  m_Name: pb_Mesh57940
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -901,7 +901,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh750178
+  m_Name: pb_Mesh58070
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2370,20 +2370,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 436425763055895255, guid: fd58f86f764093145ad30ee8df7aff20,
-        type: 3}
-      propertyPath: dashSpeed
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 778866801483956123, guid: fd58f86f764093145ad30ee8df7aff20,
         type: 3}
       propertyPath: m_Name
       value: GhostEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 778866801483956123, guid: fd58f86f764093145ad30ee8df7aff20,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd58f86f764093145ad30ee8df7aff20, type: 3}
@@ -8310,7 +8300,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh749852
+  m_Name: pb_Mesh57746
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8557,7 +8547,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh750480
+  m_Name: pb_Mesh58372
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8994,7 +8984,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh750508
+  m_Name: pb_Mesh58400
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13717,10 +13707,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 436425763055895254, guid: fd58f86f764093145ad30ee8df7aff20,
+        type: 3}
+      propertyPath: DelayUntilDestroy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 436425763055895255, guid: fd58f86f764093145ad30ee8df7aff20,
         type: 3}
       propertyPath: dashSpeed
-      value: 150
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 778866801483956123, guid: fd58f86f764093145ad30ee8df7aff20,
         type: 3}
@@ -15798,15 +15793,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 998339977}
     m_Modifications:
+    - target: {fileID: -7579234411918788020, guid: 7e15dc51149503a45bcfc61c44add3be,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -7579234411918788020, guid: 7e15dc51149503a45bcfc61c44add3be,
+        type: 3}
+      propertyPath: BurrowWaitTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7579234411918788020, guid: 7e15dc51149503a45bcfc61c44add3be,
+        type: 3}
+      propertyPath: projectileSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1390449893225754472, guid: 7e15dc51149503a45bcfc61c44add3be,
+        type: 3}
+      propertyPath: DelayUntilDestroy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3897323370698328569, guid: 7e15dc51149503a45bcfc61c44add3be,
         type: 3}
       propertyPath: m_Name
       value: wormEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 3897323370698328569, guid: 7e15dc51149503a45bcfc61c44add3be,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4421904094373679939, guid: 7e15dc51149503a45bcfc61c44add3be,
         type: 3}
@@ -23405,7 +23415,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh750332
+  m_Name: pb_Mesh58224
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
