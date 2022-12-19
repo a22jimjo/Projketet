@@ -35,7 +35,9 @@ namespace StarterAssets
         public AudioClip[] FootstepAudioClips;
         public AudioClip[] FastAttackAudioClips;
         public AudioClip[] HeavyAttackAudioClips;
+        public AudioClip[] DashAudioClips;
         public AudioClip TakeDamageAudioClip;
+        
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
@@ -269,6 +271,7 @@ namespace StarterAssets
                 if (_dashDuration > 0)
                 {
                     dash = DashSpeed * Time.deltaTime;
+                    _audio.PlayOneShot(DashAudioClips[Random.Range(0, DashAudioClips.Length)], 0.6f);
                     _dashTime = DashCooldown;
                     _input.dash = false;
                 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -46,8 +47,16 @@ public class Sword : MonoBehaviour
 
     public void Vfx()
     {
-        if(heavyAttack) VfxSlashPrefab.Play();
-        else VfxSlashPrefab.Play();
+        if (heavyAttack)
+        {
+            Instantiate(vfxheavySlashPrefab, transform.position, quaternion.identity);
+            vfxheavySlashPrefab.Play();
+        }
+        else
+        {
+            Instantiate(VfxSlashPrefab, transform.position, quaternion.identity);
+            VfxSlashPrefab.Play();
+        }
     }
     
 }
