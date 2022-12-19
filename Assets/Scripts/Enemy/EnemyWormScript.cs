@@ -31,6 +31,7 @@ public class EnemyWormScript : MonoBehaviour
     [SerializeField] private float attackCooldown;
     [SerializeField] private float waitBetweenAttacks;
     [SerializeField] private float anticipationTime;
+    [SerializeField] private AudioClip[] attackClips;
 
     //Moving
     [SerializeField] private bool canMove;
@@ -184,6 +185,7 @@ public class EnemyWormScript : MonoBehaviour
         {
             GameObject _projectile = Instantiate(projectile, firePoint.position, transform.rotation);
             _projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
+            audioSource.PlayOneShot(attackClips[Random.Range(0, attackClips.Length)]);
             yield return new WaitForSeconds(waitBetweenAttacks);
         }
 
