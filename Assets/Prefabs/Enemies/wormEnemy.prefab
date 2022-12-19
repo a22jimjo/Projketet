@@ -1426,7 +1426,8 @@ MonoBehaviour:
   attackCooldown: 2
   waitBetweenAttacks: 0.6
   anticipationTime: 0.7
-  attackClips: []
+  attackClips:
+  - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
   canMove: 0
   moveTimer: 0
   moveCooldown: 4
