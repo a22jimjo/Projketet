@@ -332,6 +332,7 @@ namespace StarterAssets
                 _controller.Move(targetDirection.normalized * ((_speed + dash) * Time.deltaTime) +
                                  new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
                 _dashDuration -= Time.deltaTime;
+                _audio.PlayOneShot(FootstepAudioClips[Random.Range(0, FootstepAudioClips.Length)]);
                 // update animator if using character
                 if (_hasAnimator)
                 {
@@ -463,18 +464,6 @@ namespace StarterAssets
             Gizmos.DrawSphere(
                 new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
                 GroundedRadius);
-        }
-
-        private void OnFootstep(AnimationEvent animationEvent)
-        {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                if (FootstepAudioClips.Length > 0)
-                {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
-                    _audio.PlayOneShot(FootstepAudioClips[index]);
-                }
-            }
         }
 
         private void OnLand(AnimationEvent animationEvent)
