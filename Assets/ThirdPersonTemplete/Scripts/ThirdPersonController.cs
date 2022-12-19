@@ -329,7 +329,7 @@ namespace StarterAssets
 
                     if (_footStepTimer < 0)
                     {
-                        _audio.PlayOneShot(FootstepAudioClips[Random.Range(0, FootstepAudioClips.Length)]);
+                        _audio.PlayOneShot(FootstepAudioClips[Random.Range(0, FootstepAudioClips.Length)], 0.08f);
                         _footStepTimer = FootstepCooldown;
                     }
                 }
@@ -375,7 +375,7 @@ namespace StarterAssets
                 _attackTime = AttackCooldown;
                 _damageTime = DamageCooldown;
                 _slowDown = true;
-                _audio.PlayOneShot(FastAttackAudioClips[Random.Range(0, FastAttackAudioClips.Length)]);
+                _audio.PlayOneShot(FastAttackAudioClips[Random.Range(0, FastAttackAudioClips.Length)], 0.6f);
                 _input.attack = false;
             }
             else if (_input.heavyAttack && (_attackTime <= 0))
@@ -386,7 +386,7 @@ namespace StarterAssets
                 _damageTime = HeavyAttackDamageCooldown;
                 _fixedPosition = true;
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.heavyAttack = true;
-                _audio.PlayOneShot(HeavyAttackAudioClips[Random.Range(0, HeavyAttackAudioClips.Length)]);
+                _audio.PlayOneShot(HeavyAttackAudioClips[Random.Range(0, HeavyAttackAudioClips.Length)], 0.6f);
                 _input.heavyAttack = false;
             }
             else

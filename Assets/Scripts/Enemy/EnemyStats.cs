@@ -52,7 +52,7 @@ public class EnemyStats : MonoBehaviour
         this.GetComponent<Collider>().enabled = false;
         animator.SetBool("isDead", true);
         audioSource.PlayOneShot(HurtClips[Random.Range(0, HurtClips.Length)]);
-        audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)]);
+        audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)], 0.8f);
 
         //Play death VFX
         yield return new WaitForSeconds(DelayUntilDestroy);
