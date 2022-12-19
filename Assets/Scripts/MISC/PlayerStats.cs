@@ -11,6 +11,9 @@ public class PlayerStats : MonoBehaviour
     public float maxHealth = 3;
     public float damage;
     public float heavyDamage;
+    [SerializeField] private AudioClip[] DeathClips;
+
+    private AudioSource audioSource;
 
     private ThirdPersonController _ThirdPersonController;
     [SerializeField] private Healthbar _healthbar;
@@ -22,6 +25,7 @@ public class PlayerStats : MonoBehaviour
         health = maxHealth;
         _ThirdPersonController = GetComponent<ThirdPersonController>();
         _healthbar.UpdateHealthBar(maxHealth, health);
+        audioSource = GetComponent<AudioSource>();  
     }
     public void TakeDamage(float damageAmount)
     {
@@ -35,7 +39,7 @@ public class PlayerStats : MonoBehaviour
             Debug.Log("Player has died");
 
             StartCoroutine(SlowDown());
-
+            audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)]);
             //Destroy(gameObject);
         }
     }
