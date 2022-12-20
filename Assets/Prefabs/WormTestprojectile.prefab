@@ -12,12 +12,11 @@ GameObject:
   - component: {fileID: 5270676587500668451}
   - component: {fileID: 2758891637460987287}
   - component: {fileID: 6363226355538493084}
-  - component: {fileID: -6143186729893709629}
   - component: {fileID: 7654978074880671607}
-  - component: {fileID: 2806595300125831226}
+  - component: {fileID: 2347380150850533791}
   m_Layer: 0
   m_Name: WormTestprojectile
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,26 +99,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6143186729893709629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9094491525545543319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1412d52508f29d941bb315782003a469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyDelay: 5
-  canHitEnemy: 0
-  canHitPlayer: 1
-  destoryOnContact: 1
-  freezeOnContact: 0
-  ScaleOverDuration: 0
-  timeToScale: 0
-  sizeToScaleTo: {x: 0, y: 0, z: 0}
 --- !u!54 &7654978074880671607
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -136,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2806595300125831226
+--- !u!114 &2347380150850533791
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,13 +124,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9094491525545543319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b309d584f0a97b4ca620c12878c72b7, type: 3}
+  m_Script: {fileID: 11500000, guid: d6884730d83b7ee4891bd2270e932b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 3
-  damage: 1
-  HurtClips: []
-  DeathClips: []
-  DelayUntilDestroy: 0
-  _healthbar: {fileID: 0}
+  damage: 2
+  destroyDelay: 0
+  destoryOnContact: 1
+  freezeOnContact: 0
+  damageTimer: 0
+  damageCooldown: 1

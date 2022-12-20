@@ -127,7 +127,22 @@ public class EnemyGolem : MonoBehaviour
         animator.ResetTrigger("TakeDamage");
     }
 
-        void RotateTowards()
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, Vector3.forward);
+
+    }
+
+
+    void RotateTowards()
     {
         Debug.Log("rotating towards player");
 

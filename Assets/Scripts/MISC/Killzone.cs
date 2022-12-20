@@ -13,7 +13,7 @@ public class Killzone : MonoBehaviour
             Debug.Log(gameObject.name + "You've died to a killzone");
             Application.Quit();
             //SceneManager.LoadScene(SceneChangeHandler.currentSceneName);
-            SceneManager.LoadScene("2. Forest theme");
+            SceneManager.LoadScene("Start scen RestartScene");
         }
     }
 }

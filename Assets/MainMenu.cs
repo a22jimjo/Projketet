@@ -7,8 +7,7 @@ public class MainMenu : MonoBehaviour {
 
     public void PlayGame ()
     {
-        Debug.Log("Big Black Cock");
-        SceneManager.LoadScene("2. Forest theme");
+        SceneManager.LoadScene("Start scen");
     }
 
     public void QuitGame ()
