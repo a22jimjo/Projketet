@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7706604732171691298}
   - component: {fileID: 2835867548637269344}
   - component: {fileID: 6518738509434605947}
+  - component: {fileID: -3874363081482068741}
   m_Layer: 0
   m_Name: Slash_VFX_Graph
   m_TagString: Untagged
@@ -110,3 +111,16 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-3874363081482068741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4636824193682465861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa737430a2e0cf342a5fbbaf869bd765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _despawnTime: 0.2

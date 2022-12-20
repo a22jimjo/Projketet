@@ -14,6 +14,9 @@ public class Sword : MonoBehaviour
     public VisualEffect VfxSlashPrefab;
     public VisualEffect vfxheavySlashPrefab;
     public GameObject HitMark;
+
+    private VisualEffect currentVfxSlash;
+    private VisualEffect currentVfxHeavySlash;
     private float damage;
     private float heavyDamage;
 
@@ -49,13 +52,13 @@ public class Sword : MonoBehaviour
     {
         if (heavyAttack)
         {
-            Instantiate(vfxheavySlashPrefab, transform.position, quaternion.identity);
-            vfxheavySlashPrefab.Play();
+            currentVfxHeavySlash = Instantiate(vfxheavySlashPrefab, transform.position, transform.rotation);
+            currentVfxHeavySlash.Play();
         }
         else
         {
-            Instantiate(VfxSlashPrefab, transform.position, quaternion.identity);
-            VfxSlashPrefab.Play();
+            currentVfxSlash = Instantiate(VfxSlashPrefab, transform.position, transform.rotation);
+            currentVfxSlash.Play();
         }
     }
     

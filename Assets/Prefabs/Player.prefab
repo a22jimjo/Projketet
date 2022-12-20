@@ -118,7 +118,7 @@ MonoBehaviour:
     type: 3}
   vfxheavySlashPrefab: {fileID: 2835867548637269344, guid: a6aff3cfe7497ef44a33818f542ebc74,
     type: 3}
-  HitMark: {fileID: 268166474461339515, guid: db868fbe7c73f864a844e94a1e1cbce0, type: 3}
+  HitMark: {fileID: 268166474461339515, guid: 7f990008cded3424298deaf7d69aca8c, type: 3}
 --- !u!114 &102454321
 MonoBehaviour:
   m_ObjectHideFlags: 0
