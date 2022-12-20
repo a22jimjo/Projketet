@@ -185,7 +185,7 @@ public class EnemyWormScript : MonoBehaviour
         {
             GameObject _projectile = Instantiate(projectile, firePoint.position, transform.rotation);
             _projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
-            audioSource.PlayOneShot(attackClips[Random.Range(0, attackClips.Length)]);
+            audioSource.PlayOneShot(attackClips[Random.Range(0, attackClips.Length)], 0.5f);
             yield return new WaitForSeconds(waitBetweenAttacks);
         }
 
