@@ -266,12 +266,12 @@ namespace StarterAssets
                 {
                     _dashDuration = DashDuration;
                     _animator.SetTrigger(_animIdDash);
-                    dash = DashSpeed * Time.deltaTime;
                     _slowDown = false;
+                    _audio.PlayOneShot(DashAudioClips[Random.Range(0, DashAudioClips.Length)], 0.3f);
                 }
                 if (_dashDuration > 0)
                 {
-                    _audio.PlayOneShot(DashAudioClips[Random.Range(0, DashAudioClips.Length)], 0.3f);
+                    dash = DashSpeed * Time.deltaTime;
                     _dashTime = DashCooldown;
                     _input.dash = false;
                 }
