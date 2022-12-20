@@ -52,11 +52,15 @@ public class PlayerStats : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            Debug.Log("Aj!");
             if (other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent))
             {
-                _ThirdPersonController.TakeDamage();
-                TakeDamage(enemyComponent.damage);
+                if(enemyComponent.damage != 0)
+                {
+                    _ThirdPersonController.TakeDamage();
+                    TakeDamage(enemyComponent.damage);
+                    Debug.Log("Aj!");
+                }
+               
             }
         }
     }

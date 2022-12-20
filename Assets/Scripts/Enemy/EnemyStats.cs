@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyStats : MonoBehaviour
 {
     private Animator animator;
+    private NavMeshAgent agent;
 
     [Header("Stats")]
     [Tooltip("Characters health points")]
@@ -28,6 +30,7 @@ public class EnemyStats : MonoBehaviour
         animator = GetComponent<Animator>();
         _healthbar.UpdateHealthBar(maxHealth, health);
         audioSource = GetComponent<AudioSource>();
+        agent = GetComponent<NavMeshAgent>();
     }
     public void TakeDamage(float damageAmount)
     {
@@ -49,6 +52,7 @@ public class EnemyStats : MonoBehaviour
     IEnumerator Death(float waitTime)
     {
         //animator.ResetTrigger("Attack");
+        agent.speed = 0;
         this.GetComponent<Collider>().enabled = false;
         animator.SetBool("isDead", true);
         audioSource.PlayOneShot(HurtClips[Random.Range(0, HurtClips.Length)]);

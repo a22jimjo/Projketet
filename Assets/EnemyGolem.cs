@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class EnemyGolem : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class EnemyGolem : MonoBehaviour
     Animator animator;
     Rigidbody rb;
     AudioSource audioSource;
+    [SerializeField] VisualEffect attackVFXPrefab;
+    private VisualEffect attackEffectToPlay;
+    [SerializeField] GameObject attackPoint;
+    [SerializeField] Collider attackCollider;
+
     
     //Movement
     [Tooltip("The minimum distance between the character and it's target to attack")]
@@ -24,13 +30,11 @@ public class EnemyGolem : MonoBehaviour
     [SerializeField] bool isAttacking;
     [SerializeField] private float attackTimer;
     [SerializeField] private float attackCooldown;
+
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float delayAfterAttack;
     [SerializeField] private float attackDuration;
-    [SerializeField] private float delayBeforeAttack;
     
-    [Tooltip("Sound starting when the windup animation start")]
-    [SerializeField] private AudioClip[] AttackWindupClips;
     [Tooltip("Sound starting when the windup animation ends")]
     [SerializeField] private AudioClip[] AttackClips;
     [Tooltip("Sound starting when the dash ends")]
@@ -44,6 +48,7 @@ public class EnemyGolem : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        attackCollider = attackPoint.GetComponent<BoxCollider>();
 
         agent.speed = baseMoveSpeed;
     }
@@ -76,7 +81,7 @@ public class EnemyGolem : MonoBehaviour
             delayAfterAttack = Random.Range(delayAfterAttack * 0.8f, delayAfterAttack * 1.4f);
 
             //should rotate before executing attack
-            StartCoroutine(Attack(delayBeforeAttack, delayAfterAttack));
+            StartCoroutine(Attack(attackDuration, delayAfterAttack));
         }
 
         //Timer
@@ -93,37 +98,28 @@ public class EnemyGolem : MonoBehaviour
     
         IEnumerator Attack(float waitTime, float waitTime3)
     {
-        agent.avoidancePriority = 49;
-        Debug.Log("enemy attacks player");
+        Debug.Log("Golem attacks player");
         isAttacking = true;
         //stop movement briefly
         agent.speed = 0;
-
         //reset timers
         canAttack = false;
         attackTimer = 0;
-        
         //run animation
         //Sound as windup animation start
-        audioSource.PlayOneShot(AttackWindupClips[Random.Range(0, AttackWindupClips.Length)]);
-        //animator.SetBool("AttackGhost", true);
         animator.SetTrigger("Attack");
-        yield return new WaitForSeconds(delayBeforeAttack);
         //Sound as windup animation end
-        audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)]);
-        agent.acceleration = 0;
-        agent.speed = 0;
-
         yield return new WaitForSeconds(attackDuration);
+        attackPoint.SetActive(true);
+        attackEffectToPlay = Instantiate(attackVFXPrefab, attackPoint.transform.position,attackPoint.transform.rotation);
+        attackEffectToPlay.Play();
         //Sound as dash has ended
-        audioSource.PlayOneShot(WaitAfterAttackClips[Random.Range(0, WaitAfterAttackClips.Length)]);
 
         yield return new WaitForSeconds(delayAfterAttack);
+        attackPoint.SetActive(false);
         RotateTowards();
-        agent.acceleration = 8;
         agent.speed = baseMoveSpeed;
         isAttacking = false;
-        agent.avoidancePriority = 50;
         animator.ResetTrigger("TakeDamage");
     }
 
