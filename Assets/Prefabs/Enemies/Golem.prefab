@@ -516,11 +516,11 @@ MonoBehaviour:
   attackCollider: {fileID: 623785961}
   attackRange: 2.3
   detectRange: 5
-  baseMoveSpeed: 1
+  baseMoveSpeed: 1.2
   canAttack: 1
   isAttacking: 0
   attackTimer: 0
-  attackCooldown: 1
+  attackCooldown: 1.35
   rotationSpeed: 1
   delayAfterAttack: 0.5
   attackDuration: 1.45
