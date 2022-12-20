@@ -271,7 +271,7 @@ namespace StarterAssets
                 if (_dashDuration > 0)
                 {
                     dash = DashSpeed * Time.deltaTime;
-                    _audio.PlayOneShot(DashAudioClips[Random.Range(0, DashAudioClips.Length)], 0.6f);
+                    _audio.PlayOneShot(DashAudioClips[Random.Range(0, DashAudioClips.Length)], 0.3f);
                     _dashTime = DashCooldown;
                     _input.dash = false;
                 }
@@ -425,7 +425,7 @@ namespace StarterAssets
         public void TakeDamage()
         {
             _animator.SetTrigger(_animIdtakeDamageEx1Ani);
-            _audio.PlayOneShot(TakeDamageAudioClip);
+            _audio.PlayOneShot(TakeDamageAudioClip, 0.8f);
         }
 
         private void JumpAndGravity()
