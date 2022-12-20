@@ -1473,7 +1473,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4d36b9ebc1ce6418a8b291e7faf18492, type: 3}
   - {fileID: 8300000, guid: a39fc4c819dd047828409d488019117a, type: 3}
   DeathClips:
-  - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
+  - {fileID: 8300000, guid: 925b8f51f04f843329eb0080320efc55, type: 3}
   DelayUntilDestroy: 1
   _healthbar: {fileID: 1781372853}
 --- !u!195 &5303229308377070098
@@ -1552,7 +1552,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1.0044804
   MaxDistance: 500
   Pan2D: 0
