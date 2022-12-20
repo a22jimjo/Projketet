@@ -7870,6 +7870,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 173579621}
     m_Modifications:
+    - target: {fileID: -7579234411918788020, guid: 7e15dc51149503a45bcfc61c44add3be,
+        type: 3}
+      propertyPath: moveTimer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3897323370698328569, guid: 7e15dc51149503a45bcfc61c44add3be,
         type: 3}
       propertyPath: m_Name
