@@ -267,7 +267,7 @@ namespace StarterAssets
                     _dashDuration = DashDuration;
                     _animator.SetTrigger(_animIdDash);
                     _slowDown = false;
-                    _audio.PlayOneShot(DashAudioClips[Random.Range(0, DashAudioClips.Length)], 0.3f);
+                    _audio.PlayOneShot(DashAudioClips[Random.Range(0, DashAudioClips.Length)], 0.6f);
                 }
                 if (_dashDuration > 0)
                 {
