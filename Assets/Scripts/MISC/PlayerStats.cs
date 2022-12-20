@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PlayerStats : MonoBehaviour
     private AudioSource audioSource;
 
     private ThirdPersonController _ThirdPersonController;
-    [SerializeField] private Healthbar _healthbar;
+    [SerializeField] public Healthbar _healthbar;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class PlayerStats : MonoBehaviour
         health = maxHealth;
         _ThirdPersonController = GetComponent<ThirdPersonController>();
         _healthbar.UpdateHealthBar(maxHealth, health);
-        audioSource = GetComponent<AudioSource>();  
+        audioSource = GetComponent<AudioSource>();
     }
     public void TakeDamage(float damageAmount)
     {
@@ -40,6 +41,9 @@ public class PlayerStats : MonoBehaviour
 
             StartCoroutine(SlowDown());
             audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)], 1);
+            health = maxHealth;
+            _healthbar.UpdateHealthBar(maxHealth, health);
+            SceneManager.LoadSceneAsync("Start scen RestartScene");
             //Destroy(gameObject);
         }
     }
