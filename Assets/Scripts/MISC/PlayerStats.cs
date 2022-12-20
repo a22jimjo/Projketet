@@ -39,7 +39,7 @@ public class PlayerStats : MonoBehaviour
             Debug.Log("Player has died");
 
             StartCoroutine(SlowDown());
-            audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)]);
+            audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)], 1);
             //Destroy(gameObject);
         }
     }
