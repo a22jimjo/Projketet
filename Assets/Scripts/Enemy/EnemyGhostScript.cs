@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class EnemyGhostScript : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class EnemyGhostScript : MonoBehaviour
     Animator animator;
     Rigidbody rb;
     AudioSource audioSource;
+    private DamagingCollider damagingCollider;
 
     //Movement
     [Tooltip("The minimum distance between the character and it's target to attack")]
@@ -41,6 +44,8 @@ public class EnemyGhostScript : MonoBehaviour
     [Tooltip("Sound starting when the dash ends")]
     [SerializeField] private AudioClip[] AttackWaitAfterDashClips;
 
+    private bool dashing = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +55,7 @@ public class EnemyGhostScript : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        damagingCollider = GetComponent<DamagingCollider>();
 
         agent.speed = baseMoveSpeed;
 
@@ -134,6 +140,7 @@ public class EnemyGhostScript : MonoBehaviour
         audioSource.PlayOneShot(AttackWindupClips[Random.Range(0, AttackWindupClips.Length)]);
         //animator.SetBool("AttackGhost", true);
         animator.SetTrigger("Attack");
+        dashing = true;
         yield return new WaitForSeconds(delayBeforeAttack);
         //Sound as windup animation end
         audioSource.PlayOneShot(AttackDashClips[Random.Range(0,AttackDashClips.Length)]);
@@ -142,6 +149,7 @@ public class EnemyGhostScript : MonoBehaviour
 
         yield return new WaitForSeconds(dashDuration);
         //Sound as dash has ended
+        dashing = false;
         audioSource.PlayOneShot(AttackWaitAfterDashClips[Random.Range(0, AttackWaitAfterDashClips.Length)]);
 
         yield return new WaitForSeconds(delayAfterAttack);
@@ -166,6 +174,14 @@ public class EnemyGhostScript : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, Vector3.forward);
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (dashing)
+        {
+            damagingCollider.CallDamage(other, GetComponent<EnemyStats>().damage);
+        }
     }
 
     void RotateTowards()

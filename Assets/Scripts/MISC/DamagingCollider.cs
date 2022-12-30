@@ -21,7 +21,7 @@ public class DamagingCollider : MonoBehaviour
     }
 
 
-    public void CallDamage(Collider other, bool knockback, float dmg)
+    public void CallDamage(Collider other, float dmg)
     {
         if (canHitEnemy)
         {
@@ -31,8 +31,7 @@ public class DamagingCollider : MonoBehaviour
                 Debug.Log(gameObject.name + " Has dealt " + dmg + " damage");
                 if (freezeOnContact) Freeze();
                 if (destoryOnContact) Destroy(gameObject, destroyDelay);
-                if (other.gameObject.TryGetComponent<Knockback>(out Knockback knocked) && knockback) knocked.PushRigidBdy(rb);
-
+                //if (other.gameObject.TryGetComponent<Knockback>(out Knockback knocked) && knockback) knocked.PushRigidBdy(rb);
             }
         }
         

@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour
         health -= damageAmount;
         StartCoroutine(SlowDownABit());
         _healthbar.UpdateHealthBar(maxHealth, health);
+        _ThirdPersonController.TakeDamage();
         
         if (health <= 0)
         {
@@ -45,23 +46,6 @@ public class PlayerStats : MonoBehaviour
             _healthbar.UpdateHealthBar(maxHealth, health);
             SceneManager.LoadSceneAsync("Start scen RestartScene");
             //Destroy(gameObject);
-        }
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            if (other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent))
-            {
-                if(enemyComponent.damage != 0)
-                {
-                    _ThirdPersonController.TakeDamage();
-                    TakeDamage(enemyComponent.damage);
-                    Debug.Log("Aj!");
-                }
-               
-            }
         }
     }
 

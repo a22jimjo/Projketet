@@ -41,8 +41,8 @@ public class Sword : MonoBehaviour
         if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent) && attacking == true)
         {
             Debug.Log("Hit");
-            if(!heavyAttack)_damaging.CallDamage(other, false, damage);
-            if(heavyAttack)_damaging.CallDamage(other, false, heavyDamage);
+            if(!heavyAttack)_damaging.CallDamage(other, damage);
+            if(heavyAttack)_damaging.CallDamage(other, heavyDamage);
             attacking = false;
             Instantiate(HitMark, other.transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
         }
