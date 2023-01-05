@@ -16,6 +16,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private AudioClip[] DeathClips;
 
     private AudioSource audioSource;
+    private Animator animator;
 
     private ThirdPersonController _ThirdPersonController;
     [SerializeField] public Healthbar _healthbar;
@@ -32,6 +33,7 @@ public class PlayerStats : MonoBehaviour
         _ThirdPersonController = GetComponent<ThirdPersonController>();
         _healthbar.UpdateHealthBar(maxHealth, health);
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
         //deathScreen = GameObject.FindGameObjectWithTag("DeathScreen");
         //tryAgainButton = GameObject.FindGameObjectWithTag("TryAgainButton");
         //tryAgainButton.SetActive(false);
@@ -66,16 +68,19 @@ public class PlayerStats : MonoBehaviour
     public IEnumerator PlayerDeath()
     {
         //Play death animation
+        animator.SetBool("Death", true);
+        _ThirdPersonController.MoveSpeed = 0;
         Debug.Log("Player has died");
-        
         audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)], 1);
-        Time.timeScale = 0.4f;
-        yield return new WaitForSeconds(1);
+        Time.timeScale = 0.25f;
+        yield return new WaitForSeconds(2f);
         Time.timeScale = 1;
 
         //enable deathscreen
         deathScreen.SetActive(true);
 
+        //disable anim
+        animator.SetBool("Death", false);
         //loads startsceen
         SceneManager.LoadSceneAsync("Start scen RestartScene");
         //wait 0.5s
@@ -98,6 +103,7 @@ public class PlayerStats : MonoBehaviour
         spawnPoint = GameObject.FindGameObjectWithTag("PlayerStartPosition");
         gameObject.transform.position = spawnPoint.transform.position;
         gameObject.SetActive(true);
+        _ThirdPersonController.MoveSpeed = _ThirdPersonController.MoveSpeed = 4;
 
         //reset health values
         health = maxHealth;

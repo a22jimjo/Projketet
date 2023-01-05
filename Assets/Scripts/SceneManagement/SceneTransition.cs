@@ -53,7 +53,6 @@ public class SceneTransition : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
-        animator.SetTrigger("Fade");
         yield return new WaitForSeconds(0.5f);
         yield return SceneManager.LoadSceneAsync(sceneName);
         player.SetActive(false);
@@ -61,11 +60,7 @@ public class SceneTransition : MonoBehaviour
         player.transform.position = spawnPoint.transform.position;
         player.SetActive(true);
         yield return new WaitForSeconds(1.25f);
-        //animator.ResetTrigger("Fade");
-        animator.SetTrigger("FadeOut");
-        yield return new WaitForSeconds(0.5f);
-        animator.ResetTrigger("FadeOut");
-        animator.ResetTrigger("Fade");
+        
         print("Message from portal in last scene");
         Destroy(gameObject);
     }
