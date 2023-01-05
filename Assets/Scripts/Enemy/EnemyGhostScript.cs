@@ -140,12 +140,12 @@ public class EnemyGhostScript : MonoBehaviour
         audioSource.PlayOneShot(AttackWindupClips[Random.Range(0, AttackWindupClips.Length)]);
         //animator.SetBool("AttackGhost", true);
         animator.SetTrigger("Attack");
-        dashing = true;
         yield return new WaitForSeconds(delayBeforeAttack);
         //Sound as windup animation end
         audioSource.PlayOneShot(AttackDashClips[Random.Range(0,AttackDashClips.Length)]);
         agent.acceleration = 80;
         agent.speed = dashSpeed;
+        dashing = true;
 
         yield return new WaitForSeconds(dashDuration);
         //Sound as dash has ended
@@ -176,11 +176,12 @@ public class EnemyGhostScript : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (dashing)
         {
             damagingCollider.CallDamage(other, GetComponent<EnemyStats>().damage);
+            Console.WriteLine("Hit while dashing");
         }
     }
 

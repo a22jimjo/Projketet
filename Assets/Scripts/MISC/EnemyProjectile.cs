@@ -41,16 +41,18 @@ public class EnemyProjectile : MonoBehaviour
             damageTimer = 0;
             other.gameObject.TryGetComponent<PlayerStats>(out PlayerStats stats);
             Debug.Log("player was hit by a projectile");
-            stats.TakeDamage(damage);
+            if (stats.TakeDamage(damage))
+            {
 
-            if (freezeOnContact) Freeze();
-            if (destoryOnContact)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject, destroyDelay);
+                if (freezeOnContact) Freeze();
+                if (destoryOnContact)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Destroy(gameObject, destroyDelay);
+                }
             }
         }
     }

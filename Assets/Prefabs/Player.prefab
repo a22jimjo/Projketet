@@ -319,8 +319,8 @@ MonoBehaviour:
   SlowDownMultiplier: 0.3
   HeavyAttackCooldown: 0.9
   HeavyAttackDamageCooldown: 0.68
-  DashSpeed: 500
-  DashDuration: 0.09
+  DashSpeed: 0.71
+  DashDuration: 0.24
   DashCooldown: 0.65
   FootstepCooldown: 0.49
   canMove: 1

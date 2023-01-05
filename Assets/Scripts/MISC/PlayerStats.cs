@@ -28,25 +28,31 @@ public class PlayerStats : MonoBehaviour
         _healthbar.UpdateHealthBar(maxHealth, health);
         audioSource = GetComponent<AudioSource>();
     }
-    public void TakeDamage(float damageAmount)
+    public bool TakeDamage(float damageAmount)
     {
-        health -= damageAmount;
-        StartCoroutine(SlowDownABit());
-        _healthbar.UpdateHealthBar(maxHealth, health);
-        _ThirdPersonController.TakeDamage();
-        
-        if (health <= 0)
+        if (_ThirdPersonController.TakeDamage())
         {
-            //Play death animation
-            Debug.Log("Player has died");
-
-            StartCoroutine(SlowDown());
-            audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)], 1);
-            health = maxHealth;
+            health -= damageAmount;
+            StartCoroutine(SlowDownABit());
             _healthbar.UpdateHealthBar(maxHealth, health);
-            SceneManager.LoadSceneAsync("Start scen RestartScene");
-            //Destroy(gameObject);
+
+            if (health <= 0)
+            {
+                //Play death animation
+                Debug.Log("Player has died");
+
+                StartCoroutine(SlowDown());
+                audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)], 1);
+                health = maxHealth;
+                _healthbar.UpdateHealthBar(maxHealth, health);
+                SceneManager.LoadSceneAsync("Start scen RestartScene");
+                //Destroy(gameObject);
+            }
+
+            return true;
         }
+
+        return false;
     }
 
     IEnumerator SlowDown()

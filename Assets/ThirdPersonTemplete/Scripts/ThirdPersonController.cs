@@ -105,6 +105,7 @@ namespace StarterAssets
         private float _attackTime;
         private float _damageTime;
         private bool _slowDown = false;
+        private bool _invincible = false;
         private float _dashTime = 0;
         private float _dashDuration = 0;
         private float _footStepTimer = 0;
@@ -269,12 +270,15 @@ namespace StarterAssets
                     _slowDown = false;
                     _audio.PlayOneShot(DashAudioClips[Random.Range(0, DashAudioClips.Length)], 0.6f);
                 }
+
                 if (_dashDuration > 0)
                 {
+                    _invincible = true;
                     dash = DashSpeed;
                     _dashTime = DashCooldown;
                     _input.dash = false;
                 }
+                else _invincible = false;
                 _dashTime -= Time.deltaTime;
                 _dashDuration -= Time.deltaTime;
                 
@@ -360,7 +364,7 @@ namespace StarterAssets
         private void AttackRotation()
         {
             // rotate to face input direction relative to camera position
-            Vector3 relativePos = new Vector3(_input.see.x, 0f, _input.see.y - 60)- _edgeToPlayerCamera;
+            Vector3 relativePos = new Vector3(_input.see.x, 0f, _input.see.y -60)- _edgeToPlayerCamera;
          
             Quaternion rotation = Quaternion.LookRotation(relativePos);
             transform.rotation = rotation;
@@ -422,10 +426,12 @@ namespace StarterAssets
             //else AttackRotation();
         }
 
-        public void TakeDamage()
+        public bool TakeDamage()
         {
+            if (_invincible) return false;
             _animator.SetTrigger(_animIdtakeDamageEx1Ani);
             _audio.PlayOneShot(TakeDamageAudioClip, 0.8f);
+            return true;
         }
 
         private void JumpAndGravity()
