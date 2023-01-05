@@ -260,15 +260,40 @@ PrefabInstance:
       propertyPath: currentSceneName
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3195357102909915099, guid: 71d489ce0ee3c3d42807642e52d813ae,
+        type: 3}
+      propertyPath: m_XDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195357102909915099, guid: 71d489ce0ee3c3d42807642e52d813ae,
+        type: 3}
+      propertyPath: m_YDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195357102909915099, guid: 71d489ce0ee3c3d42807642e52d813ae,
+        type: 3}
+      propertyPath: m_ZDamping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3523318959986149183, guid: 71d489ce0ee3c3d42807642e52d813ae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.36536
+      value: 11.21336
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787387002474542083, guid: 71d489ce0ee3c3d42807642e52d813ae,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17999959
       objectReference: {fileID: 0}
     - target: {fileID: 3787387002474542083, guid: 71d489ce0ee3c3d42807642e52d813ae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.36536
+      value: 11.21336
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787387002474542083, guid: 71d489ce0ee3c3d42807642e52d813ae,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.220003
       objectReference: {fileID: 0}
     - target: {fileID: 8238721399787750863, guid: 71d489ce0ee3c3d42807642e52d813ae,
         type: 3}

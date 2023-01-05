@@ -271,7 +271,7 @@ namespace StarterAssets
                 }
                 if (_dashDuration > 0)
                 {
-                    dash = DashSpeed * Time.deltaTime;
+                    dash = DashSpeed;
                     _dashTime = DashCooldown;
                     _input.dash = false;
                 }
