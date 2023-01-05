@@ -38,7 +38,13 @@ namespace StarterAssets
         public AudioClip[] DashAudioClips;
         public AudioClip TakeDamageAudioClip;
         
-        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
+        [Header("Volumes")]
+        [Range(0, 1)] public float FootstepAudioVolume = 0.08f;
+        [Range(0, 1)] public float FastAttackAudioVolume = 0.6f;
+        [Range(0, 1)] public float HeavyAttackAudioVolume = 0.6f;
+        [Range(0, 1)] public float DashAudioVolume = 0.6f;
+        [Range(0, 1)] public float TakeDamageAudioVolume = 0.8f;
+        
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
         public float Gravity = -15.0f;
@@ -268,7 +274,7 @@ namespace StarterAssets
                     _dashDuration = DashDuration;
                     _animator.SetTrigger(_animIdDash);
                     _slowDown = false;
-                    _audio.PlayOneShot(DashAudioClips[Random.Range(0, DashAudioClips.Length)], 0.6f);
+                    _audio.PlayOneShot(DashAudioClips[Random.Range(0, DashAudioClips.Length)], DashAudioVolume);
                 }
 
                 if (_dashDuration > 0)
@@ -278,7 +284,7 @@ namespace StarterAssets
                     _dashTime = DashCooldown;
                     _input.dash = false;
                 }
-                else _invincible = false;
+                else if(_dashDuration < -0.1) _invincible = false;
                 _dashTime -= Time.deltaTime;
                 _dashDuration -= Time.deltaTime;
                 
@@ -336,7 +342,7 @@ namespace StarterAssets
 
                     if (_footStepTimer < 0)
                     {
-                        _audio.PlayOneShot(FootstepAudioClips[Random.Range(0, FootstepAudioClips.Length)], 0.08f);
+                        _audio.PlayOneShot(FootstepAudioClips[Random.Range(0, FootstepAudioClips.Length)], FootstepAudioVolume);
                         _footStepTimer = FootstepCooldown;
                     }
                 }
@@ -382,7 +388,7 @@ namespace StarterAssets
                 _attackTime = AttackCooldown;
                 _damageTime = DamageCooldown;
                 _slowDown = true;
-                _audio.PlayOneShot(FastAttackAudioClips[Random.Range(0, FastAttackAudioClips.Length)], 0.6f);
+                _audio.PlayOneShot(FastAttackAudioClips[Random.Range(0, FastAttackAudioClips.Length)], FastAttackAudioVolume);
                 _input.attack = false;
             }
             else if (_input.heavyAttack && (_attackTime <= 0))
@@ -393,7 +399,7 @@ namespace StarterAssets
                 _damageTime = HeavyAttackDamageCooldown;
                 _fixedPosition = true;
                 if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.heavyAttack = true;
-                _audio.PlayOneShot(HeavyAttackAudioClips[Random.Range(0, HeavyAttackAudioClips.Length)], 0.6f);
+                _audio.PlayOneShot(HeavyAttackAudioClips[Random.Range(0, HeavyAttackAudioClips.Length)], HeavyAttackAudioVolume);
                 _input.heavyAttack = false;
             }
             else
@@ -430,7 +436,7 @@ namespace StarterAssets
         {
             if (_invincible) return false;
             _animator.SetTrigger(_animIdtakeDamageEx1Ani);
-            _audio.PlayOneShot(TakeDamageAudioClip, 0.8f);
+            _audio.PlayOneShot(TakeDamageAudioClip, TakeDamageAudioVolume);
             return true;
         }
 

@@ -281,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 4
   SprintSpeed: 4
-  RotationSmoothTime: 0.054
+  RotationSmoothTime: 0
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 0}
   FootstepAudioClips:
@@ -300,7 +300,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c7cae1287900341f6adc5a56bbbbe4e5, type: 3}
   - {fileID: 8300000, guid: f844e257b02204ee5b6716fa8b9c5971, type: 3}
   TakeDamageAudioClip: {fileID: 8300000, guid: 71b20e06131fb4b08887f5f4132c4de5, type: 3}
-  FootstepAudioVolume: 1
+  FootstepAudioVolume: 0.08
+  FastAttackAudioVolume: 0.6
+  HeavyAttackAudioVolume: 0.6
+  DashAudioVolume: 0.6
+  TakeDamageAudioVolume: 0.8
   Gravity: -15
   FallTimeout: 0.15
   Grounded: 1
@@ -319,7 +323,7 @@ MonoBehaviour:
   SlowDownMultiplier: 0.3
   HeavyAttackCooldown: 0.9
   HeavyAttackDamageCooldown: 0.68
-  DashSpeed: 0.71
+  DashSpeed: 0.78
   DashDuration: 0.24
   DashCooldown: 0.65
   FootstepCooldown: 0.49
