@@ -54,6 +54,7 @@ public class SceneTransition : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         animator.SetTrigger("Fade");
+        yield return new WaitForSeconds(0.5f);
         yield return SceneManager.LoadSceneAsync(sceneName);
         player.SetActive(false);
         spawnPoint = GameObject.FindGameObjectWithTag("PlayerStartPosition");
@@ -61,6 +62,9 @@ public class SceneTransition : MonoBehaviour
         player.SetActive(true);
         yield return new WaitForSeconds(1.25f);
         //animator.ResetTrigger("Fade");
+        animator.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(0.5f);
+        animator.ResetTrigger("FadeOut");
         animator.ResetTrigger("Fade");
         print("Message from portal in last scene");
         Destroy(gameObject);
@@ -69,12 +73,16 @@ public class SceneTransition : MonoBehaviour
     private void FindAllEnemies()
     {
         Transform[] objectsInRoom = enemyHolder.GetComponentsInChildren<Transform>();
-        enemyGameobjects.Clear();
-        for (int i = 0; i < objectsInRoom.Length; i++)
+
+        if(enemyHolder != null)
         {
-            if (objectsInRoom[i].CompareTag("Enemy"))
+            enemyGameobjects.Clear();
+            for (int i = 0; i < objectsInRoom.Length; i++)
             {
-                enemyGameobjects.Add(objectsInRoom[i].gameObject);
+                if (objectsInRoom[i].CompareTag("Enemy"))
+                {
+                    enemyGameobjects.Add(objectsInRoom[i].gameObject);
+                }
             }
         }
     }
