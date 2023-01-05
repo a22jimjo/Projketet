@@ -13,6 +13,9 @@ TagManager:
   - GhostDashLocation
   - FollowCamera
   - EnemyHolder
+  - HUD
+  - DeathScreen
+  - TryAgainButton
   layers:
   - Default
   - TransparentFX
