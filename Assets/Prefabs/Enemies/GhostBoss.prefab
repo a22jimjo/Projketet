@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 2126561262718773005}
   - component: {fileID: 2126561262718773001}
   - component: {fileID: 2126561262718773002}
-  - component: {fileID: 2126561262718773003}
   - component: {fileID: 2126561262718773004}
   - component: {fileID: 1243690460648069688}
   - component: {fileID: 1243690460648069671}
+  - component: {fileID: 960429603412597941}
   m_Layer: 0
-  m_Name: GhostTEXTURED
+  m_Name: GhostBoss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,14 +31,17 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243690460648069670}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -4.763096, y: -0.23466665, z: -1.9254388}
-  m_LocalScale: {x: 30, y: 30, z: 30}
+  m_LocalPosition: {x: 4.3, y: 0.10000038, z: 2.35}
+  m_LocalScale: {x: 60, y: 60, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1105722697847918451}
   - {fileID: 6084788223921883322}
   - {fileID: 2126561263528975227}
   - {fileID: 2126561263816880725}
+  - {fileID: 5914860049473100058}
+  - {fileID: 2094867421526940387}
+  - {fileID: 147356995758012168}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -53,8 +56,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.01
-  m_Center: {x: 0, y: 0.0356, z: 0}
+  m_Radius: 0.013923498
+  m_Center: {x: 0.00061155163, y: 0.022870451, z: 0}
 --- !u!95 &2126561262718773001
 Animator:
   serializedVersion: 4
@@ -97,39 +100,6 @@ NavMeshAgent:
   m_BaseOffset: -0.005
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
---- !u!114 &2126561262718773003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243690460648069670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c75be071cb69144be3ee28b33e9678, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 3
-  detectRange: 6.4
-  baseMoveSpeed: 3.5
-  canAttack: 0
-  isAttacking: 0
-  attackTimer: 0
-  attackCooldown: 0.2
-  dashSpeed: 12
-  delayBeforeAttack: 1
-  dashDuration: 1
-  delayAfterAttack: 0.35
-  rotationSpeed: 16
-  dashLocation: {fileID: 2126561263816880724}
-  AttackWindupClips:
-  - {fileID: 8300000, guid: 57cae6f3d251b48b9802dd6528ee175f, type: 3}
-  - {fileID: 8300000, guid: 456cd57886ee54a85977bfa3a3f19782, type: 3}
-  - {fileID: 8300000, guid: 447dee146f06e44b89fd89af0721f59c, type: 3}
-  AttackDashClips:
-  - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
-  AttackWaitAfterDashClips:
-  - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
 --- !u!114 &2126561262718773004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 4
+  maxHealth: 15
   damage: 3
   HurtClips:
   - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
@@ -279,6 +249,46 @@ MonoBehaviour:
   ScaleOverDuration: 0
   timeToScale: 0
   sizeToScaleTo: {x: 0, y: 0, z: 0}
+--- !u!114 &960429603412597941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243690460648069670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea1df0ae8319a0943b857d2d0bad7b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 5
+  detectRange: 10
+  baseMoveSpeed: 2
+  canAttack: 0
+  isAttacking: 0
+  attackTimer: 0
+  attackCooldown: 0.6
+  amountOfAttacks: 3
+  dashSpeed: 6
+  delayBeforeAttack: 1
+  dashDuration: 1
+  delayAfterAttack: 0.5
+  rotationSpeed: 10
+  ghostSummon: {fileID: 1243690460648069670, guid: 84e9e2c0ca3b88a419bc6fe2f74fe928,
+    type: 3}
+  dashLocation: {fileID: 2126561263816880724}
+  summonLocations:
+  - {fileID: 5120979772874068349}
+  - {fileID: 4457761412291550685}
+  - {fileID: 5412202239678859208}
+  AttackWindupClips:
+  - {fileID: 8300000, guid: 57cae6f3d251b48b9802dd6528ee175f, type: 3}
+  - {fileID: 8300000, guid: 447dee146f06e44b89fd89af0721f59c, type: 3}
+  - {fileID: 8300000, guid: 456cd57886ee54a85977bfa3a3f19782, type: 3}
+  AttackDashClips:
+  - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
+  AttackWaitAfterDashClips:
+  - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
 --- !u!1 &2126561263528975226
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +429,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126561263816880724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.1332}
+  m_LocalPosition: {x: -0, y: 0, z: 0.0868}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -644,6 +654,37 @@ Transform:
   m_Father: {fileID: 6084788223921883322}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4457761412291550685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2094867421526940387}
+  m_Layer: 0
+  m_Name: SummonLocation2
+  m_TagString: GhostDashLocation
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2094867421526940387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4457761412291550685}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0439, y: 0, z: -0.0025}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1876216876271927452}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4658226217438860145
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,8 +709,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4658226217438860145}
   m_LocalRotation: {x: 0, y: 0, z: 0.7030315, w: 0.71115875}
-  m_LocalPosition: {x: 0.000013182411, y: 0.04384672, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.0001, y: 0.0343, z: 0}
+  m_LocalScale: {x: 1.3811, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9096710237081310470}
@@ -701,7 +742,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4893270892772004645}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0.0053, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -770,6 +811,37 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.009511984, y: -0.00037711672, z: -0.00021887943}
     m_Extent: {x: 0.01223172, y: 0.013921265, z: 0.0101192035}
   m_DirtyAABB: 0
+--- !u!1 &5120979772874068349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5914860049473100058}
+  m_Layer: 0
+  m_Name: SummonLocation1
+  m_TagString: GhostDashLocation
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5914860049473100058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5120979772874068349}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0.0315}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1876216876271927452}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5399703444154453937
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,6 +872,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2020534460051116112}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5412202239678859208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 147356995758012168}
+  m_Layer: 0
+  m_Name: SummonLocation3
+  m_TagString: GhostDashLocation
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &147356995758012168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5412202239678859208}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0397, y: 0, z: -0.0013}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1876216876271927452}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6476851492336093848
 GameObject:
