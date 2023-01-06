@@ -210,7 +210,8 @@ public class EnemyGhostBossScript : MonoBehaviour
 
             Instantiate(summons[i]);
         }
-
+        
+        summons.Clear();
 
         attacksBeforSummon = amountOfAttacks;
         agent.speed = baseMoveSpeed;
