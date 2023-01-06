@@ -14,12 +14,16 @@ public class SceneTransition : MonoBehaviour
     [SerializeField] private Canvas fadeCanvas;
     private Animator animator;
 
+    private GameObject UpgradeScreen;
+
+
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         enemyHolder = GameObject.FindGameObjectWithTag("EnemyHolder");
         animator = fadeCanvas.GetComponent<Animator>();
+        UpgradeScreen = GameObject.FindGameObjectWithTag("UpgradeScreen");
     }
 
     private void Update()
@@ -52,6 +56,8 @@ public class SceneTransition : MonoBehaviour
     private IEnumerator Transition()
     {
         DontDestroyOnLoad(gameObject);
+
+        UpgradeScreen.SetActive(true);
 
         yield return new WaitForSeconds(0.5f);
         yield return SceneManager.LoadSceneAsync(sceneName);

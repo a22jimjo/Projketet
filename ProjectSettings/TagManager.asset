@@ -16,6 +16,7 @@ TagManager:
   - HUD
   - DeathScreen
   - TryAgainButton
+  - UpgradeScreen
   layers:
   - Default
   - TransparentFX
