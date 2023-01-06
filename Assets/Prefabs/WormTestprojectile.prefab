@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6884730d83b7ee4891bd2270e932b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 8
   destroyDelay: 0
   destoryOnContact: 1
   freezeOnContact: 0

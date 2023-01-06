@@ -11,8 +11,10 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("Characters health points")]
     public float health;
     public float maxHealth = 3;
+    public float defenceModifier = 1;
     public float damage;
     public float heavyDamage;
+
     [SerializeField] private AudioClip[] DeathClips;
 
     private AudioSource audioSource;
@@ -43,7 +45,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (_ThirdPersonController.TakeDamage())
         {
-            health -= damageAmount;
+            health -= damageAmount * defenceModifier;
             StartCoroutine(SlowDownABit());
             _healthbar.UpdateHealthBar(maxHealth, health);
 
@@ -104,7 +106,7 @@ public class PlayerStats : MonoBehaviour
         spawnPoint = GameObject.FindGameObjectWithTag("PlayerStartPosition");
         gameObject.transform.position = spawnPoint.transform.position;
         gameObject.SetActive(true);
-        _ThirdPersonController.MoveSpeed = _ThirdPersonController.MoveSpeed = 4;
+        //_ThirdPersonController.MoveSpeed = _ThirdPersonController.MoveSpeed = 4;
 
         //reset health values
         health = maxHealth;
