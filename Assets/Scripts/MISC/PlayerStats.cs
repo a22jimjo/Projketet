@@ -81,7 +81,7 @@ public class PlayerStats : MonoBehaviour
 
         //enable deathscreen
         deathScreen.SetActive(true);
-
+        _ThirdPersonController.invincible = false;
         //disable anim
         animator.SetBool("Death", false);
         //loads startsceen
