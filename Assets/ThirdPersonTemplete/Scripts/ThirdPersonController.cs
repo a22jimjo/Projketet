@@ -380,56 +380,62 @@ namespace StarterAssets
         //Checks attack input and does whatever we want attack to do
         private void AttackTest()
         {
-            //Step 1: Check attack input and cooldowns
-            if (_input.attack && (_attackTime <= 0))
+            if (!invincible)
             {
-                AttackRotation();
-                _animator.SetBool(_animIdSlashSlashAttackAni, true);
-                _attackTime = AttackCooldown;
-                _damageTime = DamageCooldown;
-                _slowDown = true;
-                _audio.PlayOneShot(FastAttackAudioClips[Random.Range(0, FastAttackAudioClips.Length)], FastAttackAudioVolume);
-                _input.attack = false;
-            }
-            else if (_input.heavyAttack && (_attackTime <= 0))
-            {
-                AttackRotation();
-                _animator.SetBool(_animIdAttackForwardAni, true);
-                _attackTime = HeavyAttackCooldown;
-                _damageTime = HeavyAttackDamageCooldown;
-                _fixedPosition = true;
-                if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.heavyAttack = true;
-                _audio.PlayOneShot(HeavyAttackAudioClips[Random.Range(0, HeavyAttackAudioClips.Length)], HeavyAttackAudioVolume);
-                _input.heavyAttack = false;
-            }
-            else
-            {
-                _damageTime -= Time.deltaTime;
-                _attackTime -= Time.deltaTime;
-                _animator.SetBool(_animIdSlashSlashAttackAni, false);
-                _animator.SetBool(_animIdAttackForwardAni, false);
-            }
-            
-            //Step 2: Remove input
-
-            //Step 3: Check if the attack is done
-            if (_attackTime <= 0)
-            {
-                if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false; sword.heavyAttack = false;
-                _slowDown = false;
-            }
-            else if (_damageTime < 0)
-            {
-                if (_sword.TryGetComponent<Sword>(out Sword sword) && _damageTime > -10)
+                //Step 1: Check attack input and cooldowns
+                if (_input.attack && (_attackTime <= 0))
                 {
-                    Debug.Log("AHAHHAHA");
-                    sword.attacking = true;
-                    sword.Vfx();
-                    _fixedPosition = false;
-                    _damageTime = -10;
+                    AttackRotation();
+                    _animator.SetBool(_animIdSlashSlashAttackAni, true);
+                    _attackTime = AttackCooldown;
+                    _damageTime = DamageCooldown;
+                    _slowDown = true;
+                    _audio.PlayOneShot(FastAttackAudioClips[Random.Range(0, FastAttackAudioClips.Length)],
+                        FastAttackAudioVolume);
+                    _input.attack = false;
                 }
+                else if (_input.heavyAttack && (_attackTime <= 0))
+                {
+                    AttackRotation();
+                    _animator.SetBool(_animIdAttackForwardAni, true);
+                    _attackTime = HeavyAttackCooldown;
+                    _damageTime = HeavyAttackDamageCooldown;
+                    _fixedPosition = true;
+                    if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.heavyAttack = true;
+                    _audio.PlayOneShot(HeavyAttackAudioClips[Random.Range(0, HeavyAttackAudioClips.Length)],
+                        HeavyAttackAudioVolume);
+                    _input.heavyAttack = false;
+                }
+                else
+                {
+                    _damageTime -= Time.deltaTime;
+                    _attackTime -= Time.deltaTime;
+                    _animator.SetBool(_animIdSlashSlashAttackAni, false);
+                    _animator.SetBool(_animIdAttackForwardAni, false);
+                }
+
+                //Step 2: Remove input
+
+                //Step 3: Check if the attack is done
+                if (_attackTime <= 0)
+                {
+                    if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.attacking = false;
+                    sword.heavyAttack = false;
+                    _slowDown = false;
+                }
+                else if (_damageTime < 0)
+                {
+                    if (_sword.TryGetComponent<Sword>(out Sword sword) && _damageTime > -10)
+                    {
+                        Debug.Log("AHAHHAHA");
+                        sword.attacking = true;
+                        sword.Vfx();
+                        _fixedPosition = false;
+                        _damageTime = -10;
+                    }
+                }
+                //else AttackRotation();
             }
-            //else AttackRotation();
         }
 
         public bool TakeDamage()
