@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 public class EnemyGhostBossScript : MonoBehaviour
@@ -40,6 +41,7 @@ public class EnemyGhostBossScript : MonoBehaviour
 
     [SerializeField] private GameObject dashLocation;
     [SerializeField]private List<GameObject> summonLocations;
+    [SerializeField] private VisualEffect summonEffect;
 
     [Tooltip("Sound starting when the windup animation start")]
     [SerializeField] private AudioClip[] AttackWindupClips;
@@ -51,7 +53,9 @@ public class EnemyGhostBossScript : MonoBehaviour
     private bool dashing = false;
     private bool summoning = false;
     private float attacksBeforSummon;
-
+    
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -181,13 +185,17 @@ public class EnemyGhostBossScript : MonoBehaviour
     {
         agent.speed = 0;
         summoning = true;
+        animator.SetTrigger("Summoning");
 
-        yield return new WaitForSeconds(1);
-        
-        List<GameObject> summons = new List<GameObject>(2);
-        
-        Debug.Log("Back från ventrilo");
-        
+        for (int i = 0; i <= 2; i++)
+        {
+            summonEffect = Instantiate(summonEffect, summonLocations[i].transform.position, summonLocations[i].transform.rotation);
+            summonEffect.Play();
+        }
+        yield return new WaitForSeconds(2);
+
+        List<GameObject> summons = new List<GameObject>();
+
         NavMeshHit hit;
         for (int i = 0; i <= 2; i++)
         {
@@ -197,16 +205,12 @@ public class EnemyGhostBossScript : MonoBehaviour
                 {
                     summons.Add(ghostSummon);
                     summons[i].transform.position = summonLocations[i].transform.position;
-                    Debug.Log("Testar summona");
-                }
-                else
-                {
-                    Debug.Log("Summonar inte");
                 }
             }
 
             Instantiate(summons[i]);
         }
+
 
         attacksBeforSummon = amountOfAttacks;
         agent.speed = baseMoveSpeed;
