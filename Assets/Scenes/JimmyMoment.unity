@@ -2249,26 +2249,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0271df749728104eac22c3d897fd8ce, type: 3}
---- !u!1 &807010470 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5570702780238186538, guid: b955c4ca59d75c5419b277dfc3335d1a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1334240012}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &807010477
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 807010470}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.43929332
-  m_Height: 1.2981452
-  m_Direction: 1
-  m_Center: {x: -0.034299262, y: 0.43674225, z: -0.075937614}
 --- !u!1001 &830452818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4380,26 +4360,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1442247231262075395, guid: b955c4ca59d75c5419b277dfc3335d1a,
-        type: 3}
-      propertyPath: maxHealth
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1442247231262075395, guid: b955c4ca59d75c5419b277dfc3335d1a,
-        type: 3}
-      propertyPath: _healthbar
-      value: 
-      objectReference: {fileID: 1807730452}
-    - target: {fileID: 3788491750731627593, guid: b955c4ca59d75c5419b277dfc3335d1a,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 43737fa5ed658864389947cc038dacad, type: 2}
-    - target: {fileID: 3871337228541885957, guid: b955c4ca59d75c5419b277dfc3335d1a,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 43737fa5ed658864389947cc038dacad, type: 2}
     - target: {fileID: 3897323370698328569, guid: b955c4ca59d75c5419b277dfc3335d1a,
         type: 3}
       propertyPath: m_Name
@@ -6400,18 +6360,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &1807730452 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6220045024019928315, guid: b955c4ca59d75c5419b277dfc3335d1a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1334240012}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ce4dc457295034b84abd4a829f4d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1892936335
 Mesh:
   m_ObjectHideFlags: 0

@@ -2620,7 +2620,7 @@ Animator:
   m_GameObject: {fileID: 3216009184987774096}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 10b210e23e642a34d9f38e108778308d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 836efc6bd1a2c0b43890196593a739ce, type: 2}
+  m_Controller: {fileID: 9100000, guid: 43737fa5ed658864389947cc038dacad, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -3388,7 +3388,7 @@ Animator:
   m_GameObject: {fileID: 3806673211542791929}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 10b210e23e642a34d9f38e108778308d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 836efc6bd1a2c0b43890196593a739ce, type: 2}
+  m_Controller: {fileID: 9100000, guid: 43737fa5ed658864389947cc038dacad, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5119,6 +5119,7 @@ GameObject:
   - component: {fileID: 3833961595675602639}
   - component: {fileID: 8446952297617610400}
   - component: {fileID: 854252934583998041}
+  - component: {fileID: 807010477}
   m_Layer: 0
   m_Name: WormBoss (1)
   m_TagString: Untagged
@@ -5160,7 +5161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 5
+  maxHealth: 20
   damage: 1
   HurtClips:
   - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
@@ -5178,7 +5179,7 @@ MonoBehaviour:
   DeathClips:
   - {fileID: 8300000, guid: 925b8f51f04f843329eb0080320efc55, type: 3}
   DelayUntilDestroy: 1
-  _healthbar: {fileID: 0}
+  _healthbar: {fileID: 6220045024019928315}
 --- !u!195 &6809857391233226126
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5352,6 +5353,20 @@ MonoBehaviour:
   head2: {fileID: 3806673211542791929}
   isAttacking: 0
   hasDetectedPlayer: 0
+--- !u!136 &807010477
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5570702780238186538}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.43929332
+  m_Height: 1.2981452
+  m_Direction: 1
+  m_Center: {x: -0.034299262, y: 0.43674225, z: -0.075937614}
 --- !u!1 &5628605906629952568
 GameObject:
   m_ObjectHideFlags: 0
