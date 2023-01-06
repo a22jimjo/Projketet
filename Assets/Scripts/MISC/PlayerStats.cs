@@ -69,7 +69,8 @@ public class PlayerStats : MonoBehaviour
     {
         //Play death animation
         animator.SetBool("Death", true);
-        _ThirdPersonController.MoveSpeed = 0;
+        _ThirdPersonController._fixedPosition = true;
+        _ThirdPersonController.invincible = true;
         Debug.Log("Player has died");
         audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)], 1);
         Time.timeScale = 0.25f;
