@@ -2432,7 +2432,7 @@ Transform:
   m_GameObject: {fileID: 3119472240445534195}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.193, y: 0, z: 0.045}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4828228978721597156}
@@ -2559,9 +2559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3094759861977511000}
-  - component: {fileID: 4353377761669874019}
   - component: {fileID: 4779413506735755255}
-  - component: {fileID: 7008738318538862351}
   - component: {fileID: 3871337228541885957}
   - component: {fileID: 8731386376282067096}
   - component: {fileID: 5421102210806019999}
@@ -2579,9 +2577,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3216009184987774096}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.016, y: -0.034, z: -0.016}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.06903587, w: 0.9976142}
+  m_LocalPosition: {x: 0.037, y: -0.086, z: -0.026}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9153995650631690082}
@@ -2589,39 +2587,7 @@ Transform:
   - {fileID: 4648317813096554857}
   m_Father: {fileID: 8287517810562935036}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4353377761669874019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216009184987774096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b309d584f0a97b4ca620c12878c72b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 5
-  damage: 1
-  HurtClips:
-  - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
-  - {fileID: 8300000, guid: 669c9e18c0b9d4755aed1a04af8485ed, type: 3}
-  - {fileID: 8300000, guid: cc1b219d21ea74a3a846d2a77375411d, type: 3}
-  - {fileID: 8300000, guid: 44bc72ea6b49847f4be800f66e44baa7, type: 3}
-  - {fileID: 8300000, guid: 65390b1c78b8f4302adedf4abf8add55, type: 3}
-  - {fileID: 8300000, guid: 5de4cb339b17f4830ba63fb976a8d1eb, type: 3}
-  - {fileID: 8300000, guid: 02f1b7ab30aad435d86c9fff74f345fc, type: 3}
-  - {fileID: 8300000, guid: 854dfe17a4e644a32811472468a09e42, type: 3}
-  - {fileID: 8300000, guid: ec003f7c228864a90b221d667bf47c79, type: 3}
-  - {fileID: 8300000, guid: 0d250505252814aae8e48f2377438190, type: 3}
-  - {fileID: 8300000, guid: 4d36b9ebc1ce6418a8b291e7faf18492, type: 3}
-  - {fileID: 8300000, guid: a39fc4c819dd047828409d488019117a, type: 3}
-  DeathClips:
-  - {fileID: 8300000, guid: 925b8f51f04f843329eb0080320efc55, type: 3}
-  DelayUntilDestroy: 1
-  _healthbar: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 7.917}
 --- !u!195 &4779413506735755255
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2644,20 +2610,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
---- !u!136 &7008738318538862351
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216009184987774096}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!95 &3871337228541885957
 Animator:
   serializedVersion: 4
@@ -2667,7 +2619,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3216009184987774096}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 10b210e23e642a34d9f38e108778308d, type: 3}
   m_Controller: {fileID: 9100000, guid: 836efc6bd1a2c0b43890196593a739ce, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -2807,7 +2759,6 @@ MonoBehaviour:
   firePoint: {fileID: 4648317813096554857}
   isAttacking: 0
   hasDetectedPlayer: 0
-  Ismoving: 0
 --- !u!1 &3238551803936221168
 GameObject:
   m_ObjectHideFlags: 0
@@ -3279,9 +3230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4828228978721597156}
-  - component: {fileID: 1036136036488665746}
   - component: {fileID: 6503442790895896403}
-  - component: {fileID: 9136256195901678107}
   - component: {fileID: 5037429827540916129}
   - component: {fileID: 3788491750731627593}
   - component: {fileID: 5195464257792784929}
@@ -3299,9 +3248,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3806673211542791929}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.061, y: -0.056, z: -0.232}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.023747787, w: 0.999718}
+  m_LocalPosition: {x: 0.033, y: -0.111, z: -0.32}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4905270969422686025}
@@ -3309,39 +3258,7 @@ Transform:
   - {fileID: 4945286878405250732}
   m_Father: {fileID: 8287517810562935036}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1036136036488665746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3806673211542791929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b309d584f0a97b4ca620c12878c72b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 5
-  damage: 1
-  HurtClips:
-  - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
-  - {fileID: 8300000, guid: 669c9e18c0b9d4755aed1a04af8485ed, type: 3}
-  - {fileID: 8300000, guid: cc1b219d21ea74a3a846d2a77375411d, type: 3}
-  - {fileID: 8300000, guid: 44bc72ea6b49847f4be800f66e44baa7, type: 3}
-  - {fileID: 8300000, guid: 65390b1c78b8f4302adedf4abf8add55, type: 3}
-  - {fileID: 8300000, guid: 5de4cb339b17f4830ba63fb976a8d1eb, type: 3}
-  - {fileID: 8300000, guid: 02f1b7ab30aad435d86c9fff74f345fc, type: 3}
-  - {fileID: 8300000, guid: 854dfe17a4e644a32811472468a09e42, type: 3}
-  - {fileID: 8300000, guid: ec003f7c228864a90b221d667bf47c79, type: 3}
-  - {fileID: 8300000, guid: 0d250505252814aae8e48f2377438190, type: 3}
-  - {fileID: 8300000, guid: 4d36b9ebc1ce6418a8b291e7faf18492, type: 3}
-  - {fileID: 8300000, guid: a39fc4c819dd047828409d488019117a, type: 3}
-  DeathClips:
-  - {fileID: 8300000, guid: 925b8f51f04f843329eb0080320efc55, type: 3}
-  DelayUntilDestroy: 1
-  _healthbar: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.722}
 --- !u!195 &6503442790895896403
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3364,20 +3281,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
---- !u!136 &9136256195901678107
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3806673211542791929}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!82 &5037429827540916129
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3484,7 +3387,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3806673211542791929}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 10b210e23e642a34d9f38e108778308d, type: 3}
   m_Controller: {fileID: 9100000, guid: 836efc6bd1a2c0b43890196593a739ce, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -3527,7 +3430,6 @@ MonoBehaviour:
   firePoint: {fileID: 4945286878405250732}
   isAttacking: 0
   hasDetectedPlayer: 0
-  Ismoving: 0
 --- !u!1 &3894734386333157603
 GameObject:
   m_ObjectHideFlags: 0
@@ -3571,9 +3473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4421904094373679939}
-  - component: {fileID: -1390449893225754472}
   - component: {fileID: 5303229308377070098}
-  - component: {fileID: 434051282222982494}
   - component: {fileID: 1843425464}
   m_Layer: 0
   m_Name: WormBoss
@@ -3599,38 +3499,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
---- !u!114 &-1390449893225754472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3897323370698328569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b309d584f0a97b4ca620c12878c72b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 5
-  damage: 1
-  HurtClips:
-  - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
-  - {fileID: 8300000, guid: 669c9e18c0b9d4755aed1a04af8485ed, type: 3}
-  - {fileID: 8300000, guid: cc1b219d21ea74a3a846d2a77375411d, type: 3}
-  - {fileID: 8300000, guid: 44bc72ea6b49847f4be800f66e44baa7, type: 3}
-  - {fileID: 8300000, guid: 65390b1c78b8f4302adedf4abf8add55, type: 3}
-  - {fileID: 8300000, guid: 5de4cb339b17f4830ba63fb976a8d1eb, type: 3}
-  - {fileID: 8300000, guid: 02f1b7ab30aad435d86c9fff74f345fc, type: 3}
-  - {fileID: 8300000, guid: 854dfe17a4e644a32811472468a09e42, type: 3}
-  - {fileID: 8300000, guid: ec003f7c228864a90b221d667bf47c79, type: 3}
-  - {fileID: 8300000, guid: 0d250505252814aae8e48f2377438190, type: 3}
-  - {fileID: 8300000, guid: 4d36b9ebc1ce6418a8b291e7faf18492, type: 3}
-  - {fileID: 8300000, guid: a39fc4c819dd047828409d488019117a, type: 3}
-  DeathClips:
-  - {fileID: 8300000, guid: 925b8f51f04f843329eb0080320efc55, type: 3}
-  DelayUntilDestroy: 1
-  _healthbar: {fileID: 6220045024019928315}
 --- !u!195 &5303229308377070098
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3653,20 +3521,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
---- !u!136 &434051282222982494
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3897323370698328569}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!82 &1843425464
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5262,7 +5116,6 @@ GameObject:
   - component: {fileID: 8287517810562935036}
   - component: {fileID: 1442247231262075395}
   - component: {fileID: 6809857391233226126}
-  - component: {fileID: 2030904720946197025}
   - component: {fileID: 3833961595675602639}
   - component: {fileID: 8446952297617610400}
   - component: {fileID: 854252934583998041}
@@ -5281,8 +5134,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5570702780238186538}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.877, y: 0.076923005, z: -0.065}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.877, y: 0.076923005, z: -0.058}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4243063609211825653}
@@ -5348,20 +5201,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
---- !u!136 &2030904720946197025
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5570702780238186538}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!95 &3833961595675602639
 Animator:
   serializedVersion: 4
@@ -5493,7 +5332,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 4.63
   detectRange: 8
-  baseMoveSpeed: 3.5
   rotationSpeed: 5
   projectileSpeed: 6.5
   canAttack: 1
@@ -5505,12 +5343,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0a098eaf5ec7a4837bda2f536c699c4a, type: 3}
   - {fileID: 8300000, guid: 10bcd67f43fa14b8d977b182094ee58b, type: 3}
   - {fileID: 8300000, guid: adc56149d5b3449e0bef6ff848243bfb, type: 3}
-  canMove: 0
-  moveTimer: 0
-  moveCooldown: 4
-  BurrowDownWait: 0.5
-  BurrowWaitTime: 2
-  BurrowUpWait: 1
   wormBody: {fileID: 1876671297541558942}
   enemyWorm: {fileID: 5570702780238186538}
   projectile: {fileID: 9094491525545543319, guid: 1ae64853632646242b9f0a8cc7e2b5d6,
@@ -5518,7 +5350,6 @@ MonoBehaviour:
   firePoint: {fileID: 2032981603662681167}
   head1: {fileID: 3216009184987774096}
   head2: {fileID: 3806673211542791929}
-  ismoving: 0
   isAttacking: 0
   hasDetectedPlayer: 0
 --- !u!1 &5628605906629952568

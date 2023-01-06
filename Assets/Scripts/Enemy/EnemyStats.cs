@@ -34,6 +34,7 @@ public class EnemyStats : MonoBehaviour
     }
     public void TakeDamage(float damageAmount)
     {
+        Debug.Log($"Worm took {damageAmount} damage, and has {health} health left");
         health -= damageAmount;
         _healthbar.UpdateHealthBar(maxHealth, health);
 

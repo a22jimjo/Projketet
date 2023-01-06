@@ -122,40 +122,6 @@ public class EnemyWormBossHeadScript : MonoBehaviour
 
     }
 
-    public void CallMove(float a, float b, float c)
-    {
-        StartCoroutine(Move(a, b, c));
-    }
-
-    IEnumerator Move(float BurrowDownWait, float BurrowWaitTime, float BurrowUpWait)
-    {
-        ismoving = true;
-        Debug.Log("Worm should be Moving");
-
-        //Play coming down animation
-        animator.SetTrigger("BurrowDown");
-        yield return new WaitForSeconds(BurrowDownWait);
-        enemyWorm.GetComponent<Collider>().enabled = false;
-        wormBody.SetActive(false);
-
-        //Spawn VFX that follows the enemy, showing the underground location as it travels
-
-        yield return new WaitForSeconds(BurrowWaitTime);
-        Debug.Log("Worm has reached it's destination but after waittime");
-
-        //remove follow vfx, spawn in coming up VFX.
-
-        animator.ResetTrigger("BurrowDown");
-        wormBody.SetActive(true);
-        animator.SetTrigger("BurrowUp");
-        yield return new WaitForSeconds(BurrowUpWait);
-        enemyWorm.GetComponent<Collider>().enabled = true;
-        
-        ismoving = false;
-    }
-
-
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

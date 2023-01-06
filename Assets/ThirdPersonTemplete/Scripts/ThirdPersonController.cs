@@ -280,7 +280,7 @@ namespace StarterAssets
                 if (_dashDuration > 0)
                 {
                     invincible = true;
-                    dash = DashSpeed;
+                    dash = DashSpeed * Time.deltaTime;
                     _dashTime = DashCooldown;
                     _input.dash = false;
                 }

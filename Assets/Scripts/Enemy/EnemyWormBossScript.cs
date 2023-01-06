@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyWormBossScript : MonoBehaviour
 {
-    List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
     GameObject player;
     Animator animator;
@@ -17,9 +16,6 @@ public class EnemyWormBossScript : MonoBehaviour
     [SerializeField] float attackRange;
     [Tooltip("The area where the enemy can detect the player")]
     [SerializeField] float detectRange;
-    [Tooltip("Movement speed of the ghost")]
-    [SerializeField] float baseMoveSpeed;
-    [Tooltip("The speed that the enemy rotates towards it's target")]
     [SerializeField] private float rotationSpeed;
     [Tooltip("The speed at which the projectile travels")]
     [SerializeField] private float projectileSpeed;
@@ -32,14 +28,7 @@ public class EnemyWormBossScript : MonoBehaviour
     [SerializeField] private float waitBetweenAttacks;
     [SerializeField] private float anticipationTime;
     [SerializeField] private AudioClip[] attackClips;
-
-    //Moving
-    [SerializeField] private bool canMove;
-    [SerializeField] private float moveTimer;
-    [SerializeField] private float moveCooldown;
-    [SerializeField] private float BurrowDownWait;
-    [SerializeField] private float BurrowWaitTime;
-    [SerializeField] private float BurrowUpWait;
+    
 
     //[SerializeField] GameObject badring;
     [SerializeField] GameObject wormBody;
@@ -52,8 +41,6 @@ public class EnemyWormBossScript : MonoBehaviour
     private EnemyWormBossHeadScript head1Script;
     private EnemyWormBossHeadScript head2Script;
 
-    //current state
-    [SerializeField] private bool ismoving;
     [SerializeField] private bool isAttacking;
     [SerializeField] private bool hasDetectedPlayer = false;
 
@@ -70,14 +57,8 @@ public class EnemyWormBossScript : MonoBehaviour
         head1Script = head1.GetComponent<EnemyWormBossHeadScript>();
         head2Script = head2.GetComponent<EnemyWormBossHeadScript>();
 
-        agent.speed = baseMoveSpeed;
-
         //sets up patrolstate waypoints
         GameObject go = GameObject.FindGameObjectWithTag("Waypoints");
-        foreach (Transform t in go.transform)
-        {
-            wayPoints.Add(t);
-        }
     }
 
     // Update is called once per frame
@@ -93,23 +74,14 @@ public class EnemyWormBossScript : MonoBehaviour
 
         if (hasDetectedPlayer)
         {
-            //if move timer = move cd && we are not attacking. start moving
-            if (canMove && !isAttacking && !ismoving)
-            {
-                StartCoroutine(Move(BurrowDownWait, BurrowWaitTime, BurrowUpWait));
-                head1Script.CallMove(BurrowDownWait, BurrowWaitTime, BurrowUpWait);
-                head2Script.CallMove(BurrowDownWait, BurrowWaitTime, BurrowUpWait);
-
-            }
-
             //if attack timer = attack cd && we are not moving. start attacking
-            if (canAttack && !ismoving && !isAttacking)
+            if (canAttack && !isAttacking)
             {
                 StartCoroutine(Attack(waitBetweenAttacks, anticipationTime));
 
             }
 
-            if (!isAttacking && !ismoving)
+            if (!isAttacking)
             {
                 //Timer attack
                 if (attackTimer < attackCooldown)
@@ -122,57 +94,10 @@ public class EnemyWormBossScript : MonoBehaviour
                     canAttack = true;
 
                 }
-                //Timer movement
-                if (moveTimer < moveCooldown)
-                {
-                    moveTimer += Time.deltaTime;
-                }
-                else
-                {
-                    moveTimer = moveCooldown;
-                    canMove = true;
-
-                }
             }
         
         }
         
-    }
-
-    IEnumerator Move(float BurrowDownWait, float BurrowWaitTime, float BurrowUpWait)
-    {
-        moveTimer = 0;
-        canMove = false;
-        ismoving = true;
-        Debug.Log("Worm should be Moving");
-
-        //Play coming down animation
-        animator.SetTrigger("BurrowDown");
-        yield return new WaitForSeconds(BurrowDownWait);
-        enemyWorm.GetComponent<Collider>().enabled = false;
-        wormBody.SetActive(false);
-
-        //Set new destination
-        agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
-        Debug.Log("should have set destination");
-
-        //Spawn VFX that follows the enemy, showing the underground location as it travels
-        
-        yield return new WaitForSeconds(BurrowWaitTime);
-        Debug.Log("Worm has reached it's destination but after waittime");
-
-        //remove follow vfx, spawn in coming up VFX.
-
-        animator.ResetTrigger("BurrowDown");
-        wormBody.SetActive(true);
-        animator.SetTrigger("BurrowUp");
-        yield return new WaitForSeconds(BurrowUpWait);
-        enemyWorm.GetComponent<Collider>().enabled = true;
-
-        moveTimer = 0;
-        canMove = false;
-        ismoving = false;
-
     }
 
     IEnumerator Attack(float waitBetweenAttacks, float anticipationTime)
