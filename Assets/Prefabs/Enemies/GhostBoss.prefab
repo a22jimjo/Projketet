@@ -112,8 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 15
-  damage: 3
+  maxHealth: 150
+  damage: 15
   HurtClips:
   - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
   - {fileID: 8300000, guid: 44bc72ea6b49847f4be800f66e44baa7, type: 3}
@@ -280,6 +280,8 @@ MonoBehaviour:
   - {fileID: 5120979772874068349}
   - {fileID: 4457761412291550685}
   - {fileID: 5412202239678859208}
+  summonEffect: {fileID: 2835867548637269344, guid: a6aff3cfe7497ef44a33818f542ebc74,
+    type: 3}
   AttackWindupClips:
   - {fileID: 8300000, guid: 57cae6f3d251b48b9802dd6528ee175f, type: 3}
   - {fileID: 8300000, guid: 447dee146f06e44b89fd89af0721f59c, type: 3}

@@ -198,8 +198,7 @@ public class EnemyGhostBossScript : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         List<GameObject> summons = new List<GameObject>();
-
-        NavMeshHit hit;
+        
         for (int i = 0; i <= 2; i++)
         {
             summons.Add(ghostSummon);
