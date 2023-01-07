@@ -185,12 +185,15 @@ public class EnemyGhostBossScript : MonoBehaviour
     {
         agent.speed = 0;
         summoning = true;
-        animator.SetTrigger("Summoning");
+        animator.SetTrigger("summoning");
+        
+        List<VisualEffect> currentEffects = new List<VisualEffect>();
 
         for (int i = 0; i <= 2; i++)
         {
-            summonEffect = Instantiate(summonEffect, summonLocations[i].transform.position, summonLocations[i].transform.rotation);
-            summonEffect.Play();
+            currentEffects.Add(summonEffect);
+            currentEffects[i] = Instantiate(summonEffect, summonLocations[i].transform.position, summonLocations[i].transform.rotation);
+            currentEffects[i].Play();
         }
         yield return new WaitForSeconds(2);
 
@@ -199,14 +202,8 @@ public class EnemyGhostBossScript : MonoBehaviour
         NavMeshHit hit;
         for (int i = 0; i <= 2; i++)
         {
-            if (NavMesh.SamplePosition(summonLocations[i].transform.position, out hit, 1.0f, NavMesh.AllAreas))
-            {
-                if (hit.hit)
-                {
-                    summons.Add(ghostSummon);
-                    summons[i].transform.position = summonLocations[i].transform.position;
-                }
-            }
+            summons.Add(ghostSummon);
+            summons[i].transform.position = summonLocations[i].transform.position;
 
             Instantiate(summons[i]);
         }
