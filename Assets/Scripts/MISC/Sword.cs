@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -14,20 +15,17 @@ public class Sword : MonoBehaviour
     public VisualEffect VfxSlashPrefab;
     public VisualEffect vfxheavySlashPrefab;
     public GameObject HitMark;
+    private PlayerStats stats;
 
     private VisualEffect currentVfxSlash;
     private VisualEffect currentVfxHeavySlash;
-    private float damage;
-    private float heavyDamage;
 
     // Start is called before the first frame update
     void Start()
     {
         _damaging = GetComponent<DamagingCollider>();
         GameObject player = GameObject.FindWithTag("Player");
-        PlayerStats stats = player.GetComponent<PlayerStats>();
-        damage = stats.damage;
-        heavyDamage = stats.heavyDamage;
+        stats = player.GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -42,8 +40,8 @@ public class Sword : MonoBehaviour
         {
             attacking = false;
             Debug.Log("Hit");
-            if(!heavyAttack)_damaging.CallDamage(other, damage);
-            if(heavyAttack)_damaging.CallDamage(other, heavyDamage);
+            if(!heavyAttack)_damaging.CallDamage(other, stats.damage);
+            if(heavyAttack)_damaging.CallDamage(other, stats.heavyDamage);
             Instantiate(HitMark, other.transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
         }
     }

@@ -57,8 +57,6 @@ public class EnemyWormBossHeadScript : MonoBehaviour
     void Update()
     {
 
-        RotateTowards();
-
         if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange)
         {
             hasDetectedPlayer = true;
@@ -133,14 +131,5 @@ public class EnemyWormBossHeadScript : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, Vector3.forward);
 
-    }
-
-    void RotateTowards()
-    {
-        Debug.Log("rotating towards player");
-
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
 }

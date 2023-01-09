@@ -34,7 +34,6 @@ public class EnemyStats : MonoBehaviour
     }
     public void TakeDamage(float damageAmount)
     {
-        Debug.Log($"Worm took {damageAmount} damage, and has {health} health left");
         health -= damageAmount;
         _healthbar.UpdateHealthBar(maxHealth, health);
 
@@ -54,7 +53,6 @@ public class EnemyStats : MonoBehaviour
     {
         //animator.ResetTrigger("Attack");
         agent.speed = 0;
-        this.GetComponent<Collider>().enabled = false;
         animator.SetBool("isDead", true);
         audioSource.PlayOneShot(HurtClips[Random.Range(0, HurtClips.Length)]);
         audioSource.PlayOneShot(DeathClips[Random.Range(0, DeathClips.Length)], 0.8f);
