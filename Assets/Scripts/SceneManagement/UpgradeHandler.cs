@@ -54,7 +54,7 @@ public class UpgradeHandler : MonoBehaviour
             stats.health = stats.maxHealth;
             stats._healthbar.UpdateHealthBar(stats.maxHealth, stats.health);
         }
-        freePlayer();
+        FreePlayer();
     }
 
     public void IncreaseMaxHealth()
@@ -63,7 +63,7 @@ public class UpgradeHandler : MonoBehaviour
         stats.maxHealth += maxHealthIncrease;
         stats.health += maxHealthIncrease;
         stats._healthbar.UpdateHealthBar(stats.maxHealth, stats.health);
-        freePlayer();
+        FreePlayer();
     }
 
     public void IncreaseAttack()
@@ -73,14 +73,14 @@ public class UpgradeHandler : MonoBehaviour
         stats.damage *= damageModifier;
         stats.heavyDamage *= damageModifier;
         
-        freePlayer();
+        FreePlayer();
     }
 
     public void IncreaseDefence()
     {
         player.TryGetComponent<PlayerStats>(out PlayerStats stats);
         stats.defenceModifier *= defenceModifier;
-        freePlayer();
+        FreePlayer();
     }
     
 
@@ -88,14 +88,14 @@ public class UpgradeHandler : MonoBehaviour
     {
         player.TryGetComponent <ThirdPersonController>(out ThirdPersonController controllerStats);
         controllerStats.MoveSpeed *= speedModifier;
-        freePlayer();
+        FreePlayer();
     }
 
-    private void freePlayer()
+    private void FreePlayer()
     {
         UpgradeScreen.SetActive(false);
         player.GetComponent<ThirdPersonController>()._fixedPosition = false;
         player.GetComponent<ThirdPersonController>().invincible = false;
-        player.GetComponent<ThirdPersonController>().input.attack = false;
+        player.GetComponent<ThirdPersonController>().ClearInputs();
     }
 }

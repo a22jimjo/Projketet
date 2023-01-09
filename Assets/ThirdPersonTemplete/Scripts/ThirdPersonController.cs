@@ -454,6 +454,13 @@ namespace StarterAssets
             return true;
         }
 
+        public void ClearInputs()
+        {
+            input.attack = false;
+            input.dash = false;
+            input.heavyAttack = false;
+        }
+
         private void JumpAndGravity()
         {
             if (Grounded)
