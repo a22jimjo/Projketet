@@ -10,9 +10,12 @@ public class UpgradeHandler : MonoBehaviour
     [SerializeField] private int maxHealthIncrease = 10;
     [SerializeField] private float damageModifier = 1.05f;
     [SerializeField] private float defenceModifier = 1.05f;
+    [SerializeField] private float speedModifier = 1.10f;
+    
 
     private GameObject player;
     private GameObject UpgradeScreen;
+    private PlayerStats _playerStats;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,8 @@ public class UpgradeHandler : MonoBehaviour
     public void EnableScreen()
     {
         UpgradeScreen.SetActive(true);
+        player.GetComponent<ThirdPersonController>()._fixedPosition = true;
+        player.GetComponent<ThirdPersonController>().invincible = true;
     }
 
 
@@ -41,11 +46,15 @@ public class UpgradeHandler : MonoBehaviour
         if (stats.health + healing <= stats.maxHealth)
         {
             stats.health += healing;
+            stats._healthbar.UpdateHealthBar(stats.maxHealth, stats.health);
+            
         }
-        else stats.health = stats.maxHealth;
-
-        UpgradeScreen.SetActive(false);
-
+        else
+        {
+            stats.health = stats.maxHealth;
+            stats._healthbar.UpdateHealthBar(stats.maxHealth, stats.health);
+        }
+        freePlayer();
     }
 
     public void IncreaseMaxHealth()
@@ -53,9 +62,8 @@ public class UpgradeHandler : MonoBehaviour
         player.TryGetComponent<PlayerStats>(out PlayerStats stats);
         stats.maxHealth += maxHealthIncrease;
         stats.health += maxHealthIncrease;
-
-        UpgradeScreen.SetActive(false);
-
+        stats._healthbar.UpdateHealthBar(stats.maxHealth, stats.health);
+        freePlayer();
     }
 
     public void IncreaseAttack()
@@ -64,17 +72,30 @@ public class UpgradeHandler : MonoBehaviour
 
         stats.damage *= damageModifier;
         stats.heavyDamage *= damageModifier;
-
-        UpgradeScreen.SetActive(false);
-
+        
+        freePlayer();
     }
 
     public void IncreaseDefence()
     {
         player.TryGetComponent<PlayerStats>(out PlayerStats stats);
         stats.defenceModifier *= defenceModifier;
+        freePlayer();
+    }
+    
 
+    public void increaseMoveSpeed()
+    {
+        player.TryGetComponent <ThirdPersonController>(out ThirdPersonController controllerStats);
+        controllerStats.MoveSpeed *= speedModifier;
+        freePlayer();
+    }
+
+    private void freePlayer()
+    {
         UpgradeScreen.SetActive(false);
-
+        player.GetComponent<ThirdPersonController>()._fixedPosition = false;
+        player.GetComponent<ThirdPersonController>().invincible = false;
+        player.GetComponent<ThirdPersonController>().input.attack = false;
     }
 }

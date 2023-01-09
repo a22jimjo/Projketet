@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine.UI;
 
 public class SceneTransition : MonoBehaviour
@@ -15,6 +16,7 @@ public class SceneTransition : MonoBehaviour
     private Animator animator;
 
     private UpgradeHandler upgradeHandler;
+    private ThirdPersonController _thirdPersonController;
     private GameObject gameManager;
 
 
@@ -68,7 +70,7 @@ public class SceneTransition : MonoBehaviour
         player.transform.position = spawnPoint.transform.position;
         player.SetActive(true);
         yield return new WaitForSeconds(1.25f);
-        
+
         print("Message from portal in last scene");
         Destroy(gameObject);
     }

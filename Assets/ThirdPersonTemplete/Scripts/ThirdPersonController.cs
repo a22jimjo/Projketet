@@ -140,7 +140,7 @@ namespace StarterAssets
         private Animator _animator;
         private BasicRigidBodyPush _basicRigidBodyPush;
         private CharacterController _controller;
-        private StarterAssetsInputs _input;
+        public StarterAssetsInputs input;
         private GameObject _mainCamera;
         private GameObject _sword;
         private AudioSource _audio;
@@ -181,7 +181,7 @@ namespace StarterAssets
             _sword = GameObject.FindGameObjectWithTag("Sword");
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
-            _input = GetComponent<StarterAssetsInputs>();
+            input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
             _edgeToPlayerCamera = Camera.main.WorldToScreenPoint(transform.position);
@@ -239,13 +239,13 @@ namespace StarterAssets
         private void CameraRotation()
         {
             // if there is an input and camera position is not fixed
-            if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
+            if (input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+                _cinemachineTargetYaw += input.look.x * deltaTimeMultiplier;
+                _cinemachineTargetPitch += input.look.y * deltaTimeMultiplier;
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -262,7 +262,7 @@ namespace StarterAssets
             if (!_fixedPosition && !_slowDown)
             {
                 // set target speed based on move speed, sprint speed and if sprint is pressed
-                float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+                float targetSpeed = input.sprint ? SprintSpeed : MoveSpeed;
 
                 if (_slowDown)
                 {
@@ -271,7 +271,7 @@ namespace StarterAssets
 
                 float dash = 0;
 
-                if ((_input.dash && _dashTime < 0))
+                if ((input.dash && _dashTime < 0))
                 {
                     _dashDuration = DashDuration;
                     _animator.SetTrigger(_animIdDash);
@@ -284,7 +284,7 @@ namespace StarterAssets
                     invincible = true;
                     dash = DashSpeed * Time.deltaTime;
                     _dashTime = DashCooldown;
-                    _input.dash = false;
+                    input.dash = false;
                 }
                 else if(_dashDuration < -0.1) invincible = false;
                 _dashTime -= Time.deltaTime;
@@ -294,14 +294,14 @@ namespace StarterAssets
 
                 // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
                 // if there is no input, set the target speed to 0
-                if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+                if (input.move == Vector2.zero) targetSpeed = 0.0f;
 
                 // a reference to the players current horizontal velocity
                 float currentHorizontalSpeed =
                     new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
                 float speedOffset = 0.1f;
-                float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+                float inputMagnitude = input.analogMovement ? input.move.magnitude : 1f;
 
                 // accelerate or decelerate to target speed
                 if (currentHorizontalSpeed < targetSpeed - speedOffset ||
@@ -324,11 +324,11 @@ namespace StarterAssets
                 if (_animationBlend < 0.01f) _animationBlend = 0f;
 
                 // normalise input direction
-                Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+                Vector3 inputDirection = new Vector3(input.move.x, 0.0f, input.move.y).normalized;
 
                 // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
                 // if there is a move input rotate player when the player is moving
-                if (_input.move != Vector2.zero)
+                if (input.move != Vector2.zero)
                 {
                     _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                                       _mainCamera.transform.eulerAngles.y;
@@ -372,7 +372,7 @@ namespace StarterAssets
         private void AttackRotation()
         {
             // rotate to face input direction relative to camera position
-            Vector3 relativePos = new Vector3(_input.see.x, 0f, _input.see.y -60)- _edgeToPlayerCamera;
+            Vector3 relativePos = new Vector3(input.see.x, 0f, input.see.y -60)- _edgeToPlayerCamera;
          
             Quaternion rotation = Quaternion.LookRotation(relativePos);
             transform.rotation = rotation;
@@ -385,7 +385,7 @@ namespace StarterAssets
             if (!invincible)
             {
                 //Step 1: Check attack input and cooldowns
-                if (_input.attack && (_attackTime <= 0))
+                if (input.attack && (_attackTime <= 0))
                 {
                     AttackRotation();
                     _animator.SetBool(_animIdSlashSlashAttackAni, true);
@@ -395,9 +395,9 @@ namespace StarterAssets
                     _slowDownTimer = SlowDownTime;
                     _audio.PlayOneShot(FastAttackAudioClips[Random.Range(0, FastAttackAudioClips.Length)],
                         FastAttackAudioVolume);
-                    _input.attack = false;
+                    input.attack = false;
                 }
-                else if (_input.heavyAttack && (_attackTime <= 0))
+                else if (input.heavyAttack && (_attackTime <= 0))
                 {
                     AttackRotation();
                     _animator.SetBool(_animIdAttackForwardAni, true);
@@ -407,7 +407,7 @@ namespace StarterAssets
                     if (_sword.TryGetComponent<Sword>(out Sword sword)) sword.heavyAttack = true;
                     _audio.PlayOneShot(HeavyAttackAudioClips[Random.Range(0, HeavyAttackAudioClips.Length)],
                         HeavyAttackAudioVolume);
-                    _input.heavyAttack = false;
+                    input.heavyAttack = false;
                 }
                 else
                 {
