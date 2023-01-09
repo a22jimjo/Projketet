@@ -113,10 +113,11 @@ public class EnemyGolem : MonoBehaviour
         attackPoint.SetActive(true);
         attackEffectToPlay = Instantiate(attackVFXPrefab, attackPoint.transform.position,attackPoint.transform.rotation);
         attackEffectToPlay.Play();
+        yield return new WaitForSeconds(0.1f);
+        attackPoint.SetActive(false);
         //Sound as dash has ended
 
         yield return new WaitForSeconds(delayAfterAttack);
-        attackPoint.SetActive(false);
         RotateTowards();
         agent.speed = baseMoveSpeed;
         isAttacking = false;
