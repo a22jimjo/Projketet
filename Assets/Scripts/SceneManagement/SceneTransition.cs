@@ -14,8 +14,8 @@ public class SceneTransition : MonoBehaviour
     [SerializeField] private Canvas fadeCanvas;
     private Animator animator;
 
-    private GameObject UpgradeScreen;
-
+    private UpgradeHandler upgradeHandler;
+    private GameObject gameManager;
 
 
     private void Start()
@@ -23,7 +23,9 @@ public class SceneTransition : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         enemyHolder = GameObject.FindGameObjectWithTag("EnemyHolder");
         animator = fadeCanvas.GetComponent<Animator>();
-        UpgradeScreen = GameObject.FindGameObjectWithTag("UpgradeScreen");
+
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        upgradeHandler = gameManager.GetComponent<UpgradeHandler>();
     }
 
     private void Update()
@@ -57,7 +59,7 @@ public class SceneTransition : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
-        UpgradeScreen.SetActive(true);
+        upgradeHandler.EnableScreen();
 
         yield return new WaitForSeconds(0.5f);
         yield return SceneManager.LoadSceneAsync(sceneName);

@@ -605,11 +605,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1898754583749290990, guid: f4e69c963209e814abada3df33185e4f,
         type: 3}
-      propertyPath: objectsToPersist.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1898754583749290990, guid: f4e69c963209e814abada3df33185e4f,
-        type: 3}
       propertyPath: objectsToPersist.Array.data[1]
       value: 
       objectReference: {fileID: 548927983}
@@ -642,16 +637,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 5662953810128747834, guid: f4e69c963209e814abada3df33185e4f,
-        type: 3}
-      propertyPath: healing
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5662953810128747834, guid: f4e69c963209e814abada3df33185e4f,
-        type: 3}
-      propertyPath: maxHealthIncrease
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4e69c963209e814abada3df33185e4f, type: 3}
@@ -8400,6 +8385,11 @@ PrefabInstance:
       propertyPath: fadeCanvas
       value: 
       objectReference: {fileID: 871770015}
+    - target: {fileID: 7608611028804385784, guid: f4e11790c060cb745a245dc63823644d,
+        type: 3}
+      propertyPath: upgradeHandler
+      value: 
+      objectReference: {fileID: 1466775333}
     - target: {fileID: 8356028213616055851, guid: f4e11790c060cb745a245dc63823644d,
         type: 3}
       propertyPath: m_Name

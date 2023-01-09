@@ -28,6 +28,12 @@ public class UpgradeHandler : MonoBehaviour
 
     }
 
+    public void EnableScreen()
+    {
+        UpgradeScreen.SetActive(true);
+    }
+
+
     public void RestoreHealth()
     {
         player.TryGetComponent<PlayerStats>(out PlayerStats stats);
