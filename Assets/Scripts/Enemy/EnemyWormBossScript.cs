@@ -10,6 +10,7 @@ public class EnemyWormBossScript : MonoBehaviour
     Animator animator;
     Rigidbody rb;
     AudioSource audioSource;
+    private EnemyStats stats;
 
     //Movement
     [Tooltip("The minimum distance between the character and it's target to attack")]
@@ -56,6 +57,7 @@ public class EnemyWormBossScript : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         head1Script = head1.GetComponent<EnemyWormBossHeadScript>();
         head2Script = head2.GetComponent<EnemyWormBossHeadScript>();
+        stats = GetComponent<EnemyStats>();
 
         //sets up patrolstate waypoints
         GameObject go = GameObject.FindGameObjectWithTag("Waypoints");
