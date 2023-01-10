@@ -28,7 +28,6 @@ public class DamagingCollider : MonoBehaviour
             if (other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent))
             {
                 enemyComponent.TakeDamage(dmg);
-                Debug.Log(gameObject.name + " Has dealt " + dmg + " damage");
                 if (freezeOnContact) Freeze();
                 if (destoryOnContact) Destroy(gameObject, destroyDelay);
                 //if (other.gameObject.TryGetComponent<Knockback>(out Knockback knocked) && knockback) knocked.PushRigidBdy(rb);
@@ -42,7 +41,6 @@ public class DamagingCollider : MonoBehaviour
                 playerComponent.TakeDamage(dmg);
                 if (freezeOnContact) Freeze();
                 if (destoryOnContact) Destroy(gameObject, destroyDelay);
-                Debug.Log(gameObject.name + " Has taken " + dmg + " damage");
 
             }
         }

@@ -16,6 +16,7 @@ public class EnemyBossGolem : MonoBehaviour
     private VisualEffect attackEffectToPlay;
     [SerializeField] GameObject attackPoint;
     [SerializeField] GameObject attackPoint2;
+    [SerializeField] GameObject attackPointOneHand;
     [SerializeField] Collider attackCollider;
 
     
@@ -107,7 +108,6 @@ public class EnemyBossGolem : MonoBehaviour
     
         IEnumerator Attack()
     {
-        Debug.Log("Golem attacks player");
         isAttacking = true;
         //stop movement briefly
         agent.speed = 0;
@@ -120,22 +120,26 @@ public class EnemyBossGolem : MonoBehaviour
         //Sound as windup animation end
         yield return new WaitForSeconds(attackDuration);
         attackPoint.SetActive(true);
+        attackPoint2.SetActive(true);
         attackEffectToPlay = Instantiate(attackVFXPrefab, attackPoint.transform.position,attackPoint.transform.rotation);
+        attackEffectToPlay.Play();
+        attackEffectToPlay = Instantiate(attackVFXPrefab, attackPoint2.transform.position,attackPoint2.transform.rotation);
         attackEffectToPlay.Play();
         audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)], attackVoulume);
         yield return new WaitForSeconds(0.1f);
         attackPoint.SetActive(false);
+        attackPoint2.SetActive(false);
         //Sound as dash has ended
         
         yield return new WaitForSeconds(delayAfterAttack);
         animator.SetTrigger("Onehand");
         yield return new WaitForSeconds(oneHandAttackDuration);
-        attackPoint2.SetActive(true);
-        attackEffectToPlay = Instantiate(attackVfxOneHandPrefab, attackPoint2.transform.position,attackPoint2.transform.rotation);
+        attackPointOneHand.SetActive(true);
+        attackEffectToPlay = Instantiate(attackVfxOneHandPrefab, attackPointOneHand.transform.position,attackPointOneHand.transform.rotation);
         attackEffectToPlay.Play();
         audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)], attackVoulume);
         yield return new WaitForSeconds(0.1f);
-        attackPoint2.SetActive(false);
+        attackPointOneHand.SetActive(false);
             
         yield return new WaitForSeconds(delayAfterAttack);
         agent.speed = baseMoveSpeed;
@@ -159,7 +163,6 @@ public class EnemyBossGolem : MonoBehaviour
 
     void RotateTowards(float bonusSpeed)
     {
-        Debug.Log("rotating towards player");
 
         Vector3 direction = (player.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);

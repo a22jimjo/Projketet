@@ -122,7 +122,6 @@ public class EnemyGhostScript : MonoBehaviour
     IEnumerator Attack(float waitTime, float waitTime2, float waitTime3)
     {
         agent.avoidancePriority = 49;
-        Debug.Log("enemy attacks player");
         isAttacking = true;
         //stop movement briefly
         agent.speed = 0;
@@ -137,7 +136,6 @@ public class EnemyGhostScript : MonoBehaviour
         {
             if (hit.hit)
             {
-                Debug.Log("The destination is valid");
                 // The destination is valid and the agent can navigate to it
                 agent.destination = dashLocation.transform.position;
 
@@ -145,7 +143,6 @@ public class EnemyGhostScript : MonoBehaviour
             else
             {
                 // The destination is not valid and the agent cannot navigate to it
-                Debug.Log("The destination is not valid and the agent cannot navigate to it, attacks player position instead");
                 agent.destination = player.transform.position;
             }
         }
@@ -196,14 +193,11 @@ public class EnemyGhostScript : MonoBehaviour
         if (dashing)
         {
             damagingCollider.CallDamage(other, GetComponent<EnemyStats>().damage);
-            Console.WriteLine("Hit while dashing");
         }
     }
 
     void RotateTowards()
     {
-        Debug.Log("rotating towards player");
-
         Vector3 direction = (player.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
@@ -213,7 +207,6 @@ public class EnemyGhostScript : MonoBehaviour
     {
         agent.speed = baseMoveSpeed;
         isAttacking = false;
-        Debug.Log("Stopping coroutine");
         StopCoroutine(Attack(delayBeforeAttack, dashDuration, delayAfterAttack));
     }
 }

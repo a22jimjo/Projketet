@@ -435,7 +435,6 @@ namespace StarterAssets
                 {
                     if (_sword.TryGetComponent<Sword>(out Sword sword) && _damageTime > -10)
                     {
-                        Debug.Log("AHAHHAHA");
                         sword.attacking = true;
                         sword.Vfx();
                         _fixedPosition = false;

@@ -100,7 +100,6 @@ public class EnemyWormBossScript : MonoBehaviour
 
     IEnumerator Attack(float waitBetweenAttacks, float anticipationTime)
     {
-        Debug.Log("enemy attacks player");
         isAttacking = true;
 
         //reset timers
@@ -144,8 +143,6 @@ public class EnemyWormBossScript : MonoBehaviour
 
     void RotateTowards()
     {
-        Debug.Log("rotating towards player");
-
         Vector3 direction = (player.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
