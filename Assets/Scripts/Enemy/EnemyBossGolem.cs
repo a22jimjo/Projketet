@@ -12,8 +12,10 @@ public class EnemyBossGolem : MonoBehaviour
     Rigidbody rb;
     AudioSource audioSource;
     [SerializeField] VisualEffect attackVFXPrefab;
+    [SerializeField] VisualEffect attackVfxOneHandPrefab;
     private VisualEffect attackEffectToPlay;
     [SerializeField] GameObject attackPoint;
+    [SerializeField] GameObject attackPoint2;
     [SerializeField] Collider attackCollider;
 
     
@@ -128,12 +130,12 @@ public class EnemyBossGolem : MonoBehaviour
         yield return new WaitForSeconds(delayAfterAttack);
         animator.SetTrigger("Onehand");
         yield return new WaitForSeconds(oneHandAttackDuration);
-        attackPoint.SetActive(true);
-        attackEffectToPlay = Instantiate(attackVFXPrefab, attackPoint.transform.position,attackPoint.transform.rotation);
+        attackPoint2.SetActive(true);
+        attackEffectToPlay = Instantiate(attackVfxOneHandPrefab, attackPoint2.transform.position,attackPoint2.transform.rotation);
         attackEffectToPlay.Play();
         audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)], attackVoulume);
         yield return new WaitForSeconds(0.1f);
-        attackPoint.SetActive(false);
+        attackPoint2.SetActive(false);
             
         yield return new WaitForSeconds(delayAfterAttack);
         agent.speed = baseMoveSpeed;
