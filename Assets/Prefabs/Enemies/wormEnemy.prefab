@@ -1378,7 +1378,7 @@ GameObject:
   - component: {fileID: 1843425464}
   m_Layer: 0
   m_Name: wormEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1422,7 +1422,7 @@ MonoBehaviour:
   rotationSpeed: 5
   projectileSpeed: 6.5
   canAttack: 0
-  attackTimer: 0
+  attackTimer: 1.5
   attackCooldown: 2
   waitBetweenAttacks: 0.6
   anticipationTime: 0.7
@@ -1431,7 +1431,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 10bcd67f43fa14b8d977b182094ee58b, type: 3}
   - {fileID: 8300000, guid: adc56149d5b3449e0bef6ff848243bfb, type: 3}
   canMove: 0
-  moveTimer: 0
+  moveTimer: 3
   moveCooldown: 4
   BurrowDownWait: 0.5
   BurrowWaitTime: 2
@@ -1441,6 +1441,7 @@ MonoBehaviour:
   projectile: {fileID: 9094491525545543319, guid: 1ae64853632646242b9f0a8cc7e2b5d6,
     type: 3}
   firePoint: {fileID: 1865004716}
+  Waypoints: {fileID: 0}
   ismoving: 0
   isAttacking: 0
   hasDetectedPlayer: 0

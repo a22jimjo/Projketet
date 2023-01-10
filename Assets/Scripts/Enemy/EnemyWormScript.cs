@@ -46,6 +46,7 @@ public class EnemyWormScript : MonoBehaviour
     [SerializeField] GameObject enemyWorm;
     [SerializeField] GameObject projectile;
     [SerializeField] Transform firePoint;
+    [SerializeField] GameObject Waypoints;
 
     //current state
     [SerializeField] private bool ismoving;
@@ -66,10 +67,14 @@ public class EnemyWormScript : MonoBehaviour
         agent.speed = baseMoveSpeed;
 
         //sets up patrolstate waypoints
-        GameObject go = GameObject.FindGameObjectWithTag("Waypoints");
+        /*GameObject go = GameObject.FindGameObjectWithTag("Waypoints");
         foreach (Transform t in go.transform)
         {
             wayPoints.Add(t);
+        }*/
+        foreach (Transform t in Waypoints.transform)
+        {
+            wayPoints.Add(t);   
         }
     }
 

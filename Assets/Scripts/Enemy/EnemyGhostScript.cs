@@ -22,6 +22,9 @@ public class EnemyGhostScript : MonoBehaviour
     [Tooltip("Movement speed of the ghost")]
     [SerializeField] float baseMoveSpeed;
 
+    [SerializeField] private bool hasDetectedPlayer = false;
+
+
     //Attacking
     [SerializeField] bool canAttack = true;
     [SerializeField] bool isAttacking;
@@ -64,7 +67,14 @@ public class EnemyGhostScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange && isAttacking == false)
+        if(Vector3.Distance(agent.destination, player.transform.position) <= detectRange)
+        {
+            hasDetectedPlayer = true;
+        }
+
+
+
+        if (isAttacking == false && hasDetectedPlayer == true)
         {
             animator.SetBool("isMoving", true);
             RotateTowards();
