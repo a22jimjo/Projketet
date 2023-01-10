@@ -42,6 +42,7 @@ public class EnemyWormBossScript : MonoBehaviour
 
     [SerializeField] private bool isAttacking;
     [SerializeField] private bool hasDetectedPlayer = false;
+    private bool dead;
 
 
 
@@ -62,40 +63,49 @@ public class EnemyWormBossScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        RotateTowards();
-
-        if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange)
+        if (!dead)
         {
-            hasDetectedPlayer = true;
-        }
 
-        if (hasDetectedPlayer)
-        {
-            //if attack timer = attack cd && we are not moving. start attacking
-            if (canAttack && !isAttacking)
+            RotateTowards();
+            if (stats.health <= 0)
             {
-                StartCoroutine(Attack(waitBetweenAttacks, anticipationTime));
+                dead = true;
+                head1.GetComponent<EnemyWormBossRightHeadScript>().dead = true;
+                head2.GetComponent<EnemyWormBossLeftHeadScript>().dead = true ;
+            }
+
+            if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange)
+            {
+                hasDetectedPlayer = true;
+            }
+
+            if (hasDetectedPlayer)
+            {
+                //if attack timer = attack cd && we are not moving. start attacking
+                if (canAttack && !isAttacking)
+                {
+                    StartCoroutine(Attack(waitBetweenAttacks, anticipationTime));
+
+                }
+
+                if (!isAttacking)
+                {
+                    //Timer attack
+                    if (attackTimer < attackCooldown)
+                    {
+                        attackTimer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        attackTimer = attackCooldown;
+                        canAttack = true;
+
+                    }
+                }
 
             }
 
-            if (!isAttacking)
-            {
-                //Timer attack
-                if (attackTimer < attackCooldown)
-                {
-                    attackTimer += Time.deltaTime;
-                }
-                else
-                {
-                    attackTimer = attackCooldown;
-                    canAttack = true;
-
-                }
-            }
-        
         }
-        
     }
 
     IEnumerator Attack(float waitBetweenAttacks, float anticipationTime)
@@ -115,6 +125,7 @@ public class EnemyWormBossScript : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             GameObject _projectile = Instantiate(projectile, firePoint.position, transform.rotation);
+            _projectile.GetComponent<EnemyProjectile>().damage = stats.damage;
             _projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
             audioSource.PlayOneShot(attackClips[Random.Range(0, attackClips.Length)], attackVolume);
             yield return new WaitForSeconds(waitBetweenAttacks);

@@ -555,7 +555,6 @@ GameObject:
   - component: {fileID: 3871337228541885957}
   - component: {fileID: 8731386376282067096}
   - component: {fileID: 5421102210806019999}
-  - component: {fileID: 1603942033}
   m_Layer: 0
   m_Name: RightHead
   m_TagString: Untagged
@@ -734,7 +733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 4.63
   detectRange: 8
-  rotationSpeed: 1
+  rotationSpeed: 0.6
   projectileSpeed: 6.5
   canAttack: 1
   attackTimer: 0
@@ -753,26 +752,7 @@ MonoBehaviour:
   firePoint: {fileID: 4648317813096554857}
   isAttacking: 0
   hasDetectedPlayer: 0
---- !u!114 &1603942033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216009184987774096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b309d584f0a97b4ca620c12878c72b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 1
-  damage: 8
-  defense: 0
-  HurtClips: []
-  DeathClips: []
-  DelayUntilDestroy: 0
-  _healthbar: {fileID: 6220045024019928315}
+  dead: 0
 --- !u!1 &3487611934101451256
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +841,6 @@ GameObject:
   - component: {fileID: 6503442790895896403}
   - component: {fileID: 5037429827540916129}
   - component: {fileID: 3788491750731627593}
-  - component: {fileID: 1652953292}
   - component: {fileID: 1652953298}
   m_Layer: 0
   m_Name: LeftHead
@@ -1027,26 +1006,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1652953292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3806673211542791929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b309d584f0a97b4ca620c12878c72b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 1
-  damage: 8
-  defense: 0
-  HurtClips: []
-  DeathClips: []
-  DelayUntilDestroy: 0
-  _healthbar: {fileID: 6220045024019928315}
 --- !u!114 &1652953298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,7 +1020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 4.63
   detectRange: 8
-  rotationSpeed: 1
+  rotationSpeed: 0.6
   projectileSpeed: 6.5
   canAttack: 1
   attackTimer: 0
@@ -1080,6 +1039,7 @@ MonoBehaviour:
   firePoint: {fileID: 4945286878405250732}
   isAttacking: 0
   hasDetectedPlayer: 0
+  dead: 0
 --- !u!1 &3897323370698328569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,7 +1360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 360
-  damage: 8
+  damage: 10
   defense: 5
   HurtClips:
   - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
@@ -1417,7 +1377,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a39fc4c819dd047828409d488019117a, type: 3}
   DeathClips:
   - {fileID: 8300000, guid: 925b8f51f04f843329eb0080320efc55, type: 3}
-  DelayUntilDestroy: 1
+  DelayUntilDestroy: 2
   _healthbar: {fileID: 6220045024019928315}
 --- !u!195 &6809857391233226126
 NavMeshAgent:
