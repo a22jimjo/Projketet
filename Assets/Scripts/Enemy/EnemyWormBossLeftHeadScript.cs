@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyWormBossScript : MonoBehaviour
+public class EnemyWormBossLeftHeadScript : MonoBehaviour
 {
     NavMeshAgent agent;
     GameObject player;
     Animator animator;
     Rigidbody rb;
     AudioSource audioSource;
-    private EnemyStats stats;
 
     //Movement
     [Tooltip("The minimum distance between the character and it's target to attack")]
     [SerializeField] float attackRange;
     [Tooltip("The area where the enemy can detect the player")]
     [SerializeField] float detectRange;
+    [Tooltip("The speed that the enemy rotates towards it's target")]
     [SerializeField] private float rotationSpeed;
     [Tooltip("The speed at which the projectile travels")]
     [SerializeField] private float projectileSpeed;
@@ -29,18 +29,17 @@ public class EnemyWormBossScript : MonoBehaviour
     [SerializeField] private float waitBetweenAttacks;
     [SerializeField] private float anticipationTime;
     [SerializeField] private AudioClip[] attackClips;
-    
 
     //[SerializeField] GameObject badring;
     [SerializeField] GameObject wormBody;
     [SerializeField] GameObject enemyWorm;
     [SerializeField] GameObject projectile;
     [SerializeField] Transform firePoint;
-    [SerializeField] GameObject head1;
-    [SerializeField] private GameObject head2;
-
+    
     [SerializeField] private bool isAttacking;
     [SerializeField] private bool hasDetectedPlayer = false;
+
+    private bool ismoving;
 
 
 
@@ -52,16 +51,12 @@ public class EnemyWormBossScript : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        stats = GetComponent<EnemyStats>();
-
-        //sets up patrolstate waypoints
-        GameObject go = GameObject.FindGameObjectWithTag("Waypoints");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
         RotateTowards();
 
         if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange)
@@ -71,14 +66,15 @@ public class EnemyWormBossScript : MonoBehaviour
 
         if (hasDetectedPlayer)
         {
+
             //if attack timer = attack cd && we are not moving. start attacking
-            if (canAttack && !isAttacking)
+            if (canAttack && !ismoving && !isAttacking)
             {
                 StartCoroutine(Attack(waitBetweenAttacks, anticipationTime));
 
             }
 
-            if (!isAttacking)
+            if (!isAttacking && !ismoving)
             {
                 //Timer attack
                 if (attackTimer < attackCooldown)
@@ -115,7 +111,9 @@ public class EnemyWormBossScript : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             GameObject _projectile = Instantiate(projectile, firePoint.position, transform.rotation);
-            _projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
+            GameObject _projectile2 = Instantiate(projectile, firePoint.position, transform.rotation);
+            _projectile.GetComponent<Rigidbody>().AddForce((transform.forward - new Vector3(0.3f,0,0)) * projectileSpeed, ForceMode.Impulse);
+            _projectile2.GetComponent<Rigidbody>().AddForce((transform.forward) * projectileSpeed, ForceMode.Impulse);
             audioSource.PlayOneShot(attackClips[Random.Range(0, attackClips.Length)], 0.5f);
             yield return new WaitForSeconds(waitBetweenAttacks);
         }
@@ -125,8 +123,6 @@ public class EnemyWormBossScript : MonoBehaviour
         isAttacking = false;
 
     }
-
-
 
     private void OnDrawGizmos()
     {
@@ -140,7 +136,7 @@ public class EnemyWormBossScript : MonoBehaviour
         Gizmos.DrawRay(transform.position, Vector3.forward);
 
     }
-
+    
     void RotateTowards()
     {
         Debug.Log("rotating towards player");

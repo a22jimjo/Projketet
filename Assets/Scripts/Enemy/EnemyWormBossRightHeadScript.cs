@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyWormBossHeadScript : MonoBehaviour
+public class EnemyWormBossRightHeadScript : MonoBehaviour
 {
     NavMeshAgent agent;
     GameObject player;
@@ -56,6 +56,8 @@ public class EnemyWormBossHeadScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        RotateTowards();
 
         if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange)
         {
@@ -109,7 +111,9 @@ public class EnemyWormBossHeadScript : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             GameObject _projectile = Instantiate(projectile, firePoint.position, transform.rotation);
-            _projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
+            GameObject _projectile2 = Instantiate(projectile, firePoint.position, transform.rotation);
+            _projectile.GetComponent<Rigidbody>().AddForce((transform.forward - new Vector3(-0.3f,0,0)) * projectileSpeed, ForceMode.Impulse);
+            _projectile2.GetComponent<Rigidbody>().AddForce((transform.forward) * projectileSpeed, ForceMode.Impulse);
             audioSource.PlayOneShot(attackClips[Random.Range(0, attackClips.Length)], 0.5f);
             yield return new WaitForSeconds(waitBetweenAttacks);
         }
@@ -131,5 +135,14 @@ public class EnemyWormBossHeadScript : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, Vector3.forward);
 
+    }
+    
+    void RotateTowards()
+    {
+        Debug.Log("rotating towards player");
+
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
 }
