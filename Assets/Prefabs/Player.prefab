@@ -301,10 +301,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f844e257b02204ee5b6716fa8b9c5971, type: 3}
   TakeDamageAudioClip: {fileID: 8300000, guid: 71b20e06131fb4b08887f5f4132c4de5, type: 3}
   FootstepAudioVolume: 0.08
-  FastAttackAudioVolume: 0.6
-  HeavyAttackAudioVolume: 0.6
+  FastAttackAudioVolume: 0.7
+  HeavyAttackAudioVolume: 0.7
   DashAudioVolume: 0.6
-  TakeDamageAudioVolume: 0.8
+  TakeDamageAudioVolume: 1
   Gravity: -15
   FallTimeout: 0.15
   Grounded: 1
