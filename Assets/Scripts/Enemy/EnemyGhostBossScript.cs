@@ -68,7 +68,7 @@ public class EnemyGhostBossScript : MonoBehaviour
         damagingCollider = GetComponent<DamagingCollider>();
 
         agent.speed = baseMoveSpeed;
-        attacksBeforSummon = amountOfAttacks;
+        attacksBeforSummon = 2;
 
     }
 
@@ -105,10 +105,10 @@ public class EnemyGhostBossScript : MonoBehaviour
         if (Vector3.Distance(agent.transform.position, player.transform.position) < attackRange && canAttack)
         {
             //randomizing the Delayafterattack var
-            delayAfterAttack = Random.Range(delayAfterAttack * 0.8f, delayAfterAttack * 1.4f);
+            float f = Random.Range(delayAfterAttack * 0.8f, delayAfterAttack * 1.4f);
 
             //should rotate before executing attack
-            StartCoroutine(Attack(delayBeforeAttack, dashDuration, delayAfterAttack));
+            StartCoroutine(Attack(delayBeforeAttack, dashDuration, f));
         }
 
         //Timer
@@ -195,7 +195,7 @@ public class EnemyGhostBossScript : MonoBehaviour
             currentEffects[i] = Instantiate(summonEffect, summonLocations[i].transform.position, summonLocations[i].transform.rotation);
             currentEffects[i].Play();
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
 
         List<GameObject> summons = new List<GameObject>();
         
