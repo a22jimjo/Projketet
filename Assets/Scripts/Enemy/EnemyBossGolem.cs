@@ -42,6 +42,10 @@ public class EnemyBossGolem : MonoBehaviour
     [SerializeField] private AudioClip[] AttackClips;
     [Tooltip("Sound starting when the dash ends")]
     [SerializeField] private AudioClip[] WaitAfterAttackClips;
+    
+    [Header("Volumes")]
+    [Range(0,1)] public float attackVoulume;
+    [Range(0,1)] public float attackWaitAfterAttackVolume;
 
     // Start is called before the first frame update
     void Start()
@@ -116,6 +120,7 @@ public class EnemyBossGolem : MonoBehaviour
         attackPoint.SetActive(true);
         attackEffectToPlay = Instantiate(attackVFXPrefab, attackPoint.transform.position,attackPoint.transform.rotation);
         attackEffectToPlay.Play();
+        audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)], attackVoulume);
         yield return new WaitForSeconds(0.1f);
         attackPoint.SetActive(false);
         //Sound as dash has ended
@@ -126,6 +131,7 @@ public class EnemyBossGolem : MonoBehaviour
         attackPoint.SetActive(true);
         attackEffectToPlay = Instantiate(attackVFXPrefab, attackPoint.transform.position,attackPoint.transform.rotation);
         attackEffectToPlay.Play();
+        audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)], attackVoulume);
         yield return new WaitForSeconds(0.1f);
         attackPoint.SetActive(false);
             

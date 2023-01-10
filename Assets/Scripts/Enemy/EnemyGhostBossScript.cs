@@ -49,6 +49,11 @@ public class EnemyGhostBossScript : MonoBehaviour
     [SerializeField] private AudioClip[] AttackDashClips;
     [Tooltip("Sound starting when the dash ends")]
     [SerializeField] private AudioClip[] AttackWaitAfterDashClips;
+    
+    [Header("Volumes")]
+    [Range(0,1)] public float attackWindupVolume;
+    [Range(0,1)] public float attackDashVolume;
+    [Range(0,1)] public float attackWaitAfterDashVolume;
 
     private bool dashing = false;
     private bool summoning = false;
@@ -156,12 +161,12 @@ public class EnemyGhostBossScript : MonoBehaviour
 
         //run animation
         //Sound as windup animation start
-        audioSource.PlayOneShot(AttackWindupClips[Random.Range(0, AttackWindupClips.Length)]);
+        audioSource.PlayOneShot(AttackWindupClips[Random.Range(0, AttackWindupClips.Length)], attackWindupVolume);
         //animator.SetBool("AttackGhost", true);
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(delayBeforeAttack);
         //Sound as windup animation end
-        audioSource.PlayOneShot(AttackDashClips[Random.Range(0,AttackDashClips.Length)]);
+        audioSource.PlayOneShot(AttackDashClips[Random.Range(0,AttackDashClips.Length)], attackDashVolume);
         agent.acceleration = 80;
         agent.speed = dashSpeed;
         dashing = true;
@@ -169,7 +174,7 @@ public class EnemyGhostBossScript : MonoBehaviour
         yield return new WaitForSeconds(dashDuration);
         //Sound as dash has ended
         dashing = false;
-        audioSource.PlayOneShot(AttackWaitAfterDashClips[Random.Range(0, AttackWaitAfterDashClips.Length)]);
+        audioSource.PlayOneShot(AttackWaitAfterDashClips[Random.Range(0, AttackWaitAfterDashClips.Length)], attackWaitAfterDashVolume);
 
         yield return new WaitForSeconds(delayAfterAttack);
         RotateTowards();

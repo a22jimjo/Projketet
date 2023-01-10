@@ -52,6 +52,7 @@ public class EnemyStats : MonoBehaviour
     IEnumerator Death(float waitTime)
     {
         //animator.ResetTrigger("Attack");
+        if (TryGetComponent<Collider>(out Collider collider)) collider = null;
         agent.speed = 0;
         animator.SetBool("isDead", true);
         audioSource.PlayOneShot(HurtClips[Random.Range(0, HurtClips.Length)]);
