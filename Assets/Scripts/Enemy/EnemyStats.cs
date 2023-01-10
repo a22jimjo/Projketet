@@ -51,7 +51,6 @@ public class EnemyStats : MonoBehaviour
         }
         else
         {
-            Debug.Log("Tar skada");
             /*if (health < maxHealth * 0.1f && damageTriggers[2]) damageTriggers[2] = false;
             else if (health < maxHealth * 0.25f && damageTriggers[1]) damageTriggers[1] = false;
             else if (health < maxHealth * 0.5f && damageTriggers[0]) damageTriggers[0] = false;

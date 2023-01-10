@@ -108,7 +108,6 @@ public class EnemyBossGolem : MonoBehaviour
     
         IEnumerator Attack()
     {
-        Debug.Log("Golem attacks player");
         isAttacking = true;
         //stop movement briefly
         agent.speed = 0;
@@ -164,7 +163,6 @@ public class EnemyBossGolem : MonoBehaviour
 
     void RotateTowards(float bonusSpeed)
     {
-        Debug.Log("rotating towards player");
 
         Vector3 direction = (player.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);

@@ -141,7 +141,6 @@ public class EnemyWormScript : MonoBehaviour
         moveTimer = 0;
         canMove = false;
         ismoving = true;
-        Debug.Log("Worm should be Moving");
 
         //Play coming down animation
         animator.SetTrigger("BurrowDown");
@@ -151,12 +150,10 @@ public class EnemyWormScript : MonoBehaviour
 
         //Set new destination
         agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
-        Debug.Log("should have set destination");
 
         //Spawn VFX that follows the enemy, showing the underground location as it travels
         
         yield return new WaitForSeconds(BurrowWaitTime);
-        Debug.Log("Worm has reached it's destination but after waittime");
 
         //remove follow vfx, spawn in coming up VFX.
 
@@ -174,7 +171,6 @@ public class EnemyWormScript : MonoBehaviour
 
     IEnumerator Attack(float waitBetweenAttacks, float anticipationTime)
     {
-        Debug.Log("enemy attacks player");
         isAttacking = true;
 
         //reset timers
@@ -218,8 +214,6 @@ public class EnemyWormScript : MonoBehaviour
 
     void RotateTowards()
     {
-        Debug.Log("rotating towards player");
-
         Vector3 direction = (player.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
