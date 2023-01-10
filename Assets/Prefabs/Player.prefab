@@ -29,14 +29,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102454315}
-  m_LocalRotation: {x: -0.0884275, y: 0.072466694, z: 0.0287669, w: -0.99302655}
-  m_LocalPosition: {x: -0.144, y: -0.177, z: 0.936}
-  m_LocalScale: {x: 0.9284214, y: 0.637348, z: 1.3803616}
+  m_LocalRotation: {x: -0.008572165, y: 0.07025652, z: 0.010513157, w: -0.99743676}
+  m_LocalPosition: {x: -0.131, y: 0.014, z: 1.077}
+  m_LocalScale: {x: 0.9284214, y: 0.637348, z: 1.5221858}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 172724623829815479}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 9.872, y: -8.699, z: 355.929}
+  m_LocalEulerAnglesHint: {x: 0.895, y: -8.068, z: 358.729}
 --- !u!33 &102454319
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
   AttackCooldown: 0.6
   DamageCooldown: 0.23
   SlowDownMultiplier: 0.3
-  SlowDownTime: 0.1
+  SlowDownTime: 0.08
   HeavyAttackCooldown: 0.9
   HeavyAttackDamageCooldown: 0.68
   DashSpeed: 250
@@ -331,6 +331,7 @@ MonoBehaviour:
   canMove: 1
   _fixedPosition: 0
   invincible: 0
+  input: {fileID: 0}
 --- !u!114 &8241224510204472515
 MonoBehaviour:
   m_ObjectHideFlags: 0

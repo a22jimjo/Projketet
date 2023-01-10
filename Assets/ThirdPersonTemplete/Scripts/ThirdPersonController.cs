@@ -372,7 +372,7 @@ namespace StarterAssets
         private void AttackRotation()
         {
             // rotate to face input direction relative to camera position
-            Vector3 relativePos = new Vector3(input.see.x, 0f, input.see.y -60)- _edgeToPlayerCamera;
+            Vector3 relativePos = new Vector3(input.see.x, 0f, input.see.y -19)- _edgeToPlayerCamera;
          
             Quaternion rotation = Quaternion.LookRotation(relativePos);
             transform.rotation = rotation;
@@ -442,7 +442,10 @@ namespace StarterAssets
                         _damageTime = -10;
                     }
                 }
-                //else AttackRotation();
+                else if(_attackTime < AttackCooldown-0.01f && _sword.GetComponent<Sword>().heavyAttack == false)
+                { 
+                    AttackRotation();
+                }
             }
         }
 
