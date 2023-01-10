@@ -29,6 +29,7 @@ public class EnemyWormBossLeftHeadScript : MonoBehaviour
     [SerializeField] private float waitBetweenAttacks;
     [SerializeField] private float anticipationTime;
     [SerializeField] private AudioClip[] attackClips;
+    [Range(0, 1)] public float attackVolume;
 
     //[SerializeField] GameObject badring;
     [SerializeField] GameObject wormBody;
@@ -114,7 +115,7 @@ public class EnemyWormBossLeftHeadScript : MonoBehaviour
             GameObject _projectile2 = Instantiate(projectile, firePoint.position, transform.rotation);
             _projectile.GetComponent<Rigidbody>().AddForce((transform.forward - new Vector3(0.3f,0,0)) * projectileSpeed, ForceMode.Impulse);
             _projectile2.GetComponent<Rigidbody>().AddForce((transform.forward) * projectileSpeed, ForceMode.Impulse);
-            audioSource.PlayOneShot(attackClips[Random.Range(0, attackClips.Length)], 0.5f);
+            audioSource.PlayOneShot(attackClips[Random.Range(0, attackClips.Length)], attackVolume);
             yield return new WaitForSeconds(waitBetweenAttacks);
         }
 

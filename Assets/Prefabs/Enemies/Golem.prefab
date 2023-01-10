@@ -528,6 +528,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
   WaitAfterAttackClips:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
+  attackVoulume: 1
+  attackWaitAfterAttackVolume: 1
 --- !u!114 &4647313638272538269
 MonoBehaviour:
   m_ObjectHideFlags: 0

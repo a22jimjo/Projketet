@@ -290,6 +290,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
   AttackWaitAfterDashClips:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
+  attackWindupVolume: 1
+  attackDashVolume: 1
+  attackWaitAfterDashVolume: 1
 --- !u!1 &2126561263528975226
 GameObject:
   m_ObjectHideFlags: 0

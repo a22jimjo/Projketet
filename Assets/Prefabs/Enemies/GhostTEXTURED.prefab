@@ -132,6 +132,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
   AttackWaitAfterDashClips:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
+  attackWindupVolume: 1
+  attackDashVolume: 1
+  attackWaitAfterDashVolume: 1
 --- !u!114 &2126561262718773004
 MonoBehaviour:
   m_ObjectHideFlags: 0

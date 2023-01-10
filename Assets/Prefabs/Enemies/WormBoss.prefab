@@ -745,6 +745,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0a098eaf5ec7a4837bda2f536c699c4a, type: 3}
   - {fileID: 8300000, guid: 10bcd67f43fa14b8d977b182094ee58b, type: 3}
   - {fileID: 8300000, guid: adc56149d5b3449e0bef6ff848243bfb, type: 3}
+  attackVolume: 0.5
   wormBody: {fileID: 1412551048301669752}
   enemyWorm: {fileID: 3216009184987774096}
   projectile: {fileID: 9094491525545543319, guid: 1ae64853632646242b9f0a8cc7e2b5d6,
@@ -1069,6 +1070,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0a098eaf5ec7a4837bda2f536c699c4a, type: 3}
   - {fileID: 8300000, guid: 10bcd67f43fa14b8d977b182094ee58b, type: 3}
   - {fileID: 8300000, guid: adc56149d5b3449e0bef6ff848243bfb, type: 3}
+  attackVolume: 0.5
   wormBody: {fileID: 3119472240445534195}
   enemyWorm: {fileID: 3806673211542791929}
   projectile: {fileID: 9094491525545543319, guid: 1ae64853632646242b9f0a8cc7e2b5d6,
@@ -1578,6 +1580,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0a098eaf5ec7a4837bda2f536c699c4a, type: 3}
   - {fileID: 8300000, guid: 10bcd67f43fa14b8d977b182094ee58b, type: 3}
   - {fileID: 8300000, guid: adc56149d5b3449e0bef6ff848243bfb, type: 3}
+  attackVolume: 0.5
   wormBody: {fileID: 1876671297541558942}
   enemyWorm: {fileID: 5570702780238186538}
   projectile: {fileID: 9094491525545543319, guid: 1ae64853632646242b9f0a8cc7e2b5d6,
