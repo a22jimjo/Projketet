@@ -6,7 +6,7 @@ public class EnemyProjectile : MonoBehaviour
 {
 
     Rigidbody rb;
-    [SerializeField] private int damage;
+    public float damage;
     [SerializeField] public float destroyDelay;
     [SerializeField] public bool destoryOnContact;
     [SerializeField] public bool freezeOnContact;
@@ -34,7 +34,7 @@ public class EnemyProjectile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player") && damageTimer == damageCooldown)
         {
