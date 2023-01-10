@@ -96,10 +96,10 @@ public class EnemyGhostScript : MonoBehaviour
         if (Vector3.Distance(agent.transform.position, player.transform.position) < attackRange && canAttack)
         {
             //randomizing the Delayafterattack var
-            delayAfterAttack = Random.Range(delayAfterAttack * 0.8f, delayAfterAttack * 1.4f);
+            float f = Random.Range(delayAfterAttack * 0.8f, delayAfterAttack * 1.4f);
 
             //should rotate before executing attack
-            StartCoroutine(Attack(delayBeforeAttack, dashDuration, delayAfterAttack));
+            StartCoroutine(Attack(delayBeforeAttack, dashDuration, f));
         }
 
         //Timer
