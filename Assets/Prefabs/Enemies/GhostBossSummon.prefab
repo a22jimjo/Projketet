@@ -148,6 +148,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 45
   damage: 5
+  defense: 0
   HurtClips:
   - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
   - {fileID: 8300000, guid: 44bc72ea6b49847f4be800f66e44baa7, type: 3}

@@ -768,6 +768,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 1
   damage: 8
+  defense: 0
   HurtClips: []
   DeathClips: []
   DelayUntilDestroy: 0
@@ -1041,6 +1042,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 1
   damage: 8
+  defense: 0
   HurtClips: []
   DeathClips: []
   DelayUntilDestroy: 0
@@ -1397,8 +1399,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 400
+  maxHealth: 360
   damage: 8
+  defense: 5
   HurtClips:
   - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
   - {fileID: 8300000, guid: 669c9e18c0b9d4755aed1a04af8485ed, type: 3}
