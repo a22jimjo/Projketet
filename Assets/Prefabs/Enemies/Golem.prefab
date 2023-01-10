@@ -521,7 +521,7 @@ MonoBehaviour:
   isAttacking: 0
   attackTimer: 0
   attackCooldown: 1.35
-  rotationSpeed: 1
+  rotationSpeed: 1.5
   delayAfterAttack: 0.5
   attackDuration: 1.45
   AttackClips:
@@ -545,6 +545,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 220
   damage: 35
+  defense: 4
   HurtClips:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
   DeathClips:
