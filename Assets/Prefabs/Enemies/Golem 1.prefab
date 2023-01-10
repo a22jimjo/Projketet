@@ -527,7 +527,7 @@ MonoBehaviour:
   delayAfterOneHandAttack: 0.2
   oneHandAttackDuration: 1.5
   AttackClips:
-  - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
+  - {fileID: 8300000, guid: 400006b18cccb4942bb1bcdd77d67444, type: 3}
   WaitAfterAttackClips:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
   attackVoulume: 1
@@ -549,7 +549,18 @@ MonoBehaviour:
   damage: 35
   defense: 10
   HurtClips:
-  - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
+  - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
+  - {fileID: 8300000, guid: cc1b219d21ea74a3a846d2a77375411d, type: 3}
+  - {fileID: 8300000, guid: 669c9e18c0b9d4755aed1a04af8485ed, type: 3}
+  - {fileID: 8300000, guid: 44bc72ea6b49847f4be800f66e44baa7, type: 3}
+  - {fileID: 8300000, guid: 5de4cb339b17f4830ba63fb976a8d1eb, type: 3}
+  - {fileID: 8300000, guid: 65390b1c78b8f4302adedf4abf8add55, type: 3}
+  - {fileID: 8300000, guid: 02f1b7ab30aad435d86c9fff74f345fc, type: 3}
+  - {fileID: 8300000, guid: ec003f7c228864a90b221d667bf47c79, type: 3}
+  - {fileID: 8300000, guid: 854dfe17a4e644a32811472468a09e42, type: 3}
+  - {fileID: 8300000, guid: 0d250505252814aae8e48f2377438190, type: 3}
+  - {fileID: 8300000, guid: a39fc4c819dd047828409d488019117a, type: 3}
+  - {fileID: 8300000, guid: 4d36b9ebc1ce6418a8b291e7faf18492, type: 3}
   DeathClips:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
   DelayUntilDestroy: 2
@@ -585,7 +596,8 @@ AudioSource:
   m_GameObject: {fileID: 5419312000345852966}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1700510126704088447, guid: 2763e522090bd44cc81d2fdd67259f4c,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
