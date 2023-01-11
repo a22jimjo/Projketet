@@ -11,6 +11,7 @@ public class EnemyGolem : MonoBehaviour
     Animator animator;
     Rigidbody rb;
     AudioSource audioSource;
+    EnemyStats stats;
     [SerializeField] VisualEffect attackVFXPrefab;
     private VisualEffect attackEffectToPlay;
     [SerializeField] GameObject attackPoint;
@@ -55,6 +56,7 @@ public class EnemyGolem : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         attackCollider = attackPoint.GetComponent<BoxCollider>();
+        stats = GetComponent<EnemyStats>();
 
         agent.speed = baseMoveSpeed;
     }
@@ -63,10 +65,11 @@ public class EnemyGolem : MonoBehaviour
     void Update()
     {
         
+        RotateTowards();
+        
         if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange && isAttacking == false)
         {
             animator.SetBool("isMoving", true);
-            RotateTowards();
             ChaseState();
         }else animator.SetBool("isMoving", false);
     }
@@ -116,6 +119,7 @@ public class EnemyGolem : MonoBehaviour
         audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)], attackVolume);
         //Sound as windup animation end
         yield return new WaitForSeconds(attackDuration);
+        if (stats.health <= 0) yield break;
         attackPoint.SetActive(true);
         attackEffectToPlay = Instantiate(attackVFXPrefab, attackPoint.transform.position,attackPoint.transform.rotation);
         attackEffectToPlay.Play();

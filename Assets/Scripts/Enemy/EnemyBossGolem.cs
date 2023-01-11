@@ -11,6 +11,8 @@ public class EnemyBossGolem : MonoBehaviour
     Animator animator;
     Rigidbody rb;
     AudioSource audioSource;
+    EnemyStats stats;
+    
     [SerializeField] VisualEffect attackVFXPrefab;
     [SerializeField] VisualEffect attackVfxOneHandPrefab;
     private VisualEffect attackEffectToPlay;
@@ -43,12 +45,13 @@ public class EnemyBossGolem : MonoBehaviour
     
     [Tooltip("Sound starting when the windup animation ends")]
     [SerializeField] private AudioClip[] AttackClips;
+    [SerializeField] private AudioClip[] SlamDunkClips;
     [Tooltip("Sound starting when the dash ends")]
     [SerializeField] private AudioClip[] WaitAfterAttackClips;
     
     [Header("Volumes")]
-    [Range(0,1)] public float attackVoulume;
-    [Range(0,1)] public float attackWaitAfterAttackVolume;
+    [Range(0,1)] public float attackVolume;
+    [Range(0,1)] public float slamDunkVolume;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +62,7 @@ public class EnemyBossGolem : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         attackCollider = attackPoint.GetComponent<BoxCollider>();
+        stats = GetComponent<EnemyStats>();
 
         agent.speed = baseMoveSpeed;
     }
@@ -117,15 +121,17 @@ public class EnemyBossGolem : MonoBehaviour
         //run animation
         //Sound as windup animation start
         animator.SetTrigger("Attack");
+        audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)], attackVolume);
         //Sound as windup animation end
         yield return new WaitForSeconds(attackDuration);
+        if (stats.health <= 0) yield break;
         attackPoint.SetActive(true);
         attackPoint2.SetActive(true);
         attackEffectToPlay = Instantiate(attackVFXPrefab, attackPoint.transform.position,attackPoint.transform.rotation);
         attackEffectToPlay.Play();
         attackEffectToPlay = Instantiate(attackVFXPrefab, attackPoint2.transform.position,attackPoint2.transform.rotation);
         attackEffectToPlay.Play();
-        audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)], attackVoulume);
+        audioSource.PlayOneShot(SlamDunkClips[Random.Range(0,SlamDunkClips.Length)], slamDunkVolume);
         yield return new WaitForSeconds(0.1f);
         attackPoint.SetActive(false);
         attackPoint2.SetActive(false);
@@ -133,11 +139,13 @@ public class EnemyBossGolem : MonoBehaviour
         
         yield return new WaitForSeconds(delayAfterAttack);
         animator.SetTrigger("Onehand");
+        audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)], attackVolume);
         yield return new WaitForSeconds(oneHandAttackDuration);
+        if (stats.health <= 0) yield break;
         attackPointOneHand.SetActive(true);
         attackEffectToPlay = Instantiate(attackVfxOneHandPrefab, attackPointOneHand.transform.position,attackPointOneHand.transform.rotation);
         attackEffectToPlay.Play();
-        audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)], attackVoulume);
+        audioSource.PlayOneShot(SlamDunkClips[Random.Range(0,SlamDunkClips.Length)], slamDunkVolume);
         yield return new WaitForSeconds(0.1f);
         attackPointOneHand.SetActive(false);
             
