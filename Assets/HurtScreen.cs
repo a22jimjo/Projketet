@@ -8,7 +8,7 @@ public class HurtScreen : MonoBehaviour
 
     private PlayerStats stats;
     
-    [SerializeField]private GameObject player;
+    private GameObject player;
     [SerializeField]private float displayTime;
 
     private float lastHp;
@@ -16,6 +16,7 @@ public class HurtScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         stats = player.GetComponent<PlayerStats>();
         lastHp = stats.health;
     }
@@ -25,15 +26,13 @@ public class HurtScreen : MonoBehaviour
     {
         if (stats.health < lastHp)
         {
-            takeDamage();
+            StartCoroutine(TakeDamage());
             lastHp = stats.health;   
         }
-        Debug.Log($"{lastHp}");
     }
-
-    private IEnumerator takeDamage()
+    
+    private IEnumerator TakeDamage()
     {
-        Debug.Log($"hejehe");
         gameObject.GetComponent<Toggle>().isOn = true;
         yield return new WaitForSeconds(displayTime);
         gameObject.GetComponent<Toggle>().isOn = false;

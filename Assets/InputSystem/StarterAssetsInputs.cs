@@ -1,6 +1,7 @@
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 #endif
 
 namespace StarterAssets
@@ -15,6 +16,7 @@ namespace StarterAssets
 		public bool attack;
 		public bool heavyAttack;
 		public bool dash;
+		public bool displayStats;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -27,6 +29,11 @@ namespace StarterAssets
 		public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
+		}
+
+		public void OnDisplayStats(InputValue value)
+		{
+			DisplayStatsInput(value.isPressed);
 		}
 
 		public void OnDash(InputValue value)
@@ -68,6 +75,11 @@ namespace StarterAssets
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
+		}
+
+		public void DisplayStatsInput(bool newDisplayStats)
+		{
+			displayStats = newDisplayStats;
 		}
 
 		public void DashInput(bool newDashState)
