@@ -27,8 +27,8 @@ public class HurtScreen : MonoBehaviour
         if (stats.health < lastHp)
         {
             StartCoroutine(TakeDamage());
-            lastHp = stats.health;   
         }
+        lastHp = stats.health;  
     }
     
     private IEnumerator TakeDamage()

@@ -733,7 +733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 4.63
   detectRange: 8
-  rotationSpeed: 0.6
+  rotationSpeed: 0.4
   projectileSpeed: 6.5
   canAttack: 1
   attackTimer: 0
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 4.63
   detectRange: 8
-  rotationSpeed: 0.6
+  rotationSpeed: 0.4
   projectileSpeed: 6.5
   canAttack: 1
   attackTimer: 0
