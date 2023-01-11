@@ -298,7 +298,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4c0391e6bd7184ea696dd58f196fdea7, type: 3}
   - {fileID: 8300000, guid: c7cae1287900341f6adc5a56bbbbe4e5, type: 3}
   - {fileID: 8300000, guid: f844e257b02204ee5b6716fa8b9c5971, type: 3}
-  TakeDamageAudioClip: {fileID: 8300000, guid: 71b20e06131fb4b08887f5f4132c4de5, type: 3}
+  TakeDamageAudioClip: {fileID: 8300000, guid: acb7df47e3d6041ba811f74ccb12a69c, type: 3}
   FootstepAudioVolume: 0.08
   FastAttackAudioVolume: 0.7
   HeavyAttackAudioVolume: 0.7
