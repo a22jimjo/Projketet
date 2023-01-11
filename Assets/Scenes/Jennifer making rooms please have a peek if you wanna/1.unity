@@ -7197,8 +7197,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.73, y: 3.9, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 7.7299995, y: 3.9, z: 2.1920624}
+  m_Center: {x: 0, y: 0, z: 0.59603024}
 --- !u!4 &363234942
 Transform:
   m_ObjectHideFlags: 0
@@ -8411,6 +8411,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1597062522, guid: a52a6299c15bce54f8ccd09cd933530f, type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5877527266424999840, guid: a52a6299c15bce54f8ccd09cd933530f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -14680,17 +14684,29 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: IncreaseAttack
       objectReference: {fileID: 0}
+    - target: {fileID: 299014908, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 299014908, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 354257427, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
       propertyPath: m_Text
-      value: Increases your Attack by 10%
+      value: Increase Damage
       objectReference: {fileID: 0}
     - target: {fileID: 511924484, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
       propertyPath: m_Text
-      value: Restore 25 health
+      value: Restore health
       objectReference: {fileID: 0}
     - target: {fileID: 932100568, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
       propertyPath: m_Text
-      value: Incrase your max health by 15
+      value: Increase max health
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215238478, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1341189727, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -14702,24 +14718,130 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1503141016, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1503141017, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1503141018, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aabd23761281de044b2a991244c8d744,
+        type: 3}
+    - target: {fileID: 1503141018, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1503141018, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1503141018, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1675730331, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1675730333, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a5d75f4f117d9674fbb95e2b0c4e1df6,
+        type: 3}
+    - target: {fileID: 1675730333, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675730333, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675730333, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1685312617, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685312618, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 184.4502
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685312618, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 37.3919
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685312618, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0000023842
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685312618, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -136
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685312619, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.80958545
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685312619, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.16785331
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685312619, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685312619, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.8078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685312619, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.16862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685312619, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.86666673
       objectReference: {fileID: 0}
     - target: {fileID: 1685312619, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 548927988}
+    - target: {fileID: 1685312620, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Color.b
+      value: 0.83205396
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685312620, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5304824
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685312620, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020249404, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020249404, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020249404, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2020249404, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 2020249404, guid: a9483123799ef214b9ad4ebe2346c293, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 251430912920300793, guid: a9483123799ef214b9ad4ebe2346c293,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -14733,12 +14855,12 @@ PrefabInstance:
     - target: {fileID: 318458036145424446, guid: a9483123799ef214b9ad4ebe2346c293,
         type: 3}
       propertyPath: m_Text
-      value: Open a fourtune cookie to reveal your fate
+      value: Open a fourtune cookie
       objectReference: {fileID: 0}
     - target: {fileID: 479779943946998941, guid: a9483123799ef214b9ad4ebe2346c293,
         type: 3}
       propertyPath: m_Text
-      value: Reduce your damage taken by 10%
+      value: Reduce damage taken
       objectReference: {fileID: 0}
     - target: {fileID: 566246431005803805, guid: a9483123799ef214b9ad4ebe2346c293,
         type: 3}
@@ -14905,7 +15027,7 @@ PrefabInstance:
     - target: {fileID: 5640861588480054032, guid: a9483123799ef214b9ad4ebe2346c293,
         type: 3}
       propertyPath: m_Text
-      value: Increase your movement speed by 10%
+      value: Increase movement speed
       objectReference: {fileID: 0}
     - target: {fileID: 6152577606360579277, guid: a9483123799ef214b9ad4ebe2346c293,
         type: 3}
@@ -15027,6 +15149,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas Fade in_out
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175432801454736798, guid: a9483123799ef214b9ad4ebe2346c293,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6175432801945158089, guid: a9483123799ef214b9ad4ebe2346c293,
         type: 3}
@@ -36207,7 +36334,7 @@ PrefabInstance:
     - target: {fileID: 7608611028804385784, guid: f4e11790c060cb745a245dc63823644d,
         type: 3}
       propertyPath: sceneName
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7608611028804385784, guid: f4e11790c060cb745a245dc63823644d,
         type: 3}
@@ -37283,7 +37410,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh548988
+  m_Name: pb_Mesh6428802
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -41377,8 +41504,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.73, y: 3.9, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 7.73, y: 3.9, z: 2.2030983}
+  m_Center: {x: 0, y: 0, z: 0.054863106}
 --- !u!4 &1638525719
 Transform:
   m_ObjectHideFlags: 0
@@ -41579,7 +41706,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh548836
+  m_Name: pb_Mesh6428648
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

@@ -29,14 +29,17 @@ public class StatBar : MonoBehaviour
             inputs.displayStats = false;
             StartCoroutine(DisplayStats());
         }
+        if(inputs.displayStats && inputs.displayStats == false)
+        {
+            StartCoroutine(DisplayStats());
+        }
     }
 
     IEnumerator DisplayStats()
     {
-        GetComponent<Toggle>().isOn = true;
+        GetComponent<Toggle>().isOn = !GetComponent<Toggle>().isOn;
         UpdateStats();
         yield return new WaitForSeconds(displayTime);
-        GetComponent<Toggle>().isOn = false;
     }
 
     private void UpdateStats()

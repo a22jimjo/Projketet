@@ -12,12 +12,15 @@ public class SceneTransition : MonoBehaviour
     public GameObject spawnPoint;
     private GameObject enemyHolder;
     public List<GameObject> enemyGameobjects = new List<GameObject>();
+    [SerializeField] private bool isEndPortal;
     [SerializeField] private Canvas fadeCanvas;
     private Animator animator;
 
     private UpgradeHandler upgradeHandler;
     private ThirdPersonController _thirdPersonController;
     private GameObject gameManager;
+    private PersistentObjects persistentObjects;
+
 
 
     private void Start()
@@ -71,8 +74,16 @@ public class SceneTransition : MonoBehaviour
         yield return new WaitForSeconds(1.25f);
 
         print("Message from portal in last scene");
+        if (isEndPortal)
+        {
+            foreach (GameObject obj in persistentObjects.objectsToPersist)
+            {
+                Destroy(obj);
+            }
+        }
         Destroy(gameObject);
     }
+
 
     private void FindAllEnemies()
     {

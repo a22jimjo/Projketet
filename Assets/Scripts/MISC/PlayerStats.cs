@@ -86,7 +86,7 @@ public class PlayerStats : MonoBehaviour
         //disable anim
         animator.SetBool("Death", false);
         //loads startsceen
-        SceneManager.LoadSceneAsync("Start scen RestartScene");
+        SceneManager.LoadSceneAsync("1_Respawn");
         //wait 0.5s
         yield return new WaitForSeconds(.5f);
 
