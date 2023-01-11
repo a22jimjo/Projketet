@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MENU/Menu.unity
+    path: Assets/Scenes/Jennifer making rooms please have a peek if you wanna/MENU/Menu.unity
     guid: 99c75d329f98e4005a8fc085d1a016fb
   - enabled: 1
     path: Assets/Scenes/Jennifer making rooms please have a peek if you wanna/1.unity
