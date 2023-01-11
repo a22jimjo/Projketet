@@ -370,6 +370,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 4
   damage: 3
+  defense: 1
   HurtClips:
   - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
   - {fileID: 8300000, guid: 44bc72ea6b49847f4be800f66e44baa7, type: 3}
@@ -402,6 +403,7 @@ MonoBehaviour:
   attackRange: 3
   detectRange: 6.4
   baseMoveSpeed: 3.5
+  hasDetectedPlayer: 0
   canAttack: 0
   isAttacking: 0
   attackTimer: 0
@@ -420,6 +422,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
   AttackWaitAfterDashClips:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
+  attackWindupVolume: 0
+  attackDashVolume: 0
+  attackWaitAfterDashVolume: 0
 --- !u!195 &385026190148349295
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -569,7 +574,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
