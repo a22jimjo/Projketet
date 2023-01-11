@@ -21,7 +21,7 @@ public class PlayerStats : MonoBehaviour
     private Animator animator;
 
     private ThirdPersonController _ThirdPersonController;
-    [SerializeField] public Healthbar _healthbar;
+    [SerializeField] public HUDHealthBar _healthbar;
     [SerializeField]private GameObject music;
 
     public GameObject deathScreen;
