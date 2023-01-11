@@ -649,6 +649,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 880853951209358295}
+  - component: {fileID: 1200606485}
   m_Layer: 5
   m_Name: Hp Canvas
   m_TagString: Untagged
@@ -677,6 +678,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1200606485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987203058849193838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04f20c1ad0e292f4c8a9986fca97a8f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthBarSprite: {fileID: 5877527267287461998}
+  ReduceSpeed: 2
 --- !u!1 &5877527266424999844
 GameObject:
   m_ObjectHideFlags: 0
