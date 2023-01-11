@@ -38,7 +38,7 @@ public class EnemyWormBossRightHeadScript : MonoBehaviour
     [SerializeField] Transform firePoint;
     
     [SerializeField] private bool isAttacking;
-    [SerializeField] private bool hasDetectedPlayer = false;
+    public bool hasDetectedPlayer = false;
     public bool dead;
 
     private bool ismoving;
@@ -64,11 +64,6 @@ public class EnemyWormBossRightHeadScript : MonoBehaviour
         {
 
             RotateTowards();
-
-            if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange)
-            {
-                hasDetectedPlayer = true;
-            }
 
             if (hasDetectedPlayer)
             {
@@ -117,11 +112,8 @@ public class EnemyWormBossRightHeadScript : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             GameObject _projectile = Instantiate(projectile, firePoint.position, transform.rotation);
-            GameObject _projectile2 = Instantiate(projectile, firePoint.position, transform.rotation);
             _projectile.GetComponent<EnemyProjectile>().damage = damage;
-            _projectile2.GetComponent<EnemyProjectile>().damage = damage;
-            _projectile.GetComponent<Rigidbody>().AddForce((transform.forward - new Vector3(-0.3f,0,0)) * projectileSpeed, ForceMode.Impulse);
-            _projectile2.GetComponent<Rigidbody>().AddForce((transform.forward) * projectileSpeed, ForceMode.Impulse);
+            _projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
             audioSource.PlayOneShot(attackClips[Random.Range(0, attackClips.Length)], attackVolume);
             yield return new WaitForSeconds(waitBetweenAttacks);
         }

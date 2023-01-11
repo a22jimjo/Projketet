@@ -77,6 +77,8 @@ public class EnemyWormBossScript : MonoBehaviour
             if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange)
             {
                 hasDetectedPlayer = true;
+                head1.GetComponent<EnemyWormBossRightHeadScript>().hasDetectedPlayer = true;
+                head2.GetComponent<EnemyWormBossLeftHeadScript>().hasDetectedPlayer = true;
             }
 
             if (hasDetectedPlayer)
