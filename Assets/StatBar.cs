@@ -1,40 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HurtScreen : MonoBehaviour
+public class StatBar : MonoBehaviour
 {
-
+    
     private PlayerStats stats;
+    private StarterAssetsInputs inputs;
     
     private GameObject player;
     [SerializeField]private float displayTime;
-
-    private float lastHp;
-
+    
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         stats = player.GetComponent<PlayerStats>();
-        lastHp = stats.health;
+        inputs = player.GetComponent<StarterAssetsInputs>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (stats.health < lastHp)
+        if (inputs.displayStats)
         {
-            StartCoroutine(TakeDamage());
-            lastHp = stats.health;   
+            inputs.displayStats = false;
+            StartCoroutine(DisplayStats());
         }
     }
-    
-    private IEnumerator TakeDamage()
+
+    IEnumerator DisplayStats()
     {
-        gameObject.GetComponent<Toggle>().isOn = true;
+        GetComponent<Toggle>().isOn = true;
+        UpdateStats();
         yield return new WaitForSeconds(displayTime);
-        gameObject.GetComponent<Toggle>().isOn = false;
+        GetComponent<Toggle>().isOn = false;
+    }
+
+    private void UpdateStats()
+    {
+        
     }
 }

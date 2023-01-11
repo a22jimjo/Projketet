@@ -167,6 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1154522305}
   - component: {fileID: 1154522306}
+  - component: {fileID: 65976824}
   m_Layer: 5
   m_Name: ToggleStats
   m_TagString: Untagged
@@ -215,7 +216,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -235,7 +236,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   toggleTransition: 1
   graphic: {fileID: 1500939392}
@@ -243,7 +244,20 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
+--- !u!114 &65976824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154522304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86f0b6237a43324ea9b68113dcf7299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayTime: 2
 --- !u!1 &1500939390
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1730511031}
   - component: {fileID: 1730511032}
+  - component: {fileID: 1784031078}
   m_Layer: 5
   m_Name: ToggleHurt
   m_TagString: Untagged
@@ -611,7 +626,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -631,7 +646,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   toggleTransition: 1
   graphic: {fileID: 1531860855}
@@ -640,6 +655,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &1784031078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730511030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2853bab4d548f964d84376cd3e75ee9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayTime: 0.5
 --- !u!1 &1987203058849193838
 GameObject:
   m_ObjectHideFlags: 0
