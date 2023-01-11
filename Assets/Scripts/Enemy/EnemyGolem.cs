@@ -76,6 +76,15 @@ public class EnemyGolem : MonoBehaviour
         {
             animator.SetBool("isMoving", true);
             ChaseState();
+            if (timeToStep >= stepCooldown)
+            {
+                audioSource.PlayOneShot(WalkingClips[Random.Range(0, WalkingClips.Length)], walkingVolume);
+                timeToStep = 0;
+            }
+            else
+            {
+                timeToStep += Time.deltaTime;
+            }
         }else animator.SetBool("isMoving", false);
     }
     
@@ -87,15 +96,6 @@ public class EnemyGolem : MonoBehaviour
         if (Vector3.Distance(agent.destination, player.transform.position) > attackRange)
         {
             agent.destination = player.transform.position;
-            if (timeToStep >= stepCooldown)
-            {
-                audioSource.PlayOneShot(WalkingClips[Random.Range(0, WalkingClips.Length)], walkingVolume);
-                timeToStep = 0;
-            }
-            else
-            {
-                timeToStep += Time.deltaTime;
-            }
         }
         //if enemy is = or closer to the player than the attack range, can attack and has line of sight, it attacks.
         if (Vector3.Distance(agent.transform.position, player.transform.position) < attackRange && canAttack)
