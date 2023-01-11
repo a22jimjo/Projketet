@@ -37,11 +37,13 @@ public class EnemyGolem : MonoBehaviour
     
     [Tooltip("Sound starting when the windup animation ends")]
     [SerializeField] private AudioClip[] AttackClips;
+    [SerializeField] private AudioClip[] SlamDunkClips;
     [Tooltip("Sound starting when the dash ends")]
     [SerializeField] private AudioClip[] WaitAfterAttackClips;
     
     [Header("Volumes")]
-    [Range(0,1)] public float attackVoulume;
+    [Range(0,1)] public float attackVolume;
+    [Range(0,1)] public float slamDunkVolume;
     [Range(0,1)] public float attackWaitAfterAttackVolume;
 
     // Start is called before the first frame update
@@ -111,12 +113,13 @@ public class EnemyGolem : MonoBehaviour
         //run animation
         //Sound as windup animation start
         animator.SetTrigger("Attack");
+        audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)], attackVolume);
         //Sound as windup animation end
         yield return new WaitForSeconds(attackDuration);
         attackPoint.SetActive(true);
         attackEffectToPlay = Instantiate(attackVFXPrefab, attackPoint.transform.position,attackPoint.transform.rotation);
         attackEffectToPlay.Play();
-        audioSource.PlayOneShot(AttackClips[Random.Range(0,AttackClips.Length)], attackVoulume);
+        audioSource.PlayOneShot(SlamDunkClips[Random.Range(0,SlamDunkClips.Length)], slamDunkVolume);
         yield return new WaitForSeconds(0.1f);
         attackPoint.SetActive(false);
         //Sound as dash has ended
