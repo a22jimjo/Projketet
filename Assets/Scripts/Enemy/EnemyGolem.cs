@@ -39,12 +39,14 @@ public class EnemyGolem : MonoBehaviour
     [Tooltip("Sound starting when the windup animation ends")]
     [SerializeField] private AudioClip[] AttackClips;
     [SerializeField] private AudioClip[] SlamDunkClips;
+    [SerializeField] private AudioClip[] WalkingClips;
     [Tooltip("Sound starting when the dash ends")]
     [SerializeField] private AudioClip[] WaitAfterAttackClips;
     
     [Header("Volumes")]
     [Range(0,1)] public float attackVolume;
     [Range(0,1)] public float slamDunkVolume;
+    [Range(0,1)] public float walkingVolume;
     [Range(0,1)] public float attackWaitAfterAttackVolume;
 
     // Start is called before the first frame update
@@ -82,15 +84,16 @@ public class EnemyGolem : MonoBehaviour
         if (Vector3.Distance(agent.destination, player.transform.position) > attackRange)
         {
             agent.destination = player.transform.position;
+            audioSource.PlayOneShot(WalkingClips[Random.Range(0,WalkingClips.Length)], walkingVolume);
         }
         //if enemy is = or closer to the player than the attack range, can attack and has line of sight, it attacks.
         if (Vector3.Distance(agent.transform.position, player.transform.position) < attackRange && canAttack)
         {
             //randomizing the Delayafterattack var
-            delayAfterAttack = Random.Range(delayAfterAttack * 0.8f, delayAfterAttack * 1.4f);
+            float f = Random.Range(delayAfterAttack * 0.8f, delayAfterAttack * 1.4f);
 
             //should rotate before executing attack
-            StartCoroutine(Attack(attackDuration, delayAfterAttack));
+            StartCoroutine(Attack(attackDuration, f));
         }
 
         //Timer
