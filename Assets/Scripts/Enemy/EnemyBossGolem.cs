@@ -49,7 +49,10 @@ public class EnemyBossGolem : MonoBehaviour
     [SerializeField] private AudioClip[] WalkingClips;
     [Tooltip("Sound starting when the dash ends")]
     [SerializeField] private AudioClip[] WaitAfterAttackClips;
-    
+
+    [SerializeField]private float stepCooldown;
+    private float timeToStep = 0;
+
     [Header("Volumes")]
     [Range(0,1)] public float attackVolume;
     [Range(0,1)] public float slamDunkVolume;
@@ -89,7 +92,10 @@ public class EnemyBossGolem : MonoBehaviour
         if (Vector3.Distance(agent.destination, player.transform.position) > attackRange)
         {
             agent.destination = player.transform.position;
-            audioSource.PlayOneShot(WalkingClips[Random.Range(0,WalkingClips.Length)], walkingVolume);
+            if (timeToStep >= stepCooldown)
+            {
+                audioSource.PlayOneShot(WalkingClips[Random.Range(0, WalkingClips.Length)], walkingVolume);
+            }
         }
         //if enemy is = or closer to the player than the attack range, can attack and has line of sight, it attacks.
         if (Vector3.Distance(agent.transform.position, player.transform.position) < attackRange && canAttack)
