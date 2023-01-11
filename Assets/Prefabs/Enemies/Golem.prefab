@@ -528,10 +528,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 414318e33e9a94437b62edb92fd4fcc7, type: 3}
   SlamDunkClips:
   - {fileID: 8300000, guid: 400006b18cccb4942bb1bcdd77d67444, type: 3}
+  WalkingClips:
+  - {fileID: 8300000, guid: f39efad438f914fb1a3970e30b879be1, type: 3}
+  - {fileID: 8300000, guid: 6ec3c0cd4e5ff4f0f8e93e239b46e286, type: 3}
+  - {fileID: 8300000, guid: 1d9896919f2c94d56962042f3cf352cd, type: 3}
   WaitAfterAttackClips:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
+  stepCooldown: 0.9
   attackVolume: 1
   slamDunkVolume: 1
+  walkingVolume: 0.7
   attackWaitAfterAttackVolume: 1
 --- !u!114 &4647313638272538269
 MonoBehaviour:
