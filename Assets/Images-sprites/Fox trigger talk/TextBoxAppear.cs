@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class UIappear : MonoBehaviour
+public class TextBoxAppear : MonoBehaviour
 {
-    [SerializeField] private Image costumImage;
 
+    [SerializeField] private GameObject imageObject;
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            costumImage.enabled = true;
+            imageObject.SetActive(true);
         }
     }
 
@@ -20,7 +19,7 @@ public class UIappear : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            costumImage.enabled = false;
+            imageObject.SetActive(false);
         }
     }
 }
