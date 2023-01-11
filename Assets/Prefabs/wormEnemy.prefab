@@ -2067,6 +2067,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0a098eaf5ec7a4837bda2f536c699c4a, type: 3}
   - {fileID: 8300000, guid: 10bcd67f43fa14b8d977b182094ee58b, type: 3}
   - {fileID: 8300000, guid: adc56149d5b3449e0bef6ff848243bfb, type: 3}
+  attackVolume: 0.5
   canMove: 0
   moveTimer: 0
   moveCooldown: 4
@@ -2078,6 +2079,7 @@ MonoBehaviour:
   projectile: {fileID: 9094491525545543319, guid: 1ae64853632646242b9f0a8cc7e2b5d6,
     type: 3}
   firePoint: {fileID: 8962616628767256682}
+  Waypoints: {fileID: 0}
   ismoving: 0
   isAttacking: 0
   hasDetectedPlayer: 0
@@ -2096,6 +2098,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 75
   damage: 4
+  defense: 1
   HurtClips:
   - {fileID: 8300000, guid: 1e993fd3987d94fbda614af37759cd03, type: 3}
   - {fileID: 8300000, guid: 669c9e18c0b9d4755aed1a04af8485ed, type: 3}
@@ -2110,7 +2113,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4d36b9ebc1ce6418a8b291e7faf18492, type: 3}
   - {fileID: 8300000, guid: a39fc4c819dd047828409d488019117a, type: 3}
   DeathClips:
-  - {fileID: 8300000, guid: 8d885696aaae94c618a87c7a29a68df2, type: 3}
+  - {fileID: 8300000, guid: 925b8f51f04f843329eb0080320efc55, type: 3}
   DelayUntilDestroy: 0.8
   _healthbar: {fileID: 8962616628683100531}
 --- !u!195 &1093879407334728118
@@ -2190,10 +2193,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.00448
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2256,7 +2259,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -21,6 +21,7 @@ public class PlayerStats : MonoBehaviour
     private Animator animator;
 
     private ThirdPersonController _ThirdPersonController;
+	
     [SerializeField] public HUDHealthBar _healthbar;
     [SerializeField]private GameObject music;
 
@@ -91,7 +92,6 @@ public class PlayerStats : MonoBehaviour
 
         //enable button to play again (fade in?)
         tryAgainButton.SetActive(true);
-        
 
     }
     public void RespawnPlayer()
@@ -99,6 +99,8 @@ public class PlayerStats : MonoBehaviour
 
         //remove deathscreen
         
+
+
         //set player position
         gameObject.SetActive(false);
         GameObject spawnPoint;
@@ -113,7 +115,5 @@ public class PlayerStats : MonoBehaviour
 
         tryAgainButton.SetActive(false);
         deathScreen.SetActive(false);
-        
-        music.SetActive(true);
     }
 }
