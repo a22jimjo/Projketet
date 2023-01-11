@@ -65,10 +65,11 @@ public class EnemyGolem : MonoBehaviour
     void Update()
     {
         
+        RotateTowards();
+        
         if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange && isAttacking == false)
         {
             animator.SetBool("isMoving", true);
-            RotateTowards();
             ChaseState();
         }else animator.SetBool("isMoving", false);
     }
