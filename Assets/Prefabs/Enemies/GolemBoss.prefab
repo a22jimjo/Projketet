@@ -411,11 +411,14 @@ MonoBehaviour:
   delayAfterOneHandAttack: 0.2
   oneHandAttackDuration: 1.5
   AttackClips:
+  - {fileID: 8300000, guid: c17b3e4cd6f7e4fcdaaecf0ef192f4e6, type: 3}
+  - {fileID: 8300000, guid: 414318e33e9a94437b62edb92fd4fcc7, type: 3}
+  SlamDunkClips:
   - {fileID: 8300000, guid: 400006b18cccb4942bb1bcdd77d67444, type: 3}
   WaitAfterAttackClips:
   - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
-  attackVoulume: 1
-  attackWaitAfterAttackVolume: 1
+  attackVolume: 1
+  slamDunkVolume: 1
 --- !u!114 &4647313638272538269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,7 +449,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a39fc4c819dd047828409d488019117a, type: 3}
   - {fileID: 8300000, guid: 4d36b9ebc1ce6418a8b291e7faf18492, type: 3}
   DeathClips:
-  - {fileID: 8300000, guid: 47a3763c974d744f8bcd00fefd197927, type: 3}
+  - {fileID: 8300000, guid: faa140bd8d5b24256bcce217b16d4d8e, type: 3}
   DelayUntilDestroy: 2
   _healthbar: {fileID: 8804770724159306072}
 --- !u!195 &4647313638272538265
