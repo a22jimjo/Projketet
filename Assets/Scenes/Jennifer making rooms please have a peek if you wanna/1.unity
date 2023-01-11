@@ -4111,6 +4111,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5527879577502973247, guid: dee9a8c5a2e66654db00071b73bb8029,
         type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 1727254386}
+    - target: {fileID: 5527879577502973247, guid: dee9a8c5a2e66654db00071b73bb8029,
+        type: 3}
       propertyPath: deathScreen
       value: 
       objectReference: {fileID: 1675730331}
