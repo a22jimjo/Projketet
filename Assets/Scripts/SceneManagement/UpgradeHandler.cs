@@ -84,11 +84,43 @@ public class UpgradeHandler : MonoBehaviour
     }
     
 
-    public void increaseMoveSpeed()
+    public void IncreaseMoveSpeed()
     {
         player.TryGetComponent <ThirdPersonController>(out ThirdPersonController controllerStats);
         controllerStats.MoveSpeed *= speedModifier;
         FreePlayer();
+    }
+
+    public void FourtuneCookie()
+    {
+        //Open panel that shows flavourtext. Closed opon anyinput
+
+        int tempINT = Random.Range(1, 5);
+
+        switch (tempINT)
+        {
+            case 1: Debug.Log("1");
+                IncreaseAttack();
+                break;
+
+            case 2:
+                Debug.Log("2");
+                IncreaseDefence();
+                break;
+
+            case 3:
+                Debug.Log("3");
+                IncreaseMoveSpeed();
+                    break;
+            case 4:
+                Debug.Log("4");
+                IncreaseMaxHealth();
+                break;
+            case 5:
+                Debug.Log("5");
+                RestoreHealth();
+                break;
+        }
     }
 
     private void FreePlayer()
