@@ -16,6 +16,7 @@ public class Sword : MonoBehaviour
     public VisualEffect vfxheavySlashPrefab;
     public GameObject HitMark;
     private PlayerStats stats;
+    List<GameObject> go = new List<GameObject> ();
 
     private VisualEffect currentVfxSlash;
     private VisualEffect currentVfxHeavySlash;
@@ -38,11 +39,19 @@ public class Sword : MonoBehaviour
     {
         if(other.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemyComponent) && attacking == true)
         {
-            attacking = false;
-            Debug.Log("Hit");
-            if(!heavyAttack)_damaging.CallDamage(other, stats.damage);
-            if(heavyAttack)_damaging.CallDamage(other, stats.heavyDamage);
-            Instantiate(HitMark, other.transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
+            if (!go.Contains(other.gameObject))
+            {
+                go.Add(other.gameObject);
+                Debug.Log("Hit");
+                if(!heavyAttack)_damaging.CallDamage(other, stats.damage);
+                if(heavyAttack)_damaging.CallDamage(other, stats.heavyDamage);
+                Instantiate(HitMark, other.transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
+            }
+            else
+            {
+                go.Clear();
+                attacking = false;
+            }
         }
     }
 
