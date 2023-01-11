@@ -17,6 +17,10 @@ TagManager:
   - DeathScreen
   - TryAgainButton
   - UpgradeScreen
+  - Wave 2
+  - Wave 3
+  - Wall
+  - Wave 1
   layers:
   - Default
   - TransparentFX

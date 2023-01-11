@@ -33,8 +33,6 @@ public class SceneTransition : MonoBehaviour
     private void Update()
     {
 
-        FindAllEnemies();
-
         if (enemyGameobjects.Count <= 0)
         {
             //change vfx to active.
@@ -45,6 +43,7 @@ public class SceneTransition : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        FindAllEnemies();
         Debug.Log("Portal entered");
         if (other.gameObject.tag == "Player" && enemyGameobjects.Count <= 0)
         {

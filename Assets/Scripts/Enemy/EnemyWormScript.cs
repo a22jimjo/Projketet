@@ -82,7 +82,6 @@ public class EnemyWormScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         RotateTowards();
 
         if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange)
