@@ -24,43 +24,13 @@ MonoBehaviour:
     - model: {fileID: 8926484042661615172}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661615173}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615175}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661615184}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615185}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615191}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615202}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615204}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661615224}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661615225}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615226}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615227}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615229}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615231}
       id: 0
       isStickyNote: 0
   - title: Trail
@@ -1964,7 +1934,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.2
+      m_SerializableObject: 0.1
     m_Space: 2147483647
   m_Property:
     name: Lifetime
@@ -4680,7 +4650,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"frames":[{"time":0.008335113525390625,"value":0.2565460205078125,"inTangent":0.4922541379928589,"outTangent":0.4922541379928589,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false},{"time":0.4908158481121063,"value":0.49404916167259219,"inTangent":0.7419911026954651,"outTangent":0.7419911026954651,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false},{"time":1.0000102519989014,"value":0.9990314841270447,"inTangent":0.9917280673980713,"outTangent":0.9917280673980713,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
+      m_SerializableObject: '{"frames":[{"time":0.008335113525390625,"value":0.2565460205078125,"inTangent":0.33448222279548647,"outTangent":0.33448222279548647,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false},{"time":0.5491502285003662,"value":0.43743905425071719,"inTangent":0.3498718738555908,"outTangent":0.3498718738555908,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false},{"time":1.0083415508270264,"value":0.6051639914512634,"inTangent":0.3652615547180176,"outTangent":0.3652615547180176,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
     m_Space: 2147483647
   m_Property:
     name: Size
