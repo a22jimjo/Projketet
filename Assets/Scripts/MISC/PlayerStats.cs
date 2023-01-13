@@ -56,7 +56,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (_ThirdPersonController.TakeDamage())
         {
-            health -= damageAmount / defenceModifier;
+            health -= damageAmount * defenceModifier;
             StartCoroutine(SlowDownABit());
             _healthbar.UpdateHealthBar(maxHealth, health);
 
@@ -128,7 +128,7 @@ public class PlayerStats : MonoBehaviour
         deathScreen.SetActive(false);
     }
 
-    private void ResetStats()
+    public void ResetStats()
     {
         maxHealth = originalMaxHealth;
         damage = originalDamage;

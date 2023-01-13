@@ -23,6 +23,7 @@ TagManager:
   - Wave 1
   - Music
   - EndCredits
+  - BossMusic
   layers:
   - Default
   - TransparentFX
