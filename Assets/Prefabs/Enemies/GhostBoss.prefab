@@ -272,7 +272,7 @@ MonoBehaviour:
   amountOfAttacks: 5
   dashSpeed: 7
   delayBeforeAttack: 1
-  dashDuration: 0.5
+  dashDuration: 1
   delayAfterAttack: 0.5
   rotationSpeed: 10
   ghostSummon: {fileID: 1243690460648069670, guid: 3ad5e6895be96104ea7ee690d69e5685,

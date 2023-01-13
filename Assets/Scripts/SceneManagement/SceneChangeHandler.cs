@@ -24,9 +24,5 @@ public class SceneChangeHandler : MonoBehaviour
 
 
         player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(player.gameObject.name);
-        Debug.Log(player.transform.position);
-        Debug.Log(player.transform.position);
-        Debug.Log($"Scene loaded: {currentSceneName}");
     }
 }
