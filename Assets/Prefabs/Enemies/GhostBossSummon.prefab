@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 3
-  detectRange: 6.4
+  detectRange: 10
   baseMoveSpeed: 3.5
   hasDetectedPlayer: 0
   canAttack: 0
