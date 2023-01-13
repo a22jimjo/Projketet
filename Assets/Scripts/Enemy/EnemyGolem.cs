@@ -69,26 +69,29 @@ public class EnemyGolem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        RotateTowards();
-        
-        if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange && isAttacking == false)
+        if (stats.health > 0)
         {
-            animator.SetBool("isMoving", true);
-            ChaseState();
-            if (timeToStep >= stepCooldown)
+            RotateTowards();
+
+            if (Vector3.Distance(agent.destination, player.transform.position) <= detectRange && isAttacking == false)
             {
-                audioSource.PlayOneShot(WalkingClips[Random.Range(0, WalkingClips.Length)], walkingVolume);
-                timeToStep = 0;
+                animator.SetBool("isMoving", true);
+                ChaseState();
+                if (timeToStep >= stepCooldown)
+                {
+                    audioSource.PlayOneShot(WalkingClips[Random.Range(0, WalkingClips.Length)], walkingVolume);
+                    timeToStep = 0;
+                }
+                else
+                {
+                    timeToStep += Time.deltaTime;
+                }
             }
-            else
-            {
-                timeToStep += Time.deltaTime;
-            }
-        }else animator.SetBool("isMoving", false);
+            else animator.SetBool("isMoving", false);
+        }
     }
-    
-    
+
+
     void ChaseState()
     {
 
