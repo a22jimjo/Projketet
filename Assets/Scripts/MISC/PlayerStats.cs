@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     private float originalDefenceModifier;
     private float originalDamage;
     private float originalHeavyDamage;
+    private float originalSpeed;
 
     [SerializeField] private AudioClip[] DeathClips;
 
@@ -39,14 +40,15 @@ public class PlayerStats : MonoBehaviour
     {
         //Setup
         health = maxHealth;
-        originalDamage = damage;
-        originalDefenceModifier = defenceModifier;
-        originalMaxHealth = maxHealth;
-        originalHeavyDamage = heavyDamage;
         _ThirdPersonController = GetComponent<ThirdPersonController>();
         _healthbar.UpdateHealthBar(maxHealth, health);
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+        originalDamage = damage;
+        originalDefenceModifier = defenceModifier;
+        originalMaxHealth = maxHealth;
+        originalHeavyDamage = heavyDamage;
+        originalSpeed = _ThirdPersonController.MoveSpeed;
         //deathScreen = GameObject.FindGameObjectWithTag("DeathScreen");
         //tryAgainButton = GameObject.FindGameObjectWithTag("TryAgainButton");
         //tryAgainButton.SetActive(false);
@@ -136,5 +138,6 @@ public class PlayerStats : MonoBehaviour
         damage = originalDamage;
         heavyDamage = originalHeavyDamage;
         defenceModifier = originalDefenceModifier;
+        _ThirdPersonController.MoveSpeed = originalSpeed;
     }
 }
