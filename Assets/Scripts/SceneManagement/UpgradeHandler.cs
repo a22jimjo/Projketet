@@ -19,6 +19,8 @@ public class UpgradeHandler : MonoBehaviour
     private GameObject UpgradeScreen;
     private PlayerStats _playerStats;
 
+    public GameObject fortuneCookie;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,32 +101,43 @@ public class UpgradeHandler : MonoBehaviour
 
         int tempINT = Random.Range(1, 5);
 
-        Debug.Log($"{tempINT}");
-        
-        switch (tempINT)
+        StartCoroutine(Cookie(tempINT));
+    }
+
+    IEnumerator Cookie(int option)
+    {
+        switch (option)
         {
-            case 1: Debug.Log("1");
+            case 1:
+                fortuneCookie.GetComponent<Cookie>().DisplayCookie(option);
+                yield return new WaitForSeconds(2);
                 IncreaseAttack(fortuneBonus);
                 break;
 
             case 2:
-                Debug.Log("2");
+                fortuneCookie.GetComponent<Cookie>().DisplayCookie(option);
+                yield return new WaitForSeconds(2);
                 IncreaseDefence(fortuneBonus);
                 break;
 
             case 3:
-                Debug.Log("3");
+                fortuneCookie.GetComponent<Cookie>().DisplayCookie(option);
+                yield return new WaitForSeconds(2);
                 IncreaseMoveSpeed(fortuneBonus);
-                    break;
+                break;
             case 4:
-                Debug.Log("4");
+                fortuneCookie.GetComponent<Cookie>().DisplayCookie(option);
+                yield return new WaitForSeconds(2);
                 IncreaseMaxHealth(fortuneBonus);
                 break;
             case 5:
-                Debug.Log("5");
+                fortuneCookie.GetComponent<Cookie>().DisplayCookie(option);
+                yield return new WaitForSeconds(2);
                 RestoreHealth(fortuneBonus);
                 break;
         }
+        fortuneCookie.GetComponent<Cookie>().StopDisplay(option);
+        
     }
 
     private void FreePlayer()
