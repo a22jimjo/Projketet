@@ -11,6 +11,8 @@ public class UpgradeHandler : MonoBehaviour
     [SerializeField] private float damageModifier = 1.05f;
     [SerializeField] private float defenceModifier = 1.05f;
     [SerializeField] private float speedModifier = 1.10f;
+
+    private float fortuneBonus = 1.1f;
     
 
     private GameObject player;
@@ -39,13 +41,13 @@ public class UpgradeHandler : MonoBehaviour
     }
 
 
-    public void RestoreHealth()
+    public void RestoreHealth(float bonus)
     {
         player.TryGetComponent<PlayerStats>(out PlayerStats stats);
 
-        if (stats.health + healing <= stats.maxHealth)
+        if (stats.health + healing * bonus <= stats.maxHealth)
         {
-            stats.health += healing;
+            stats.health += healing * bonus;
             stats._healthbar.UpdateHealthBar(stats.maxHealth, stats.health);
             
         }
@@ -57,37 +59,37 @@ public class UpgradeHandler : MonoBehaviour
         FreePlayer();
     }
 
-    public void IncreaseMaxHealth()
+    public void IncreaseMaxHealth(float bonus)
     {
         player.TryGetComponent<PlayerStats>(out PlayerStats stats);
-        stats.maxHealth += maxHealthIncrease;
-        stats.health += maxHealthIncrease;
+        stats.maxHealth += maxHealthIncrease * bonus;
+        stats.health += maxHealthIncrease * bonus;
         stats._healthbar.UpdateHealthBar(stats.maxHealth, stats.health);
         FreePlayer();
     }
 
-    public void IncreaseAttack()
+    public void IncreaseAttack(float bonus)
     {
         player.TryGetComponent<PlayerStats>(out PlayerStats stats);
 
-        stats.damage *= damageModifier;
-        stats.heavyDamage *= damageModifier;
+        stats.damage *= damageModifier * bonus;
+        stats.heavyDamage *= damageModifier * bonus;
         
         FreePlayer();
     }
 
-    public void IncreaseDefence()
+    public void IncreaseDefence(float bonus)
     {
         player.TryGetComponent<PlayerStats>(out PlayerStats stats);
-        stats.defenceModifier *= defenceModifier;
+        stats.defenceModifier *= defenceModifier * bonus;
         FreePlayer();
     }
     
 
-    public void IncreaseMoveSpeed()
+    public void IncreaseMoveSpeed(float bonus)
     {
         player.TryGetComponent <ThirdPersonController>(out ThirdPersonController controllerStats);
-        controllerStats.MoveSpeed *= speedModifier;
+        controllerStats.MoveSpeed *= speedModifier * bonus;
         FreePlayer();
     }
 
@@ -97,28 +99,30 @@ public class UpgradeHandler : MonoBehaviour
 
         int tempINT = Random.Range(1, 5);
 
+        Debug.Log($"{tempINT}");
+        
         switch (tempINT)
         {
             case 1: Debug.Log("1");
-                IncreaseAttack();
+                IncreaseAttack(fortuneBonus);
                 break;
 
             case 2:
                 Debug.Log("2");
-                IncreaseDefence();
+                IncreaseDefence(fortuneBonus);
                 break;
 
             case 3:
                 Debug.Log("3");
-                IncreaseMoveSpeed();
+                IncreaseMoveSpeed(fortuneBonus);
                     break;
             case 4:
                 Debug.Log("4");
-                IncreaseMaxHealth();
+                IncreaseMaxHealth(fortuneBonus);
                 break;
             case 5:
                 Debug.Log("5");
-                RestoreHealth();
+                RestoreHealth(fortuneBonus);
                 break;
         }
     }
