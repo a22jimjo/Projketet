@@ -10,6 +10,8 @@ public class LoadCredits : MonoBehaviour
     [SerializeField] private GameObject endCredits;
     [SerializeField] private float endCreditWaitTime;
     private ThirdPersonController _ThirdPersonController;
+    private PlayerStats _PlayerStats;
+    private GameObject bossMusic;
 
     private GameObject hud;
 
@@ -18,6 +20,7 @@ public class LoadCredits : MonoBehaviour
     {
         //endCredits = GameObject.FindGameObjectWithTag("EndCredits");
         hud = GameObject.FindGameObjectWithTag("HUD");
+        bossMusic = GameObject.FindGameObjectWithTag("BossMusic");
     }
 
     // Update is called once per frame
@@ -38,14 +41,22 @@ public class LoadCredits : MonoBehaviour
 
     IEnumerator EndCredit()
     {
+        //turn off music
+        bossMusic.SetActive(false);
+
+        //Locks player movement and plays end credits
         _ThirdPersonController._fixedPosition = true;
         _ThirdPersonController.invincible = true;
         hud.SetActive(false);
         Instantiate(endCredits);
         //endCredits.SetActive(true);
-        yield return new WaitForSeconds(endCreditWaitTime);
-        SceneManager.LoadSceneAsync("1. Respawn");
-        _ThirdPersonController.invincible = false;
 
+        //wait until video is finished
+        yield return new WaitForSeconds(endCreditWaitTime);
+
+        //Respawn player with reseted stats
+        _ThirdPersonController.invincible = false;
+        _PlayerStats.ResetStats();
+        SceneManager.LoadSceneAsync("1_Respawn");
     }
 }

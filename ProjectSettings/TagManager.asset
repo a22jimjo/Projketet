@@ -24,6 +24,7 @@ TagManager:
   - Music
   - EndCredits
   - FortuneCockie
+  - BossMusic
   layers:
   - Default
   - TransparentFX
