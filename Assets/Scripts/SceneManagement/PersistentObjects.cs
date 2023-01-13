@@ -11,4 +11,12 @@ public class PersistentObjects : MonoBehaviour
             DontDestroyOnLoad(obj);
         }
     }
+
+    public void DestroyPersistentObjects()
+    {
+        foreach (GameObject obj in objectsToPersist)
+        {
+            Destroy(obj);
+        }
+    }
 }

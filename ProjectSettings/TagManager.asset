@@ -22,6 +22,7 @@ TagManager:
   - Wall
   - Wave 1
   - Music
+  - EndCredits
   layers:
   - Default
   - TransparentFX

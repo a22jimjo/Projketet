@@ -76,10 +76,7 @@ public class SceneTransition : MonoBehaviour
         print("Message from portal in last scene");
         if (isEndPortal)
         {
-            foreach (GameObject obj in persistentObjects.objectsToPersist)
-            {
-                Destroy(obj);
-            }
+            persistentObjects.DestroyPersistentObjects();
         }
         Destroy(gameObject);
     }
