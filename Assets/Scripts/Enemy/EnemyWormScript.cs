@@ -11,6 +11,7 @@ public class EnemyWormScript : MonoBehaviour
     Animator animator;
     Rigidbody rb;
     AudioSource audioSource;
+    EnemyStats stats;
 
     //Movement
     [Tooltip("The minimum distance between the character and it's target to attack")]
@@ -64,6 +65,7 @@ public class EnemyWormScript : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        stats = GetComponent<EnemyStats>();
 
         agent.speed = baseMoveSpeed;
 
@@ -184,6 +186,7 @@ public class EnemyWormScript : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
+            if (stats.health <= 0) break;
             GameObject _projectile = Instantiate(projectile, firePoint.position, transform.rotation);
             _projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
             audioSource.PlayOneShot(attackClips[Random.Range(0, attackClips.Length)], attackVolume);

@@ -111,6 +111,7 @@ public class EnemyWormBossLeftHeadScript : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
+            if (dead) break;
             GameObject _projectile = Instantiate(projectile, firePoint.position, transform.rotation);
             _projectile.GetComponent<EnemyProjectile>().damage = damage;
             _projectile.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
