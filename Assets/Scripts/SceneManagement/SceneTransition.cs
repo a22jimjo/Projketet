@@ -47,12 +47,14 @@ public class SceneTransition : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         FindAllEnemies();
+        Debug.Log("Portal entered");
         if (other.gameObject.tag == "Player" && enemyGameobjects.Count <= 0)
         {
             StartCoroutine(Transition());
         }
         else if(other.gameObject.tag == "Player")
         {
+            Debug.Log("enemies must be cleared to enter");
 
         }
     }
@@ -70,7 +72,8 @@ public class SceneTransition : MonoBehaviour
         player.transform.position = spawnPoint.transform.position;
         player.SetActive(true);
         yield return new WaitForSeconds(1.25f);
-        
+
+        print("Message from portal in last scene");
         if (isEndPortal)
         {
             persistentObjects.DestroyPersistentObjects();

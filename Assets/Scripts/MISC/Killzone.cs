@@ -35,7 +35,7 @@ public class Killzone : MonoBehaviour
         yield return null;
         DontDestroyOnLoad(gameObject);
         boxCollider.gameObject.SetActive(false);
-        SceneManager.LoadSceneAsync("Start scen RestartScene");
+        SceneManager.LoadSceneAsync("1_Respawn");
         player.SetActive(false);
         spawnPoint = GameObject.FindGameObjectWithTag("PlayerStartPosition");
         player.transform.position = spawnPoint.transform.position;
