@@ -123,7 +123,9 @@ public class PlayerStats : MonoBehaviour
         ResetStats();
         health = maxHealth;
         _healthbar.UpdateHealthBar(maxHealth, health);
-
+        
+        music.SetActive(true);
+        
         tryAgainButton.SetActive(false);
         deathScreen.SetActive(false);
     }
