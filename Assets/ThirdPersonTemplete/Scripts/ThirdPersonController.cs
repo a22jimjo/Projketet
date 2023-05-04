@@ -259,6 +259,8 @@ namespace StarterAssets
 
         private void Move()
         {
+            _dashTime -= Time.deltaTime;
+            _dashDuration -= Time.deltaTime;
             if (!_fixedPosition && !_slowDown)
             {
                 // set target speed based on move speed, sprint speed and if sprint is pressed
@@ -287,9 +289,7 @@ namespace StarterAssets
                     input.dash = false;
                 }
                 else if(_dashDuration < -0.1) invincible = false;
-                _dashTime -= Time.deltaTime;
-                _dashDuration -= Time.deltaTime;
-                
+
                 // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
                 // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude

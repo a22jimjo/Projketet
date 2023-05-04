@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class UpgradeHandler : MonoBehaviour
 {
-    [SerializeField] private int healing = 25;
     [SerializeField] private int maxHealthIncrease = 10;
     [SerializeField] private float damageModifier = 1.05f;
     [SerializeField] private float defenceModifier = 1.05f;
@@ -43,21 +42,12 @@ public class UpgradeHandler : MonoBehaviour
     }
 
 
-    public void RestoreHealth(float bonus)
+    public void RestoreHealth()
     {
         player.TryGetComponent<PlayerStats>(out PlayerStats stats);
-
-        if (stats.health + healing * bonus <= stats.maxHealth)
-        {
-            stats.health += healing * bonus;
-            stats._healthbar.UpdateHealthBar(stats.maxHealth, stats.health);
-            
-        }
-        else
-        {
-            stats.health = stats.maxHealth;
-            stats._healthbar.UpdateHealthBar(stats.maxHealth, stats.health);
-        }
+        stats.health = stats.maxHealth;
+        stats._healthbar.UpdateHealthBar(stats.maxHealth, stats.health);
+        
         FreePlayer();
     }
 
@@ -133,7 +123,7 @@ public class UpgradeHandler : MonoBehaviour
             case 5:
                 fortuneCookie.GetComponent<Cookie>().DisplayCookie(option);
                 yield return new WaitForSeconds(2);
-                RestoreHealth(fortuneBonus);
+                RestoreHealth();
                 break;
         }
         fortuneCookie.GetComponent<Cookie>().StopDisplay(option);
